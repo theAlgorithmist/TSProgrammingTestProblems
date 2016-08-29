@@ -1,6 +1,6 @@
 # Typescript Programming Test Problems
 
-A friend and C++/JS developer, Dave, recently started a discussion on programming tests.  He laughed a bit at some of the questions he had been asked on an interview and then commented about how there is lots of information about these problems online in other languages, but not Typescript.  Then, he hit me with the proverbial punch line - "Jim, why don't you do that?"
+A friend and C++/JS developer, Dave, recently started a discussion on programming tests.  He laughed a bit at some of the questions he had been asked during an interview and then commented about how there is lots of information about these problems online in other languages, but not Typescript.  Then, he hit me with the proverbial punch line - "Jim, why don't you do that?"
 
 Yes, as if I need another side project in addition to the Typescript Math Toolkit :)  I do admit it's a great excuse for some late-night coffee and it provides another source of Typescript examples.
 
