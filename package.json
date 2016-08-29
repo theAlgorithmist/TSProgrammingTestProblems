@@ -1,0 +1,22 @@
+{
+  "name": "TSProgrammingTests",
+  "version": "1.0.0",
+  "description": "Typescript Programming Test Problems",
+  "main": "index.html",
+  "keywords": [
+    "Typescript",
+    "Programming"
+  ],
+  "author": "Jim Armstrong (www.algorithmist.net)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "gulp-server-livereload": "^1.7.1",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-typescript": "2.12.0",
+    "typescript": "^1.8.2"
+  },
+  "dependencies": {
+    "jasmine-core": "2.4.1",
+    "systemjs": "0.19.24"
+  }
+}
