@@ -166,7 +166,19 @@ Solution:  I chose this problem from the email list since it is similar to so ma
 
 Followup:  I can think of three, quickly.  An empty array and I propose returning zero.  The second is equal prices throughout every time period, which is almost impossible in practice.  Return zero in this case.  Monotonically decreasing prices is the third situation, so there is no possible profitable long position.  Although rare in practice, this condition is theoretically possible.  A zero return fits the problem specs, but I propose returning the minimum-possible loss as an alternative (as a negative number). 
 
- 
+
+### Folder: twomin
+
+Source: Email
+
+Problem: You are given an array of integers.  Write a function that computes the minimum value, maximum value, and the minimum value strictly between min. and max. that is NOT in the array.  Do not use Math.min, Math.max, sorting, or a loop.  Discuss how you would handle negative testing.
+
+
+Solution:  And, do not pass 'GO', do not collect $200.  Sorry, I could not resist :)  Well, this appears to be another one of those 'can you come up with creative solutions to problems with highly unusual constraints' questions.  I was thinking about Redux before reading this email, so my first thought was to try a solution using reducers.  Since I agreed to 'off the top of my head,' I guess I'm stuck with that approach.
+
+Testing: For purposes of the exercise, let's put data integrity aside.  I suppose if you are worried about non-numeric and non-integer inputs, then throw an Error since that's indicative of a higher-level data/computation problem that needs to be resolved.  The usual suspects are zero-length and singleton arrays.  I like to return something reasonable in every case, so my proposal is (0,0,0) for the former and the singleton value of the array for the latter.  The caller may test if the array min. value is equal to the second min. value to indicate that there was no value that met the problem contitions.  On that note, another edge cases is non-sparse arrays; that is, arrays for which there is no 'gap' between integers in order to have a value in between min. and max. that is not in the input array. 
+
+
 
 ### Contributions
 

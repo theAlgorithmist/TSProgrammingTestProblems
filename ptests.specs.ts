@@ -24,6 +24,7 @@ import {LinearInterpolation} from './src/interp/Interp';
 import {RandomIntInRange   } from './src/randomint/RandomIntInRange';
 import {tripCount          } from './src/uberdriver/ComputeTrips';
 import {maxProfit          } from './src/daytrader/MaxProfit';
+import {twoMinMax          } from './src/twomin/TwoMinMax';
 
 // Test Suites
 describe('Multiply by 321', () => {
@@ -473,6 +474,70 @@ describe('Day Trader', () => {
   it('returns correct max profit #7', () => {
     profit = maxProfit( [100, 98, 96, 94, 93, 90, 87, 85, 80, 75, 70, 60, 50, 45, 40, 37, 35, 30, 26] );
     expect(profit).toEqual(-1);
+  });
+});
+
+describe('Two Mins and Max', () => {
+  
+  let result: Object = twoMinMax([]);
+
+  it('returns correct results for empty array', () => {
+    expect(<number> result['min1']).toBe(0);
+    expect(<number> result['min2']).toBe(0);
+    expect(<number> result['max']).toBe(0);
+  });
+
+  it('returns correct results for singleton array', () => {
+    result = twoMinMax([2]);
+    expect(<number> result['min1']).toBe(2);
+    expect(<number> result['min2']).toBe(2);
+    expect(<number> result['max']).toBe(2);
+  });
+
+  // no gaps, i.e. no min-integer between min and max that is NOT in the input array
+  it('returns specified results for no-gap array #1', () => {
+    result = twoMinMax([1, 2, 3]);
+    expect(<number> result['min1']).toBe(1);
+    expect(<number> result['min2']).toBe(1);
+    expect(<number> result['max']).toBe(3);
+  });
+
+  // degnerate version of above example
+  it('returns specified results for no-gap array #2', () => {
+    result = twoMinMax([1, 1, 1]);
+    expect(<number> result['min1']).toBe(1);
+    expect(<number> result['min2']).toBe(1);
+    expect(<number> result['max']).toBe(1);
+  });
+
+  it('returns correct results arbitrary integer array #1', () => {
+    result = twoMinMax([-1, -3, 7, 2, 20, 3, 5, -11, 14, 13, 12, -1]);
+    expect(<number> result['min1']).toBe(-11);
+    expect(<number> result['min2']).toBe(-10);
+    expect(<number> result['max']).toBe(20);
+  });
+
+  // put the minimum at each end of the array
+  it('returns correct results arbitrary integer array #2', () => {
+    result = twoMinMax([-11, -1, -3, 7, 2, 20, 3, 5, 14, 13, 12, -1]);
+    expect(<number> result['min1']).toBe(-11);
+    expect(<number> result['min2']).toBe(-10);
+    expect(<number> result['max']).toBe(20);
+  });
+
+  it('returns correct results arbitrary integer array #3', () => {
+    result = twoMinMax([-1, -3, 7, 2, 20, 3, 5, 14, 13, 12, -1, -11]);
+    expect(<number> result['min1']).toBe(-11);
+    expect(<number> result['min2']).toBe(-10);
+    expect(<number> result['max']).toBe(20);
+  });
+
+  // duplicate the min
+  it('returns correct results arbitrary integer array #4', () => {
+    result = twoMinMax([-1, -3, 7, 2, 20, 3, -11, 5, 14, 13, 12, -1, -11]);
+    expect(<number> result['min1']).toBe(-11);
+    expect(<number> result['min2']).toBe(-10);
+    expect(<number> result['max']).toBe(20);
   });
 });
 
