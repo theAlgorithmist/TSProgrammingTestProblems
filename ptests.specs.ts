@@ -25,6 +25,7 @@ import {RandomIntInRange   } from './src/randomint/RandomIntInRange';
 import {tripCount          } from './src/uberdriver/ComputeTrips';
 import {maxProfit          } from './src/daytrader/MaxProfit';
 import {twoMinMax          } from './src/twomin/TwoMinMax';
+import {lastTwoDigits      } from './src/twodigits/TwoDigits';
 
 // Test Suites
 describe('Multiply by 321', () => {
@@ -107,32 +108,32 @@ describe('Exchange Integers', () => {
 
   it('properly exchanges 6 and 5', () => {
     result = exchangeInt(6, 5);
-    expect(<number> result['a']).toBe(5);
-    expect(<number> result['b']).toBe(6);
+    expect(+result['a']).toBe(5);
+    expect(+result['b']).toBe(6);
   });
 
   it('properly exchanges 1 and -1', () => {
     result = exchangeInt(1, -1);
-    expect(<number> result['a']).toBe(-1);
-    expect(<number> result['b']).toBe(1);
+    expect(+result['a']).toBe(-1);
+    expect(+result['b']).toBe(1);
   });
 
   it('properly exchanges 4 and 0', () => {
     result = exchangeInt(4, 0);
-    expect(<number> result['a']).toBe(0);
-    expect(<number> result['b']).toBe(4);
+    expect(+result['a']).toBe(0);
+    expect(+result['b']).toBe(4);
   });
 
   it('properly exchanges 0 and 5', () => {
     result = exchangeInt(0, 5);
-    expect(<number> result['a']).toBe(5);
-    expect(<number> result['b']).toBe(0);
+    expect(+result['a']).toBe(5);
+    expect(+result['b']).toBe(0);
   });
 
   it('properly exchanges -10 and -11', () => {
     result = exchangeInt(-10, -11);
-    expect(<number> result['a']).toBe(-11);
-    expect(<number> result['b']).toBe(-10);
+    expect(+result['a']).toBe(-11);
+    expect(+result['b']).toBe(-10);
   });
 });
 
@@ -356,8 +357,8 @@ describe('Random Integer in Range', () => {
 
 describe('Uber Driver', () => {
 
-  let __getRating: Function = ( trips:Array<number> ): number => {
-    return trips.reduce( (total: number, x: number ) => {return total+x} )/<number> trips.length;
+  let __getRating: Function = ( trips:Array<number>): number => {
+    return trips.reduce( (total: number, x: number ) => {return total+x} )/+trips.length;
   };
 
   let junk: any = {a: -1};
@@ -482,62 +483,139 @@ describe('Two Mins and Max', () => {
   let result: Object = twoMinMax([]);
 
   it('returns correct results for empty array', () => {
-    expect(<number> result['min1']).toBe(0);
-    expect(<number> result['min2']).toBe(0);
-    expect(<number> result['max']).toBe(0);
+    expect(+result['min1']).toBe(0);
+    expect(+result['min2']).toBe(0);
+    expect(+result['max']).toBe(0);
   });
 
   it('returns correct results for singleton array', () => {
     result = twoMinMax([2]);
-    expect(<number> result['min1']).toBe(2);
-    expect(<number> result['min2']).toBe(2);
-    expect(<number> result['max']).toBe(2);
+    expect(+result['min1']).toBe(2);
+    expect(+result['min2']).toBe(2);
+    expect(+result['max']).toBe(2);
   });
 
   // no gaps, i.e. no min-integer between min and max that is NOT in the input array
   it('returns specified results for no-gap array #1', () => {
     result = twoMinMax([1, 2, 3]);
-    expect(<number> result['min1']).toBe(1);
-    expect(<number> result['min2']).toBe(1);
-    expect(<number> result['max']).toBe(3);
+    expect(+result['min1']).toBe(1);
+    expect(+result['min2']).toBe(1);
+    expect(+result['max']).toBe(3);
   });
 
   // degnerate version of above example
   it('returns specified results for no-gap array #2', () => {
     result = twoMinMax([1, 1, 1]);
-    expect(<number> result['min1']).toBe(1);
-    expect(<number> result['min2']).toBe(1);
-    expect(<number> result['max']).toBe(1);
+    expect(+result['min1']).toBe(1);
+    expect(+result['min2']).toBe(1);
+    expect(+result['max']).toBe(1);
   });
 
   it('returns correct results arbitrary integer array #1', () => {
     result = twoMinMax([-1, -3, 7, 2, 20, 3, 5, -11, 14, 13, 12, -1]);
-    expect(<number> result['min1']).toBe(-11);
-    expect(<number> result['min2']).toBe(-10);
-    expect(<number> result['max']).toBe(20);
+    expect(+result['min1']).toBe(-11);
+    expect(+result['min2']).toBe(-10);
+    expect(+result['max']).toBe(20);
   });
 
   // put the minimum at each end of the array
   it('returns correct results arbitrary integer array #2', () => {
     result = twoMinMax([-11, -1, -3, 7, 2, 20, 3, 5, 14, 13, 12, -1]);
-    expect(<number> result['min1']).toBe(-11);
-    expect(<number> result['min2']).toBe(-10);
-    expect(<number> result['max']).toBe(20);
+    expect(+result['min1']).toBe(-11);
+    expect(+result['min2']).toBe(-10);
+    expect(+result['max']).toBe(20);
   });
 
   it('returns correct results arbitrary integer array #3', () => {
     result = twoMinMax([-1, -3, 7, 2, 20, 3, 5, 14, 13, 12, -1, -11]);
-    expect(<number> result['min1']).toBe(-11);
-    expect(<number> result['min2']).toBe(-10);
-    expect(<number> result['max']).toBe(20);
+    expect(+result['min1']).toBe(-11);
+    expect(+result['min2']).toBe(-10);
+    expect(+result['max']).toBe(20);
   });
 
   // duplicate the min
   it('returns correct results arbitrary integer array #4', () => {
     result = twoMinMax([-1, -3, 7, 2, 20, 3, -11, 5, 14, 13, 12, -1, -11]);
-    expect(<number> result['min1']).toBe(-11);
-    expect(<number> result['min2']).toBe(-10);
-    expect(<number> result['max']).toBe(20);
+    expect(+result['min1']).toBe(-11);
+    expect(+result['min2']).toBe(-10);
+    expect(+result['max']).toBe(20);
   });
 });
 
+describe('Last Two Digits (not multiple of 10)', () => {
+  
+  let junk: any        = "asdfasdf";
+  let morejunk: number = 1/0;
+ 
+  it('returns correct results for invalid arguments list', () => {
+    let result: Object = lastTwoDigits(junk, morejunk);
+
+    expect(+result['n']).toBe(0);
+    expect(+result['ones']).toBe(0);
+    expect(+result['tens']).toBe(0);
+    expect(<boolean> result['square']).toBe(true);
+  });
+
+  it('returns correct results for empty argument list', () => {
+    let result: Object = lastTwoDigits();
+
+    expect(+result['n']).toBe(1);
+    expect(+result['ones']).toBe(1);
+    expect(+result['tens']).toBe(0);
+    expect(<boolean> result['square']).toBe(true);
+  });
+
+  it('properly clips invalid arguments', () => {
+    let result: Object = lastTwoDigits(-1, 11);
+
+    expect(+result['n']).toBe(81);
+    expect(+result['ones']).toBe(1);
+    expect(+result['tens']).toBe(8);
+    expect(<boolean> result['square']).toBe(true);
+  });
+
+  it('returns correct results for correct arguments #1', () => {
+    let result: Object = lastTwoDigits(0, 5);
+
+    expect(+result['n']).toBe(25);
+    expect(+result['ones']).toBe(5);
+    expect(+result['tens']).toBe(2);
+    expect(<boolean> result['square']).toBe(true);
+  });
+
+  it('returns correct results for correct arguments #2', () => {
+    let result: Object = lastTwoDigits(1, 9);
+
+    expect(+result['n']).toBe(361);
+    expect(+result['ones']).toBe(1);
+    expect(+result['tens']).toBe(6);
+    expect(<boolean> result['square']).toBe(false);
+  });
+
+  it('returns correct results for correct arguments #3', () => {
+    let result: Object = lastTwoDigits(2, 1);
+
+    expect(+result['n']).toBe(441);
+    expect(+result['ones']).toBe(1);
+    expect(+result['tens']).toBe(4);
+    expect(<boolean> result['square']).toBe(true);
+  });
+
+  it('returns correct results for correct arguments #4', () => {
+    let result: Object = lastTwoDigits(3, 4);
+
+    expect(+result['n']).toBe(1156);
+    expect(+result['ones']).toBe(6);
+    expect(+result['tens']).toBe(5);
+    expect(<boolean> result['square']).toBe(false);
+  });
+
+  it('returns correct results for correct arguments #5', () => {
+    let result: Object = lastTwoDigits(4, 1);
+
+    expect(+result['n']).toBe(1681);
+    expect(+result['ones']).toBe(1);
+    expect(+result['tens']).toBe(8);
+    expect(<boolean> result['square']).toBe(true);
+  });
+});

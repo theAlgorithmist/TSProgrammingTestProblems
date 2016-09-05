@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1;
     return {
         setters:[
             function (Multiply321_1_1) {
@@ -44,6 +44,9 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (TwoMinMax_1_1) {
                 TwoMinMax_1 = TwoMinMax_1_1;
+            },
+            function (TwoDigits_1_1) {
+                TwoDigits_1 = TwoDigits_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -109,28 +112,28 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                 var result;
                 it('properly exchanges 6 and 5', function () {
                     result = ExchangeInt_1.exchangeInt(6, 5);
-                    expect(result['a']).toBe(5);
-                    expect(result['b']).toBe(6);
+                    expect(+result['a']).toBe(5);
+                    expect(+result['b']).toBe(6);
                 });
                 it('properly exchanges 1 and -1', function () {
                     result = ExchangeInt_1.exchangeInt(1, -1);
-                    expect(result['a']).toBe(-1);
-                    expect(result['b']).toBe(1);
+                    expect(+result['a']).toBe(-1);
+                    expect(+result['b']).toBe(1);
                 });
                 it('properly exchanges 4 and 0', function () {
                     result = ExchangeInt_1.exchangeInt(4, 0);
-                    expect(result['a']).toBe(0);
-                    expect(result['b']).toBe(4);
+                    expect(+result['a']).toBe(0);
+                    expect(+result['b']).toBe(4);
                 });
                 it('properly exchanges 0 and 5', function () {
                     result = ExchangeInt_1.exchangeInt(0, 5);
-                    expect(result['a']).toBe(5);
-                    expect(result['b']).toBe(0);
+                    expect(+result['a']).toBe(5);
+                    expect(+result['b']).toBe(0);
                 });
                 it('properly exchanges -10 and -11', function () {
                     result = ExchangeInt_1.exchangeInt(-10, -11);
-                    expect(result['a']).toBe(-11);
-                    expect(result['b']).toBe(-10);
+                    expect(+result['a']).toBe(-11);
+                    expect(+result['b']).toBe(-10);
                 });
             });
             describe('Machine Epsilon', function () {
@@ -311,7 +314,7 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             });
             describe('Uber Driver', function () {
                 var __getRating = function (trips) {
-                    return trips.reduce(function (total, x) { return total + x; }) / trips.length;
+                    return trips.reduce(function (total, x) { return total + x; }) / +trips.length;
                 };
                 var junk = { a: -1 };
                 it('returns 0 for invalid inputs', function () {
@@ -406,55 +409,115 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             describe('Two Mins and Max', function () {
                 var result = TwoMinMax_1.twoMinMax([]);
                 it('returns correct results for empty array', function () {
-                    expect(result['min1']).toBe(0);
-                    expect(result['min2']).toBe(0);
-                    expect(result['max']).toBe(0);
+                    expect(+result['min1']).toBe(0);
+                    expect(+result['min2']).toBe(0);
+                    expect(+result['max']).toBe(0);
                 });
                 it('returns correct results for singleton array', function () {
                     result = TwoMinMax_1.twoMinMax([2]);
-                    expect(result['min1']).toBe(2);
-                    expect(result['min2']).toBe(2);
-                    expect(result['max']).toBe(2);
+                    expect(+result['min1']).toBe(2);
+                    expect(+result['min2']).toBe(2);
+                    expect(+result['max']).toBe(2);
                 });
                 // no gaps, i.e. no min-integer between min and max that is NOT in the input array
                 it('returns specified results for no-gap array #1', function () {
                     result = TwoMinMax_1.twoMinMax([1, 2, 3]);
-                    expect(result['min1']).toBe(1);
-                    expect(result['min2']).toBe(1);
-                    expect(result['max']).toBe(3);
+                    expect(+result['min1']).toBe(1);
+                    expect(+result['min2']).toBe(1);
+                    expect(+result['max']).toBe(3);
                 });
                 // degnerate version of above example
                 it('returns specified results for no-gap array #2', function () {
                     result = TwoMinMax_1.twoMinMax([1, 1, 1]);
-                    expect(result['min1']).toBe(1);
-                    expect(result['min2']).toBe(1);
-                    expect(result['max']).toBe(1);
+                    expect(+result['min1']).toBe(1);
+                    expect(+result['min2']).toBe(1);
+                    expect(+result['max']).toBe(1);
                 });
                 it('returns correct results arbitrary integer array #1', function () {
                     result = TwoMinMax_1.twoMinMax([-1, -3, 7, 2, 20, 3, 5, -11, 14, 13, 12, -1]);
-                    expect(result['min1']).toBe(-11);
-                    expect(result['min2']).toBe(-10);
-                    expect(result['max']).toBe(20);
+                    expect(+result['min1']).toBe(-11);
+                    expect(+result['min2']).toBe(-10);
+                    expect(+result['max']).toBe(20);
                 });
                 // put the minimum at each end of the array
                 it('returns correct results arbitrary integer array #2', function () {
                     result = TwoMinMax_1.twoMinMax([-11, -1, -3, 7, 2, 20, 3, 5, 14, 13, 12, -1]);
-                    expect(result['min1']).toBe(-11);
-                    expect(result['min2']).toBe(-10);
-                    expect(result['max']).toBe(20);
+                    expect(+result['min1']).toBe(-11);
+                    expect(+result['min2']).toBe(-10);
+                    expect(+result['max']).toBe(20);
                 });
                 it('returns correct results arbitrary integer array #3', function () {
                     result = TwoMinMax_1.twoMinMax([-1, -3, 7, 2, 20, 3, 5, 14, 13, 12, -1, -11]);
-                    expect(result['min1']).toBe(-11);
-                    expect(result['min2']).toBe(-10);
-                    expect(result['max']).toBe(20);
+                    expect(+result['min1']).toBe(-11);
+                    expect(+result['min2']).toBe(-10);
+                    expect(+result['max']).toBe(20);
                 });
                 // duplicate the min
                 it('returns correct results arbitrary integer array #4', function () {
                     result = TwoMinMax_1.twoMinMax([-1, -3, 7, 2, 20, 3, -11, 5, 14, 13, 12, -1, -11]);
-                    expect(result['min1']).toBe(-11);
-                    expect(result['min2']).toBe(-10);
-                    expect(result['max']).toBe(20);
+                    expect(+result['min1']).toBe(-11);
+                    expect(+result['min2']).toBe(-10);
+                    expect(+result['max']).toBe(20);
+                });
+            });
+            describe('Last Two Digits (not multiple of 10)', function () {
+                var junk = "asdfasdf";
+                var morejunk = 1 / 0;
+                it('returns correct results for invalid arguments list', function () {
+                    var result = TwoDigits_1.lastTwoDigits(junk, morejunk);
+                    expect(+result['n']).toBe(0);
+                    expect(+result['ones']).toBe(0);
+                    expect(+result['tens']).toBe(0);
+                    expect(result['square']).toBe(true);
+                });
+                it('returns correct results for empty argument list', function () {
+                    var result = TwoDigits_1.lastTwoDigits();
+                    expect(+result['n']).toBe(1);
+                    expect(+result['ones']).toBe(1);
+                    expect(+result['tens']).toBe(0);
+                    expect(result['square']).toBe(true);
+                });
+                it('properly clips invalid arguments', function () {
+                    var result = TwoDigits_1.lastTwoDigits(-1, 11);
+                    expect(+result['n']).toBe(81);
+                    expect(+result['ones']).toBe(1);
+                    expect(+result['tens']).toBe(8);
+                    expect(result['square']).toBe(true);
+                });
+                it('returns correct results for correct arguments #1', function () {
+                    var result = TwoDigits_1.lastTwoDigits(0, 5);
+                    expect(+result['n']).toBe(25);
+                    expect(+result['ones']).toBe(5);
+                    expect(+result['tens']).toBe(2);
+                    expect(result['square']).toBe(true);
+                });
+                it('returns correct results for correct arguments #2', function () {
+                    var result = TwoDigits_1.lastTwoDigits(1, 9);
+                    expect(+result['n']).toBe(361);
+                    expect(+result['ones']).toBe(1);
+                    expect(+result['tens']).toBe(6);
+                    expect(result['square']).toBe(false);
+                });
+                it('returns correct results for correct arguments #3', function () {
+                    var result = TwoDigits_1.lastTwoDigits(2, 1);
+                    expect(+result['n']).toBe(441);
+                    expect(+result['ones']).toBe(1);
+                    expect(+result['tens']).toBe(4);
+                    expect(result['square']).toBe(true);
+                });
+                it('returns correct results for correct arguments #4', function () {
+                    var result = TwoDigits_1.lastTwoDigits(3, 4);
+                    expect(+result['n']).toBe(1156);
+                    expect(+result['ones']).toBe(6);
+                    expect(+result['tens']).toBe(5);
+                    expect(result['square']).toBe(false);
+                });
+                it('returns correct results for correct arguments #5', function () {
+                    var result = TwoDigits_1.lastTwoDigits(4, 1);
+                    expect(+result['n']).toBe(1681);
+                    expect(+result['ones']).toBe(1);
+                    expect(+result['tens']).toBe(8);
+                    expect(result['square']).toBe(true);
                 });
             });
         }

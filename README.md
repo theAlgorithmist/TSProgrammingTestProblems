@@ -179,6 +179,20 @@ Solution:  And, do not pass 'GO', do not collect $200.  Sorry, I could not resis
 Testing: For purposes of the exercise, let's put data integrity aside.  I suppose if you are worried about non-numeric and non-integer inputs, then throw an Error since that's indicative of a higher-level data/computation problem that needs to be resolved.  The usual suspects are zero-length and singleton arrays.  I like to return something reasonable in every case, so my proposal is (0,0,0) for the former and the singleton value of the array for the latter.  The caller may test if the array min. value is equal to the second min. value to indicate that there was no value that met the problem contitions.  On that note, another edge cases is non-sparse arrays; that is, arrays for which there is no 'gap' between integers in order to have a value in between min. and max. that is not in the input array. 
 
 
+### Folder: twodigits
+
+Source: Email
+
+Problem: For positive integers, n, that are not multiples of 10, extract the last two digits of n^2.  Remove these two digits from n^2 and determine if the resulting number is a perfect square.  Your code should be robust.  Bonus:  What is the largest value of n for which there is no carrying required to compute n^2?
+
+
+Solution:  The inputs and outputs of this code are a bit ambiguous.  Since it's my example, I get to add the clarification :)  I like to think in terms of factories, so I propose a function that allows positive integers that are not multiplies of 10 to be constructed.  The return is an Object with an 'n' property that contains n^2 in the problem description.  The 'ones' and 'tens' proprities contain the ones-digit and tens-digit, respectively (i.e. the 'last two digits', LTR).  The 'square' property is a boolean that is true if the result of removing the ones and tens digits from n^2 results in a perfect square.
+
+I suppose there are a couple tricks to this problem, the first of which is remembering that a perfect square has a integral square root.  While  _Number.isInteger_ comes to mind in terms of a test, realize that this does not account for potential rounding error in the computation of the square root.  For valid numbers, isInteger() tests if Math.floor(n) === n.  Tests for exact equality are not recommended when dealing with floating-point computations and that may be part of the rationale for the question.
+
+Now, positive integers that are not multiples of 10 are of the form 10m + s where m = 0, 1, 2, ... and s is an integer in [1,9].  We'll let zero play along for purposes of this exercise.  The function _lastTwoDigits_ allows m and s to be input.  Defaults are 0 and 1, respectively.  n^2 = 100m^2 + 20ms + s^2 = 100m^2 + 10(2ms) + s^2.  This allows us to answer the bonus question.  Multiplying by 10 or 100 is trivial, so there can be no carrying in computing s^2, m^2, and 2ms.  This means that s and m could be 1, 2, or 3.  Since we want to maximize n, m = 3, which results in s = 1. So, n^2 = 100x9 + 10(2x3x1) + 1 = 900 + 10x6 + 1 = 961.  Since n = 10m + s, n = 31.  You can do a quick check with 32x32.  Note that this involves adding 6+6 in the hundreds place, which requires a carry into the thousands place.
+
+
 
 ### Contributions
 
