@@ -17,8 +17,8 @@ System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     /**
-     * Function to compute the last two digits of a positive integer (not a multiple of 10) and return whether or not removing the last two digits results in
-     * a perfect square.  This function allows positive, non-multiples of 10 to be constructed instead of entering an arbitrary integer
+     * Function to compute the last two digits of a positive integer (not a multiple of 10) and return whether or not removing the last two digits of n^2 results in
+     * a perfect square.  This function allows positive, non-multiples of 10 to be constructed instead of entering an arbitrary integer.
      *
      * @param m : number Multiplier of 10, 0, 1, 2, 3, ...
      * @default 0
@@ -53,7 +53,7 @@ System.register([], function(exports_1, context_1) {
         var tens = len == 1 ? "0" : value.charAt(len - 2);
         var t = +value - 10 * (+tens) - (+ones);
         t = Math.sqrt(t);
-        // zero-tolerance here is a bit crude, but workable for an example
+        // zero-tolerance here is a bit crude, but workable for an example - never test exact equality when dealing with floating-point numbers
         var isPerfect = Math.abs(Math.floor(t) - t) < 0.000000001;
         return { n: value, ones: ones, tens: tens, square: isPerfect };
     }

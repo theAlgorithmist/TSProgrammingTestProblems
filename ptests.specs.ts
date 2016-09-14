@@ -26,6 +26,8 @@ import {tripCount          } from './src/uberdriver/ComputeTrips';
 import {maxProfit          } from './src/daytrader/MaxProfit';
 import {twoMinMax          } from './src/twomin/TwoMinMax';
 import {lastTwoDigits      } from './src/twodigits/TwoDigits';
+import {ExtendedLinkedList } from './src/llist1/ExtendedLinkedList';
+import {TSMT$ListNode      } from './src/shared/ListNode';
 
 // Test Suites
 describe('Multiply by 321', () => {
@@ -618,4 +620,47 @@ describe('Last Two Digits (not multiple of 10)', () => {
     expect(+result['tens']).toBe(8);
     expect(<boolean> result['square']).toBe(true);
   });
+});
+
+describe('Linked List k-from-end', () => {
+  
+  let list: ExtendedLinkedList = new ExtendedLinkedList();
+  let node: TSMT$ListNode;
+
+  it('returns null for k < 0', () => {
+    node = list.kfromEnd(-1);
+    expect(node).toBe(null);
+  });
+
+  it('works for singleton list', () => {
+    list.add( "0", {});
+
+    node = list.kfromEnd(0);
+    expect(node.id).toBe("0");
+  
+    // beyond beginning of list
+    node = list.kfromEnd(1);
+    expect(node).toBe(null);
+  });
+
+  it('works for arbitrary list', () => {
+    list.add( "0", {});
+    list.add( "1", {});
+    list.add( "2", {});
+    list.add( "3", {});
+    list.add( "4", {});
+    list.add( "5", {});
+    list.add( "6", {});
+    list.add( "7", {});
+    list.add( "8", {});
+    list.add( "9", {});
+
+    node = list.kfromEnd(4);
+    expect(node.id).toBe("5");
+  
+    // select head of list as special case
+    node = list.kfromEnd(9);
+    expect(node.id).toBe("0");
+  });
+
 });

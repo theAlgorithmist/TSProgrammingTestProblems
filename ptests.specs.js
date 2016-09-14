@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1;
     return {
         setters:[
             function (Multiply321_1_1) {
@@ -47,6 +47,9 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (TwoDigits_1_1) {
                 TwoDigits_1 = TwoDigits_1_1;
+            },
+            function (ExtendedLinkedList_1_1) {
+                ExtendedLinkedList_1 = ExtendedLinkedList_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -518,6 +521,39 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     expect(+result['ones']).toBe(1);
                     expect(+result['tens']).toBe(8);
                     expect(result['square']).toBe(true);
+                });
+            });
+            describe('Linked List k-from-end', function () {
+                var list = new ExtendedLinkedList_1.ExtendedLinkedList();
+                var node;
+                it('returns null for k < 0', function () {
+                    node = list.kfromEnd(-1);
+                    expect(node).toBe(null);
+                });
+                it('works for singleton list', function () {
+                    list.add("0", {});
+                    node = list.kfromEnd(0);
+                    expect(node.id).toBe("0");
+                    // beyond beginning of list
+                    node = list.kfromEnd(1);
+                    expect(node).toBe(null);
+                });
+                it('works for arbitrary list', function () {
+                    list.add("0", {});
+                    list.add("1", {});
+                    list.add("2", {});
+                    list.add("3", {});
+                    list.add("4", {});
+                    list.add("5", {});
+                    list.add("6", {});
+                    list.add("7", {});
+                    list.add("8", {});
+                    list.add("9", {});
+                    node = list.kfromEnd(4);
+                    expect(node.id).toBe("5");
+                    // select head of list as special case
+                    node = list.kfromEnd(9);
+                    expect(node.id).toBe("0");
                 });
             });
         }

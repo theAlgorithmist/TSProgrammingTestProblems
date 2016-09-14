@@ -193,6 +193,24 @@ I suppose there are a couple tricks to this problem, the first of which is remem
 Now, positive integers that are not multiples of 10 are of the form 10m + s where m = 0, 1, 2, ... and s is an integer in [1,9].  We'll let zero play along for purposes of this exercise.  The function _lastTwoDigits_ allows m and s to be input.  Defaults are 0 and 1, respectively.  n^2 = 100m^2 + 20ms + s^2 = 100m^2 + 10(2ms) + s^2.  This allows us to answer the bonus question.  Multiplying by 10 or 100 is trivial, so there can be no carrying in computing s^2, m^2, and 2ms.  This means that s and m could be 1, 2, or 3.  Since we want to maximize n, m = 3, which results in s = 1. So, n^2 = 100x9 + 10(2x3x1) + 1 = 900 + 10x6 + 1 = 961.  Since n = 10m + s, n = 31.  You can do a quick check with 32x32.  Note that this involves adding 6+6 in the hundreds place, which requires a carry into the thousands place.
 
 
+### Folder: llist1
+
+Source: Email
+
+Problem: Write time- and space-efficient code that returns the k-th from the end node from a _singly-linked_ list.
+
+
+Solution:  Ah, I was wondering when we would get to traditional data structures questions.  I suppose this is to test understanding of the internals of data structures as well as how you think about complexity.  It may also make a good discussion question as some of the possible responses include
+
+* 1 - Use a doubly-linked list.  I might give some credit for a 'Kobayashi Maru' style approach, but if k is large compared to the size of the list, then always using a doubly-linked list and traversing from the tail, backward is less efficient than startring from the head, forward.  
+
+* 2 - Convert the linked-list into an array and then use array indexing to return the required node.  This approach has issues with both the time and space-efficient requirements as it requires one full traversal through the list to create the array along with the extra memory requirement for the array.  The indexing is O(1) and might pay off for frequent calls to such a method with differing values of k (although it is invalidated if the list changes).  The interviewer, however, may consider the array requirement a disqualifier for this approach.  Good discussion question, however, to see if the candidate recognizes these tradeoffs.
+
+If the size of the list is available, then it is possible to compute the number of node traversals from the head, forward, to return the required result or null if k is sufficiently large to extend beyond the list head.  It is useful to be able to solve the problem with a singly-linked list if the size is not available.  Start with the head node and count k nodes forward.  Now, the head is a candidate for k-th from the last node.  For every node remaining in the list, shift the candidate foward one node until the end of the list is reached.
+
+Although I tend to use libraries as much as possible in production, I did have to write yet another linked list of my own in 2000 for a Flash game.  I needed to search nodes by both index and id.  Search results were cached and the list computed the optimal traversal direction and start node.  It originally supported singly- and doubly-linked lists and was extended to include circular.  It was also converted to Actionscript 2, then 3, then Javascript, and was recently placed in the Typescript Math Toolkit data structures library.  I created an ExtendedLinkedList class to add the k-from-end method and that is used for the solution to the problem.  You are welcome to deconstruct the internals of the TSMT Linked List at your convenience.
+
+
 
 ### Contributions
 
