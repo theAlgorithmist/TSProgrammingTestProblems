@@ -200,7 +200,7 @@ Source: Email
 Problem: Write time- and space-efficient code that returns the k-th from the end node from a _singly-linked_ list.
 
 
-Solution:  Ah, I was wondering when we would get to traditional data structures questions.  I suppose this is to test understanding of the internals of data structures as well as how you think about complexity.  It may also make a good discussion question as some of the possible responses include
+Solution:  Ah, I was wondering when we would get to traditional data structures questions.  I suppose this is to test understanding of the internals of data structures as well as how you think about complexity.  It may also makes a good discussion question as some of the possible responses include
 
 * 1 - Use a doubly-linked list.  I might give some credit for a 'Kobayashi Maru' style approach, but if k is large compared to the size of the list, then always using a doubly-linked list and traversing from the tail, backward is less efficient than startring from the head, forward.  
 
@@ -209,6 +209,23 @@ Solution:  Ah, I was wondering when we would get to traditional data structures 
 If the size of the list is available, then it is possible to compute the number of node traversals from the head, forward, to return the required result or null if k is sufficiently large to extend beyond the list head.  It is useful to be able to solve the problem with a singly-linked list if the size is not available.  Start with the head node and count k nodes forward.  Now, the head is a candidate for k-th from the last node.  For every node remaining in the list, shift the candidate foward one node until the end of the list is reached.
 
 Although I tend to use libraries as much as possible in production, I did have to write yet another linked list of my own in 2000 for a Flash game.  I needed to search nodes by both index and id.  Search results were cached and the list computed the optimal traversal direction and start node.  It originally supported singly- and doubly-linked lists and was extended to include circular.  It was also converted to Actionscript 2, then 3, then Javascript, and was recently placed in the Typescript Math Toolkit data structures library.  I created an ExtendedLinkedList class to add the k-from-end method and that is used for the solution to the problem.  You are welcome to deconstruct the internals of the TSMT Linked List at your convenience.
+
+### Folder: bisection
+
+Source: Email
+
+Problem: Write a function or class that takes an interval [a,b] and a function, f(x), as input (x is a number and the function computes a number).  Return a subset of [a,b] (that may be the original interval) containing a root of f(x) or an indication that no root exists in [a,b].
+
+
+Solution:  Well, I can see why this one was emailed to me :)  The submitter interviewed for a UI developer position at an engineering company.  He was placed in a room and asked to solve this problem, then give a presentation on the solution to a group.  Now, I don't always get complete information from an email, but as stated, I believe the problem is unfair.  This is interval bisection, taken straight out of Numerical Analysis 101 and it is simply not practical to expect any UI developer to have exposure to even basic numerical analysis.  How would that person be expected to test such code? 
+
+Now, if the algorithm was stated in detail, in advance (along with complete specs if you want the code to be tested), then I expect the problem could test two things.  First, does the candidate feel comfortable with programming math and engineering formulas?  Second, can the candidate write recursive code?  The recursive implementation of biscection is particularly elegant.
+
+Here is how bisection works.  The function, f, should be continuous in [a,b].  If there is a sign change at the endpoints, i.e. f(a)*f(b) < 0, then there is at least one point in [a,b] where f(x) = 0, which is the definition of a root.  If no sign change is detected, then recursively divide the interval in half and repeat the test for each half until either a root is detected or the interval is less than or equal to a prescribed mininmum width.  Stop in the latter case and indicate that no root was found.  If a root is detected, the new interval is passed onto some root-finding function to compute the numerical value of the root.  Starting with a tight interval tends to guarantee quick convergence in the root-finding algorithm.  Since bisection exponentially reduces interval width each step, it can often isolate a root in only a few steps.  So, it makes a good 'preprocessor' in a general root-finding procedure.
+
+If I were to write out each step of the bisection process in detail and provide test problems for specs, then I would expect a good programmer to be able to write a bisection code in some reasonable amount of time.  To not provide such detail to a candidate means that the company is looking for the wrong type of person to begin with or simply does not know how to interview programmers.
+
+I implemented a BisectInterval class containing a static bisect method.  Deconstruct the recursive implementation of bisection at your leisure and feel free to experiment with modifications.
 
 
 

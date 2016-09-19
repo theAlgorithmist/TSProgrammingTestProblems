@@ -28,6 +28,7 @@ import {twoMinMax          } from './src/twomin/TwoMinMax';
 import {lastTwoDigits      } from './src/twodigits/TwoDigits';
 import {ExtendedLinkedList } from './src/llist1/ExtendedLinkedList';
 import {TSMT$ListNode      } from './src/shared/ListNode';
+import {BisectInterval     } from './src/bisection/Bisect';
 
 // Test Suites
 describe('Multiply by 321', () => {
@@ -661,6 +662,49 @@ describe('Linked List k-from-end', () => {
     // select head of list as special case
     node = list.kfromEnd(9);
     expect(node.id).toBe("0");
+  });
+});
+
+describe('Interval Bisection', () => {
+
+  it('returns no root for a = b', () => {
+    let f: Function    = (x: number): number => {return 2.0*x};
+    let result: Object = BisectInterval.bisect(1, 1, f);
+    expect(result['root']).toBe(false);
+  });
+
+  it('returns no root when there is no real root in [a,b]', () => {
+    let f: Function    = (x: number): number => {return x*x - 4.0};
+    let result: Object = BisectInterval.bisect(-10, -5, f);
+    expect(result['root']).toBe(false);
+  });
+
+  it('located roote in right interval', () => {
+    let f: Function    = (x: number): number => {return x*x - 4.0};
+    let result: Object = BisectInterval.bisect(-10, -1, f);
+
+    console.log( result['left'], result['right'] );
+    expect(result['root']).toBe(true);
+    expect(+result['left'] >= -10).toBe(true);
+    expect(+result['right'] <= -1).toBe(true);
+  });
+
+  it('brackets a single root in a dual-root interval', () => {
+    let f: Function    = (x: number): number => {return x*x - 4.0};
+    let result: Object = BisectInterval.bisect(-8, 8, f);
+    expect(result['root']).toBe(true);
+  });
+
+  it('brackets a root of a cubic polynomial', () => {
+    // 4*x^3 -3*x^2 -25*x -6
+    // roots at 3, -0.25, and -2
+
+    let f: Function    = (x: number): number => {return -6 + x*(-25 + x*(-3 + x*4))};  
+    let result: Object = BisectInterval.bisect(2, 5, f);
+    expect(result['root']).toBe(true);
+
+    result = BisectInterval.bisect(-10, 0, f);
+    expect(result['root']).toBe(true);
   });
 
 });

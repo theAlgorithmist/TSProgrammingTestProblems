@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1;
     return {
         setters:[
             function (Multiply321_1_1) {
@@ -50,6 +50,9 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (ExtendedLinkedList_1_1) {
                 ExtendedLinkedList_1 = ExtendedLinkedList_1_1;
+            },
+            function (Bisect_1_1) {
+                Bisect_1 = Bisect_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -554,6 +557,40 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     // select head of list as special case
                     node = list.kfromEnd(9);
                     expect(node.id).toBe("0");
+                });
+            });
+            describe('Interval Bisection', function () {
+                it('returns no root for a = b', function () {
+                    var f = function (x) { return 2.0 * x; };
+                    var result = Bisect_1.BisectInterval.bisect(1, 1, f);
+                    expect(result['root']).toBe(false);
+                });
+                it('returns no root when there is no real root in [a,b]', function () {
+                    var f = function (x) { return x * x - 4.0; };
+                    var result = Bisect_1.BisectInterval.bisect(-10, -5, f);
+                    expect(result['root']).toBe(false);
+                });
+                it('located roote in right interval', function () {
+                    var f = function (x) { return x * x - 4.0; };
+                    var result = Bisect_1.BisectInterval.bisect(-10, -1, f);
+                    console.log(result['left'], result['right']);
+                    expect(result['root']).toBe(true);
+                    expect(+result['left'] >= -10).toBe(true);
+                    expect(+result['right'] <= -1).toBe(true);
+                });
+                it('brackets a single root in a dual-root interval', function () {
+                    var f = function (x) { return x * x - 4.0; };
+                    var result = Bisect_1.BisectInterval.bisect(-8, 8, f);
+                    expect(result['root']).toBe(true);
+                });
+                it('brackets a root of a cubic polynomial', function () {
+                    // 4*x^3 -3*x^2 -25*x -6
+                    // roots at 3, -0.25, and -2
+                    var f = function (x) { return -6 + x * (-25 + x * (-3 + x * 4)); };
+                    var result = Bisect_1.BisectInterval.bisect(2, 5, f);
+                    expect(result['root']).toBe(true);
+                    result = Bisect_1.BisectInterval.bisect(-10, 0, f);
+                    expect(result['root']).toBe(true);
                 });
             });
         }

@@ -27,7 +27,7 @@ System.register(['./ListNode'], function(exports_1, context_1) {
             (function (LinkedListType) {
                 LinkedListType[LinkedListType["SINGLE"] = 0] = "SINGLE";
                 LinkedListType[LinkedListType["DOUBLE"] = 1] = "DOUBLE";
-                LinkedListType[LinkedListType["CIRCULAR"] = 2] = "CIRCULAR"; // singly-linked list with tail node inked to the head node
+                LinkedListType[LinkedListType["CIRCULAR"] = 2] = "CIRCULAR"; // singly-linked list with tail node linked to the head node
             })(LinkedListType || (LinkedListType = {}));
             exports_1("LinkedListType", LinkedListType);
             TSMT$LinkedList = (function () {
@@ -325,6 +325,7 @@ System.register(['./ListNode'], function(exports_1, context_1) {
                  * @return Nothing - removes the specified node unless it is the specified terminator of the list or the id is invalid
                  */
                 TSMT$LinkedList.prototype.removeById = function (nodeid) {
+                    // tbd - have never used this in an application - needs to be made more efficient
                     var node = this.getNodeById(nodeid);
                     if (node)
                         this.remove(this._index);
