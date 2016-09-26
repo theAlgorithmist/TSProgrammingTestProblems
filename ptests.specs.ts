@@ -29,6 +29,7 @@ import {lastTwoDigits      } from './src/twodigits/TwoDigits';
 import {ExtendedLinkedList } from './src/llist1/ExtendedLinkedList';
 import {TSMT$ListNode      } from './src/shared/ListNode';
 import {BisectInterval     } from './src/bisection/Bisect';
+import {fibonacci          } from './src/fibonacci/Fibonacci';
 
 // Test Suites
 describe('Multiply by 321', () => {
@@ -683,7 +684,6 @@ describe('Interval Bisection', () => {
     let f: Function    = (x: number): number => {return x*x - 4.0};
     let result: Object = BisectInterval.bisect(-10, -1, f);
 
-    console.log( result['left'], result['right'] );
     expect(result['root']).toBe(true);
     expect(+result['left'] >= -10).toBe(true);
     expect(+result['right'] <= -1).toBe(true);
@@ -705,6 +705,62 @@ describe('Interval Bisection', () => {
 
     result = BisectInterval.bisect(-10, 0, f);
     expect(result['root']).toBe(true);
+  });
+
+});
+
+describe('Fibonacci Sequence', () => {
+
+  it('returns zero for invalid argument (NaN)', () => {
+    let arg: any       = NaN;
+    let result: number = fibonacci(arg);
+
+    expect(result).toBe(0);
+  });
+
+  it('returns zero for invalid (negative) argument', () => {
+    let result: number = fibonacci(-1);
+
+    expect(result).toBe(0);
+  });
+
+  it('correctly returns seed values for sequence', () => {
+    let result: number = fibonacci(0);
+
+    expect(result).toBe(0);
+
+    result = fibonacci(1);
+    expect(result).toBe(1);
+  });
+
+  it('correctly returns arbitrary sequence values', () => {
+    let result: number = fibonacci(2);
+
+    expect(result).toBe(1);
+
+    result = fibonacci(3);
+    expect(result).toBe(2);
+
+    result = fibonacci(4);
+    expect(result).toBe(3);
+    
+    result = fibonacci(5);
+    expect(result).toBe(5);
+
+    result = fibonacci(6);
+    expect(result).toBe(8);
+
+    result = fibonacci(7);
+    expect(result).toBe(13);
+
+    result = fibonacci(8);
+    expect(result).toBe(21);
+
+    result = fibonacci(9);
+    expect(result).toBe(34);
+
+    result = fibonacci(64);
+    expect(result).toBe(10610209857723);
   });
 
 });

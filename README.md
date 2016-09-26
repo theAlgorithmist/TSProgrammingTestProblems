@@ -210,6 +210,7 @@ If the size of the list is available, then it is possible to compute the number 
 
 Although I tend to use libraries as much as possible in production, I did have to write yet another linked list of my own in 2000 for a Flash game.  I needed to search nodes by both index and id.  Search results were cached and the list computed the optimal traversal direction and start node.  It originally supported singly- and doubly-linked lists and was extended to include circular.  It was also converted to Actionscript 2, then 3, then Javascript, and was recently placed in the Typescript Math Toolkit data structures library.  I created an ExtendedLinkedList class to add the k-from-end method and that is used for the solution to the problem.  You are welcome to deconstruct the internals of the TSMT Linked List at your convenience.
 
+
 ### Folder: bisection
 
 Source: Email
@@ -226,6 +227,20 @@ Here is how bisection works.  The function, f, should be continuous in [a,b].  I
 If I were to write out each step of the bisection process in detail and provide test problems for specs, then I would expect a good programmer to be able to write a bisection code in some reasonable amount of time.  To not provide such detail to a candidate means that the company is looking for the wrong type of person to begin with or simply does not know how to interview programmers.
 
 I implemented a BisectInterval class containing a static bisect method.  Deconstruct the recursive implementation of bisection at your leisure and feel free to experiment with modifications.
+
+
+### Folder: fibonacci
+
+Source: Email
+
+Problem: Write a function that computes the n-th value of the sequence, 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+
+
+Solution:  Ah, the Fibonacci sequence :)  I'm guessing the 'trick' to this problem is recognizing the pattern or formal recursion relation; that is, f(n) = n-th Fibonacci number = f(n-1) + f(n-2), f(0) = 0 and f(1) = 1.  Then, can you program the recursion in a loop?  
+
+Here's an interesting observation.  What about the sequence 2, 1, 3, 4, 7, 11, ... ?  These are actually Lucas numbers, generated with the same recursion relation, but f(0) = 2 and f(1) = 1.  There is a relationship between Fibonacci and Lucas numbers that you can Google and then read about on your own time (if you want to prove that, like me, you have no life).  In fact, all Fibonacci-like sequences are rows in a Wythoff array.
+
+Okay, enough of that crapola - how about the solution?  A loop is not actually required as a generating function exists for the Fibonacci sequence, i.e. a function of the form g(n) where g is a closed-form representation of the n-th Fibonacci number.  I studied such generators extensively in my high-performance computing days since recursion relations are not directly vectorizable or parallelizable.  I chose the generator solution just because it's different and it illustrates some practical considerations that must be addressed in production code.
 
 
 

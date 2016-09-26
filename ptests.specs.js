@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1;
     return {
         setters:[
             function (Multiply321_1_1) {
@@ -53,6 +53,9 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (Bisect_1_1) {
                 Bisect_1 = Bisect_1_1;
+            },
+            function (Fibonacci_1_1) {
+                Fibonacci_1 = Fibonacci_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -573,7 +576,6 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                 it('located roote in right interval', function () {
                     var f = function (x) { return x * x - 4.0; };
                     var result = Bisect_1.BisectInterval.bisect(-10, -1, f);
-                    console.log(result['left'], result['right']);
                     expect(result['root']).toBe(true);
                     expect(+result['left'] >= -10).toBe(true);
                     expect(+result['right'] <= -1).toBe(true);
@@ -591,6 +593,43 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     expect(result['root']).toBe(true);
                     result = Bisect_1.BisectInterval.bisect(-10, 0, f);
                     expect(result['root']).toBe(true);
+                });
+            });
+            describe('Fibonacci Sequence', function () {
+                it('returns zero for invalid argument (NaN)', function () {
+                    var arg = NaN;
+                    var result = Fibonacci_1.fibonacci(arg);
+                    expect(result).toBe(0);
+                });
+                it('returns zero for invalid (negative) argument', function () {
+                    var result = Fibonacci_1.fibonacci(-1);
+                    expect(result).toBe(0);
+                });
+                it('correctly returns seed values for sequence', function () {
+                    var result = Fibonacci_1.fibonacci(0);
+                    expect(result).toBe(0);
+                    result = Fibonacci_1.fibonacci(1);
+                    expect(result).toBe(1);
+                });
+                it('correctly returns arbitrary sequence values', function () {
+                    var result = Fibonacci_1.fibonacci(2);
+                    expect(result).toBe(1);
+                    result = Fibonacci_1.fibonacci(3);
+                    expect(result).toBe(2);
+                    result = Fibonacci_1.fibonacci(4);
+                    expect(result).toBe(3);
+                    result = Fibonacci_1.fibonacci(5);
+                    expect(result).toBe(5);
+                    result = Fibonacci_1.fibonacci(6);
+                    expect(result).toBe(8);
+                    result = Fibonacci_1.fibonacci(7);
+                    expect(result).toBe(13);
+                    result = Fibonacci_1.fibonacci(8);
+                    expect(result).toBe(21);
+                    result = Fibonacci_1.fibonacci(9);
+                    expect(result).toBe(34);
+                    result = Fibonacci_1.fibonacci(64);
+                    expect(result).toBe(10610209857723);
                 });
             });
         }
