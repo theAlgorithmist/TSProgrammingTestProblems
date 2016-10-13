@@ -11,6 +11,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "noExternalResolve": false,
     "sortOutput": true
+    ,"typeRoots": [
+      "/node_modules/@types"
+    ]
   },
   "exclude": [
     "node_packages"

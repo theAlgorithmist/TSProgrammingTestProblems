@@ -1,6 +1,6 @@
 // pretty simple build file for the TS Programming Tests 
 const gulp       = require('gulp');
-const typescript = require('gulp-typescript'); 
+const typescript = require('gulp-tsc'); 
 const tscConfig  = require('./tsconfig.json');
 const sourcemaps = require('gulp-sourcemaps');
 const liveServer = require('gulp-server-livereload'); 
@@ -9,7 +9,6 @@ const liveServer = require('gulp-server-livereload');
 gulp.task('compile', function () {
     return gulp
     .src([
-      'vendor-typings/jasmine.d.ts',
       'ptests.specs.ts',
       './src/**/*.ts'
     ], { base: "." })

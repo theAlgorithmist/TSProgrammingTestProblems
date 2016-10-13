@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1;
     return {
         setters:[
             function (Multiply321_1_1) {
@@ -56,6 +56,9 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (Fibonacci_1_1) {
                 Fibonacci_1 = Fibonacci_1_1;
+            },
+            function (FirstNonRepeatingChar_1_1) {
+                FirstNonRepeatingChar_1 = FirstNonRepeatingChar_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -632,8 +635,37 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     expect(result).toBe(10610209857723);
                 });
             });
+            describe('First non-repeating character', function () {
+                it('correctly handles null input string', function () {
+                    var char = FirstNonRepeatingChar_1.firstNonrepeatingChar('');
+                    expect(char).toBe('');
+                });
+                it('correctly handles single-character string', function () {
+                    var char = FirstNonRepeatingChar_1.firstNonrepeatingChar('a');
+                    expect(char).toBe('a');
+                });
+                it('correctly handles first non-repeating at first position', function () {
+                    var char = FirstNonRepeatingChar_1.firstNonrepeatingChar('abbccddeeffgghh');
+                    expect(char).toBe('a');
+                });
+                it('correctly handles first non-repeating at last position', function () {
+                    var char = FirstNonRepeatingChar_1.firstNonrepeatingChar('aabbccddeeffggh');
+                    expect(char).toBe('h');
+                });
+                it('correctly returns first first of multiple non-repeating chars', function () {
+                    var char = FirstNonRepeatingChar_1.firstNonrepeatingChar('aabb1ccddzeeff0ggh');
+                    expect(char).toBe('1');
+                });
+                it('correctly handles no non-repeating chars', function () {
+                    var char = FirstNonRepeatingChar_1.firstNonrepeatingChar('aabb1ccd1dzeefzf0ggh0h');
+                    expect(char).toBe('');
+                });
+                it('correctly handles arbitrary character sequence', function () {
+                    var char = FirstNonRepeatingChar_1.firstNonrepeatingChar('aldsfalhsdfasldhsdflveiewqoqzseurpeqvadspoiewyurpqowvh1792034273947239');
+                    expect(char).toBe('z');
+                });
+            });
         }
     }
 });
-
 //# sourceMappingURL=ptests.specs.js.map

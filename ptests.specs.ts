@@ -16,20 +16,21 @@
 // Specs for various 'programming test' problems in Typescript
 
 // test functions/classes
-import {multiply321        } from './src/mult321/Multiply321';
-import {exchangeInt        } from './src/exchange/ExchangeInt';
-import {machEps            } from './src/macheps/MachEps';
-import {fizzBuzz           } from './src/fizzbuzz/FizzBuzz';
-import {LinearInterpolation} from './src/interp/Interp';
-import {RandomIntInRange   } from './src/randomint/RandomIntInRange';
-import {tripCount          } from './src/uberdriver/ComputeTrips';
-import {maxProfit          } from './src/daytrader/MaxProfit';
-import {twoMinMax          } from './src/twomin/TwoMinMax';
-import {lastTwoDigits      } from './src/twodigits/TwoDigits';
-import {ExtendedLinkedList } from './src/llist1/ExtendedLinkedList';
-import {TSMT$ListNode      } from './src/shared/ListNode';
-import {BisectInterval     } from './src/bisection/Bisect';
-import {fibonacci          } from './src/fibonacci/Fibonacci';
+import {multiply321          } from './src/mult321/Multiply321';
+import {exchangeInt          } from './src/exchange/ExchangeInt';
+import {machEps              } from './src/macheps/MachEps';
+import {fizzBuzz             } from './src/fizzbuzz/FizzBuzz';
+import {LinearInterpolation  } from './src/interp/Interp';
+import {RandomIntInRange     } from './src/randomint/RandomIntInRange';
+import {tripCount            } from './src/uberdriver/ComputeTrips';
+import {maxProfit            } from './src/daytrader/MaxProfit';
+import {twoMinMax            } from './src/twomin/TwoMinMax';
+import {lastTwoDigits        } from './src/twodigits/TwoDigits';
+import {ExtendedLinkedList   } from './src/llist1/ExtendedLinkedList';
+import {TSMT$ListNode        } from './src/shared/ListNode';
+import {BisectInterval       } from './src/bisection/Bisect';
+import {fibonacci            } from './src/fibonacci/Fibonacci';
+import {firstNonrepeatingChar} from './src/firstnonrepeating/FirstNonRepeatingChar';
 
 // Test Suites
 describe('Multiply by 321', () => {
@@ -762,5 +763,50 @@ describe('Fibonacci Sequence', () => {
     result = fibonacci(64);
     expect(result).toBe(10610209857723);
   });
-
 });
+
+describe('First non-repeating character', () => {
+
+  it('correctly handles null input string', () => {
+    let char: string = firstNonrepeatingChar('');
+
+    expect(char).toBe('');
+  });
+
+ it('correctly handles single-character string', () => {
+    let char: string = firstNonrepeatingChar('a');
+
+    expect(char).toBe('a');
+  });
+
+ it('correctly handles first non-repeating at first position', () => {
+    let char: string = firstNonrepeatingChar('abbccddeeffgghh');
+
+    expect(char).toBe('a');
+  });
+
+  it('correctly handles first non-repeating at last position', () => {
+    let char: string = firstNonrepeatingChar('aabbccddeeffggh');
+
+    expect(char).toBe('h');
+  });
+
+  it('correctly returns first first of multiple non-repeating chars', () => {
+    let char: string = firstNonrepeatingChar('aabb1ccddzeeff0ggh');
+
+    expect(char).toBe('1');
+  });
+
+  it('correctly handles no non-repeating chars', () => {
+    let char: string = firstNonrepeatingChar('aabb1ccd1dzeefzf0ggh0h');
+
+    expect(char).toBe('');
+  });
+
+  it('correctly handles arbitrary character sequence', () => {
+    let char: string = firstNonrepeatingChar('aldsfalhsdfasldhsdflveiewqoqzseurpeqvadspoiewyurpqowvh1792034273947239');
+
+    expect(char).toBe('z');
+  });
+});
+

@@ -18,7 +18,7 @@ System.register([], function(exports_1, context_1) {
     var __moduleName = context_1 && context_1.id;
     var sqrt_5, sqrt_5_inv, f_arg1, f_arg2;
     /**
-     * Return the n-th value of the Fibonacci sequence, 0, 1, 1, 2, 3, 5, 8, 13, ...
+     * Return the n-th value of the Fibonacci sequence, 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
      *
      * @param n: number Zero-based index of the value to return, i.e. n = 0 for first value in sequence, n = 1 for second value, and so forth (n >= 0)
      *
@@ -53,5 +53,4 @@ System.register([], function(exports_1, context_1) {
         }
     }
 });
-
 //# sourceMappingURL=Fibonacci.js.map

@@ -52,5 +52,4 @@ System.register(['../shared/LinkedList'], function(exports_1, context_1) {
         }
     }
 });
-
 //# sourceMappingURL=ExtendedLinkedList.js.map

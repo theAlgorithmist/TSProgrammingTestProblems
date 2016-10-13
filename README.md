@@ -16,7 +16,7 @@ theAlgorithmist [at] gmail [dot] com
 
 Typescript: 1.8.2
 
-Version: 1.0.0
+Version: 1.1.0 (upgrade to TS 2.0 and moderninze handling of typings)
 
 
 ## Installation
@@ -238,9 +238,23 @@ Problem: Write a function that computes the n-th value of the sequence, 0, 1, 1,
 
 Solution:  Ah, the Fibonacci sequence :)  I'm guessing the 'trick' to this problem is recognizing the pattern or formal recursion relation; that is, f(n) = n-th Fibonacci number = f(n-1) + f(n-2), f(0) = 0 and f(1) = 1.  Then, can you program the recursion in a loop?  
 
-Here's an interesting observation.  What about the sequence 2, 1, 3, 4, 7, 11, ... ?  These are actually Lucas numbers, generated with the same recursion relation, but f(0) = 2 and f(1) = 1.  There is a relationship between Fibonacci and Lucas numbers that you can Google and then read about on your own time (if you want to prove that, like me, you have no life).  In fact, all Fibonacci-like sequences are rows in a Wythoff array.
+Here's an interesting observation.  What about the sequence 2, 1, 3, 4, 7, 11, ... ?  These are actually Lucas numbers, generated with the same recursion relation, but f(0) = 2 and f(1) = 1.  There is a relationship between Fibonacci and Lucas numbers that you can Google and then read about on your own time (if you want to prove that, like me, you have no life).  In fact, all Fibonacci-like sequences are rows in a Wythoff matrix.
 
 Okay, enough of that crapola - how about the solution?  A loop is not actually required as a generating function exists for the Fibonacci sequence, i.e. a function of the form g(n) where g is a closed-form representation of the n-th Fibonacci number.  I studied such generators extensively in my high-performance computing days since recursion relations are not directly vectorizable or parallelizable.  I chose the generator solution just because it's different and it illustrates some practical considerations that must be addressed in production code.
+
+
+### Folder: firstnonrepeating
+
+Source: Email
+
+Problem: Write a function that returns the first non-repeating character of a string
+
+
+Solution: I chose this one from the email list since string processing is not my background or strong suit.  So, there should be room for improvement in my solution(s).  On that note, two algorithms came to mind immediately.  The first involves a two-sweep approach.  First, scan through the string and record the repeat count for each character (a repeat count of zero means the character is only used once).  Then, scan the repeat-count data structure in order and return the first character for which the repeat count is zero. 'in order' is the key to the last sentence as we would normally think of using a JS Object as a hash.  The keys, however, are likely to be lexicographically ordered and we need to preserve the order that keys are placed into an associative container.  An ES6 Map is a possible solution and is used to illustrate this first approach.  While I've found Object hashes on single-character keys to be quite efficient, I have not tested the performance of Map access.  The key to success of this algorithm is very fast lookup and insertion into the container.  The code for this approach relies on a native (browser) Map implementation.
+
+The second algorithm is more intuitive and easier to follow if another programmer comes along after you to deconstruct and/or modify your code.  The _indexOf_ function may be used (twice) to identify a non-repeating character.  A suitable definition of the latter is that the i-th character in the string is non-repeating if the first occurrence of the character is at that position and it not found again when starting a search after the current position.  Since _indexOf_ for a single character is O(n) complexity, this algorithm is average- and worst-case O(n^2), but with a very small constant term.  
+
+This makes a good discusion problem (i.e. how would you solve it and what are the tradeoffs) in terms of algorithm complexity vs. simplicity of implementation vs. optimizing for worst-case complexity and the probability that worst-case is ever realized in production.  For example, how large are the strings expected to be in length?  These are things I would expect a good candidate to be able to talk to without necessarily having to write complete, working code.
 
 
 
