@@ -14,7 +14,7 @@ Author:  Jim Armstrong - [The Algorithmist]
 
 theAlgorithmist [at] gmail [dot] com
 
-Typescript: 1.8.2
+Typescript: 2.0.3
 
 Version: 1.1.0 (upgrade to TS 2.0 and moderninze handling of typings)
 
