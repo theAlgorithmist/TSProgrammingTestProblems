@@ -257,6 +257,40 @@ The second algorithm is more intuitive and easier to follow if another programme
 This makes a good discusion problem (i.e. how would you solve it and what are the tradeoffs) in terms of algorithm complexity vs. simplicity of implementation vs. optimizing for worst-case complexity and the probability that worst-case is ever realized in production.  For example, how large are the strings expected to be in length?  These are things I would expect a good candidate to be able to talk to without necessarily having to write complete, working code.
 
 
+### Folder: n/a
+
+Source: Email
+
+Problem: You are given eight coins, one of which is heavier than all the rest.  You are also given a balance scale.  What is the minimum number of weighings to identify the heavy coin?
+
+
+Solution: This question was supposedly asked during a phone interview for a UI developer.  So much for the old days when we talked about the actual job that needed to be done :)
+
+As asked, the correct answer is one, but that requires 'getting lucky' on the first attempt.  It is, however, the 'minimum' number.  A better way to pose the question would be to ask what is the minimum number of weighings that guarantees the heavy coin will be found?  A traditional divide-and-conquer approach would take three attempts since 8 = 2^3.  This involves weighing two groups of four, then divide the heavier group into two groups of two, and then weight each coin in the heavier group of two.
+
+Think about atomic operations, i.e. number of coins that can be differentiated in a single weighing.  Two is obvious.  Three is also possible.  Set one coin aside and weigh the other two.  If one is heavier than the other, then the problem is solved.  If they weigh out as equal, then the coin placed aside is the heavy one.  So, either two or three coins can be resolved in a single weighing, provided we know in advance that the heavy coin is in that group.
+
+Now, 8 = 3 + 3 + 2.  Start with two groups of three coins.  If they weigh out equally, then the heavy coin is in the group of two.  Result: Two weighings.  If one of the two groups of three is heavier, then use the technique above on the heavier group of three.  Result:  Two weighings.  The correct answer is two.
+
+
+### Folder: shared
+
+Source: Email
+
+Problem: Write the code to compute the n-th row in the following progression
+
+               1
+             1   1
+           1   2   1
+         1   3   3   1
+      1   4   6   4   1
+    1   5  10   10  5   1
+
+
+Solution: OMG, now someone has latched onto Pascal's triangle as a programming test.  This problem has a story associated with it that I find to be all too common.  You can read the story and [my solution at the this blog post].
+
+In addition to symmetry about the 'middle', most people pick up on the forward recurrence relation, i.e. how to compute the inner values of the n-th row from those in row n-1.  The key to the implementation in the Typescript Math Toolkit is the ability to recurse forward or backward, i.e. compute row n from row n-1 or row n-1 from row n.  Since the most recently computed row is cached, this approach is optimized for successive requests for either the n-th row or the binomial coefficient (n k).
+
 
 ### Contributions
 
@@ -273,3 +307,5 @@ Apache 2.0
 [//]: # (kudos http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
 [The Algorithmist]: <http://algorithmist.net>
+
+[my solution at the this blog post]: <http://www.algorithmist.net/programming/pascals-triangle-and-the-developer-interview/>

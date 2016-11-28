@@ -31,6 +31,30 @@ import {TSMT$ListNode        } from './src/shared/ListNode';
 import {BisectInterval       } from './src/bisection/Bisect';
 import {fibonacci            } from './src/fibonacci/Fibonacci';
 import {firstNonrepeatingChar} from './src/firstnonrepeating/FirstNonRepeatingChar';
+import {TSMT$BinomialCoef    } from './src/shared/BinomialCoef';
+
+// quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
+function arrCompare(arr1: Array<number>, arr2: Array<number>): boolean
+{
+  if (!arr1 || !arr2)
+    return false;
+
+  let l1: number = arr1.length;
+  let l2: number = arr2.length;
+
+  if (l1 != l2)
+    return false;
+
+  let i: number;
+  for (i=0; i<l1; ++i)
+  {
+    if (Math.abs(arr1[i]-arr2[i]) > 0.000000001)
+      return false;
+  }
+
+  return true;
+}
+
 
 // Test Suites
 describe('Multiply by 321', () => {
@@ -810,3 +834,87 @@ describe('First non-repeating character', () => {
   });
 });
 
+describe("Pascal's Triangle", () => {
+
+  let binomial: TSMT$BinomialCoef = new TSMT$BinomialCoef();
+
+  it('caches row 2 for a default instance', () => {
+    expect(binomial.rowNumber).toBe(2);
+  });
+
+  it('returns empty row for invalid numeric input', () => {
+    let crapola: any = 'abc';
+
+    expect(binomial.getRow(crapola).length).toBe(0);
+  });
+
+  it('returns empty row for negative row value', () => {
+    expect(binomial.getRow(-1).length).toBe(0);
+  });
+
+  it('returns zero for binomial coefficient with invalid inputs #1', () => {
+    let morecrapola: any = 'x';
+
+    expect(binomial.coef(morecrapola, 1)).toBe(0);
+  });
+
+  it('returns zero for binomial coefficient with invalid inputs #2', () => {
+    let evenmorecrapola: number = 1/0;
+
+    expect(binomial.coef(2, evenmorecrapola)).toBe(0);
+  });
+
+  it('returns correct third row', () => {
+    let row: Array<number> = binomial.getRow(2);
+    expect(arrCompare(row, [1,2,1])).toBe(true);
+  });
+
+  // iterate forward a couple rows
+  it('returns correct sixth row', () => {
+    let row: Array<number> = binomial.getRow(5);
+    expect(arrCompare(row, [1, 5, 10, 10, 5, 1])).toBe(true);
+  });
+
+  // forward, then reverse
+  it('does correct forward/reverse recursion row #1', () => {
+    let row: Array<number> = binomial.getRow(7);
+    expect(arrCompare(row, [1, 7, 21, 35, 35, 21, 7, 1])).toBe(true);
+
+    row = binomial.getRow(6);
+    expect(arrCompare(row, [1, 6, 15, 20, 15, 6, 1])).toBe(true);
+  });
+
+  // one more time
+  it('does correct forward/reverse recursion row #2', () => {
+    let row: Array<number> = binomial.getRow(12);
+    expect(arrCompare(row, [1, 12, 66, 220, 495, 792, 924, 792, 495, 220, 66, 12, 1])).toBe(true);
+
+    row = binomial.getRow(10);
+    expect(arrCompare(row, [1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1])).toBe(true);
+  });
+
+  // binomial coefficients, same row - symmetry check
+  it('does correct binomial coef. calc in same row #1', () => {
+    let coef: number = binomial.coef(10, 2);
+    expect(coef).toBe(45);
+
+    coef = binomial.coef(10, 5);
+    expect(coef).toBe(252);
+
+    coef = binomial.coef(10, 8);
+    expect(coef).toBe(45);
+  });
+
+  // one more time
+  it('does correct binomial coef. calc in same row #2', () => {
+    let coef: number = binomial.coef(19, 5);
+    expect(coef).toBe(11628);
+
+    coef = binomial.coef(19, 10);
+    expect(coef).toBe(92378);
+
+    coef = binomial.coef(19, 14);
+    expect(coef).toBe(11628);
+  });
+
+});
