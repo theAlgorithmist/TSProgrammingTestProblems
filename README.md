@@ -292,6 +292,27 @@ Solution: OMG, now someone has latched onto Pascal's triangle as a programming t
 In addition to symmetry about the 'middle', most people pick up on the forward recurrence relation, i.e. how to compute the inner values of the n-th row from those in row n-1.  The key to the implementation in the Typescript Math Toolkit is the ability to recurse forward or backward, i.e. compute row n from row n-1 or row n-1 from row n.  Since the most recently computed row is cached, this approach is optimized for successive requests for either the n-th row or the binomial coefficient (n k).
 
 
+## Folder: oneline
+
+Source: Email
+
+Problem: Write one-line functions that perform each of the following tasks.  No multiple statements are allowed on a single line, no variable assignements are allowed, and you do not need to error-check inputs.
+
+- revserse the characters in a string
+- convert an input string (presumed to be a name) into uppercase initials with an optional delimiter
+- pad an input string with the requested number of spaces on the left
+- return the minimum element in an array of numbers
+- return the maximum element in an array of numbers
+- return true if all values in an array greater than a supplied input value and false otherwise
+- return all the elements in an array that are greater than a supplied value
+- return first index of array element greater than a supplied value or -1 if no such array value exsits
+
+
+Solution: This (timed) test was given to a junior UI programmer who was provided with the problem list on a sheet of paper, a computer in a conference room with specs already written, and a build script.  Test functions were already provided with inputs; the function body was blank.  The person indicated a bit of apprehension over not completing the entire set in time and never got an answer as to whey all functions had to be one-liners.
+
+I would not expect a junior programmer to complete all of these; the test is likely to help differentiate between multiple candidates who otherwise are too close.  It may also help decide what tasks are assigned to a person after onboarding and how much mentoring may be required during their early career at a company.  The one-liner requirement is likely to see how much familiarity the candidate has with Array methods, or the group as a whole may be really into functional programming.
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submimt a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.

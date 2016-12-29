@@ -32,6 +32,14 @@ import {BisectInterval       } from './src/bisection/Bisect';
 import {fibonacci            } from './src/fibonacci/Fibonacci';
 import {firstNonrepeatingChar} from './src/firstnonrepeating/FirstNonRepeatingChar';
 import {TSMT$BinomialCoef    } from './src/shared/BinomialCoef';
+import {reverseChars         } from './src/oneline/OneLineFcns';
+import {initials             } from './src/oneline/OneLineFcns';
+import {padLeft              } from './src/oneline/OneLineFcns';
+import {minValue             } from './src/oneline/OneLineFcns';
+import {maxValue             } from './src/oneline/OneLineFcns';
+import {allGreaterThan       } from './src/oneline/OneLineFcns';
+import {getAllGreaterThan    } from './src/oneline/OneLineFcns';
+import {indexFirstGreaterThan} from './src/oneline/OneLineFcns';
 
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
 function arrCompare(arr1: Array<number>, arr2: Array<number>): boolean
@@ -916,5 +924,95 @@ describe("Pascal's Triangle", () => {
     coef = binomial.coef(19, 14);
     expect(coef).toBe(11628);
   });
+});
 
+describe('One-Line Functions', () => {
+
+  it('correctly reverses characters in a string', () => {
+    let result: string = reverseChars('TORTXOF EKIM AHPLA')
+    expect(result).toBe('ALPHA MIKE FOXTROT');   // which is what I will say if you ever ask me this in an interview
+  });
+
+  it('correctly extracts initials from a name', () => {
+    let result: string = initials("james thomas armstrong");
+    expect(result).toBe("JTA");
+  });
+
+  it('correctly extracts initials from first name only', () => {
+    let result: string = initials("james");
+    expect(result).toBe("J");
+  });
+
+  it('correctly extracts initials from a name and adds delimiter between initials', () => {
+    let result: string = initials("james thomas armstrong", ".");
+    expect(result).toBe("J.T.A");
+  });
+
+  it('correctly pads a string to the left # 1', () => {
+    let result: string = padLeft("this is a string", 2);
+    expect(result).toBe("  this is a string");
+  });
+
+   it('correctly pads a string to the left # 2', () => {
+    let result: string = padLeft("this is a string", 0);
+    expect(result).toBe("this is a string");
+  });
+
+  it('correctly pads a string to the left # 3', () => {
+    let result: string = padLeft("this is a string", -3);
+    expect(result).toBe("   this is a string");
+  });
+
+  it('returns NaN for min value of empty array', () => {
+    let result: number = minValue([]);
+    expect(isNaN(result)).toBeTruthy();
+  });
+
+  it('returns proper minimum value for an array of numbers', () => {
+    let result: number = minValue([2.5, -1.7, 1.0, 3.6, 1.4, 0.25, 10.0]);
+    expect(result).toBe(-1.7);
+  });
+
+  it('returns NaN for max value of empty array', () => {
+    let result: number = maxValue([]);
+    expect(isNaN(result)).toBeTruthy();
+  });
+
+  it('returns proper maximum value for an array of numbers', () => {
+    let result: number = maxValue([2.5, -1.7, 1.0, 3.6, 1.4, 0.25, 10.0]);
+    expect(result).toBe(10.0);
+  });
+
+  it('returns false for all greater than an empty array', () => {
+    let result: boolean = allGreaterThan([], 0);
+    expect(result).toBeFalsy();
+  });
+
+  it('returns true for all greater a supplied value', () => {
+    let result: boolean = allGreaterThan([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], 0);
+    expect(result).toBeTruthy();
+  });
+
+  it('returns false for all greater than a supplied value', () => {
+    let result: boolean = allGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 6.0], 10);
+    expect(result).toBeFalsy();
+  });
+
+  it('returns all array elements greater than a supplied value', () => {
+    let result: Array<number> = getAllGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 60.0], 10);
+    expect(result.length).toBe(3);
+    expect(result[0]).toBe(20);
+    expect(result[1]).toBe(40);
+    expect(result[2]).toBe(60);
+  });
+
+  it('returns -1 for no index of array element greater than a supplied value', () => {
+    let result: number = indexFirstGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 6.0], 100);
+    expect(result).toBe(-1);
+  });
+
+  it('returns correct index for first array element greater than a supplied value', () => {
+    let result: number = indexFirstGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 60.0], 25);
+    expect(result).toBe(3);
+  });
 });

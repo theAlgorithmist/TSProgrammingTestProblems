@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef', './src/oneline/OneLineFcns'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1, OneLineFcns_1, OneLineFcns_2, OneLineFcns_3, OneLineFcns_4, OneLineFcns_5, OneLineFcns_6, OneLineFcns_7, OneLineFcns_8;
     // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
     function arrCompare(arr1, arr2) {
         if (!arr1 || !arr2)
@@ -77,6 +77,16 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (BinomialCoef_1_1) {
                 BinomialCoef_1 = BinomialCoef_1_1;
+            },
+            function (OneLineFcns_1_1) {
+                OneLineFcns_1 = OneLineFcns_1_1;
+                OneLineFcns_2 = OneLineFcns_1_1;
+                OneLineFcns_3 = OneLineFcns_1_1;
+                OneLineFcns_4 = OneLineFcns_1_1;
+                OneLineFcns_5 = OneLineFcns_1_1;
+                OneLineFcns_6 = OneLineFcns_1_1;
+                OneLineFcns_7 = OneLineFcns_1_1;
+                OneLineFcns_8 = OneLineFcns_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -743,6 +753,79 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     expect(coef).toBe(92378);
                     coef = binomial.coef(19, 14);
                     expect(coef).toBe(11628);
+                });
+            });
+            describe('One-Line Functions', function () {
+                it('correctly reverses characters in a string', function () {
+                    var result = OneLineFcns_1.reverseChars('TORTXOF EKIM AHPLA');
+                    expect(result).toBe('ALPHA MIKE FOXTROT'); // which is what I will say if you ever ask me this in an interview
+                });
+                it('correctly extracts initials from a name', function () {
+                    var result = OneLineFcns_2.initials("james thomas armstrong");
+                    expect(result).toBe("JTA");
+                });
+                it('correctly extracts initials from first name only', function () {
+                    var result = OneLineFcns_2.initials("james");
+                    expect(result).toBe("J");
+                });
+                it('correctly extracts initials from a name and adds delimiter between initials', function () {
+                    var result = OneLineFcns_2.initials("james thomas armstrong", ".");
+                    expect(result).toBe("J.T.A");
+                });
+                it('correctly pads a string to the left # 1', function () {
+                    var result = OneLineFcns_3.padLeft("this is a string", 2);
+                    expect(result).toBe("  this is a string");
+                });
+                it('correctly pads a string to the left # 2', function () {
+                    var result = OneLineFcns_3.padLeft("this is a string", 0);
+                    expect(result).toBe("this is a string");
+                });
+                it('correctly pads a string to the left # 3', function () {
+                    var result = OneLineFcns_3.padLeft("this is a string", -3);
+                    expect(result).toBe("   this is a string");
+                });
+                it('returns NaN for min value of empty array', function () {
+                    var result = OneLineFcns_4.minValue([]);
+                    expect(isNaN(result)).toBeTruthy();
+                });
+                it('returns proper minimum value for an array of numbers', function () {
+                    var result = OneLineFcns_4.minValue([2.5, -1.7, 1.0, 3.6, 1.4, 0.25, 10.0]);
+                    expect(result).toBe(-1.7);
+                });
+                it('returns NaN for max value of empty array', function () {
+                    var result = OneLineFcns_5.maxValue([]);
+                    expect(isNaN(result)).toBeTruthy();
+                });
+                it('returns proper maximum value for an array of numbers', function () {
+                    var result = OneLineFcns_5.maxValue([2.5, -1.7, 1.0, 3.6, 1.4, 0.25, 10.0]);
+                    expect(result).toBe(10.0);
+                });
+                it('returns false for all greater than an empty array', function () {
+                    var result = OneLineFcns_6.allGreaterThan([], 0);
+                    expect(result).toBeFalsy();
+                });
+                it('returns true for all greater a supplied value', function () {
+                    var result = OneLineFcns_6.allGreaterThan([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], 0);
+                    expect(result).toBeTruthy();
+                });
+                it('returns false for all greater than a supplied value', function () {
+                    var result = OneLineFcns_6.allGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 6.0], 10);
+                    expect(result).toBeFalsy();
+                });
+                it('returns all array elements greater than a supplied value', function () {
+                    var result = OneLineFcns_7.getAllGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 60.0], 10);
+                    expect(result.length).toBe(3);
+                    expect(result[0]).toBe(20);
+                    expect(result[1]).toBe(40);
+                    expect(result[2]).toBe(60);
+                });
+                it('returns -1 for no index of array element greater than a supplied value', function () {
+                    var result = OneLineFcns_8.indexFirstGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 6.0], 100);
+                    expect(result).toBe(-1);
+                });
+                it('returns correct index for first array element greater than a supplied value', function () {
+                    var result = OneLineFcns_8.indexFirstGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 60.0], 25);
+                    expect(result).toBe(3);
                 });
             });
         }
