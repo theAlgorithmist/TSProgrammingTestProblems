@@ -313,6 +313,13 @@ Solution: This (timed) test was given to a junior UI programmer who was provided
 I would not expect a junior programmer to complete all of these; the test is likely to help differentiate between multiple candidates who otherwise are too close.  It may also help decide what tasks are assigned to a person after onboarding and how much mentoring may be required during their early career at a company.  The one-liner requirement is likely to see how much familiarity the candidate has with Array methods, or the group as a whole may be really into functional programming.
 
 
+## Folder: worstcase
+
+Problem:  You are given an array, A, of numbers of length N.  You are also given a function, F, that accepts a single number as an argument and it returns a boolean.  The function body is not relevant; it returns true if a certain condition is met and false otherwise.  It is known that if the function returns true for A[j], j = 0, 1, ... N-1, then it returns true for j = j+1, ... N-1.  Suggest a strategy that identifies the smallest index, j, such that F( A[j] ) is true with no more than two calls to F where the function returns true.  F may return false as many times as needed for the algorithm to work.  Return -1 if no such index exists.  The strategy for this problem should be designed to minimize the worst-case complexity.  Your presentation should include at least detailed pseudocode for your suggested algorithm (bonus points for actual code and specs).
+
+This was given as a homework problem for a senrior developer.  The process of writing up an analysis of a problem and presentation to a team is a very realistic exercise.  It would take too much space to place my full writeup here, so it is deferred to a [blog post on minimizing worst-case complexity].
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submimt a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.
@@ -330,3 +337,5 @@ Apache 2.0
 [The Algorithmist]: <http://algorithmist.net>
 
 [my solution at the this blog post]: <http://www.algorithmist.net/programming/pascals-triangle-and-the-developer-interview/>
+
+[blog post on minimizing worst-case complexity]: <http://www.algorithmist.net/applied-math/minimizing-worst-case-complexity/>

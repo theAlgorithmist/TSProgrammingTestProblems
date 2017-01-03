@@ -40,6 +40,7 @@ import {maxValue             } from './src/oneline/OneLineFcns';
 import {allGreaterThan       } from './src/oneline/OneLineFcns';
 import {getAllGreaterThan    } from './src/oneline/OneLineFcns';
 import {indexFirstGreaterThan} from './src/oneline/OneLineFcns';
+import {ArrayScan            } from './src/worstcase/ArrayScan';
 
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
 function arrCompare(arr1: Array<number>, arr2: Array<number>): boolean
@@ -61,6 +62,19 @@ function arrCompare(arr1: Array<number>, arr2: Array<number>): boolean
   }
 
   return true;
+}
+
+// init an array with a strictly increasing sequence of numbers
+function makeArray(n: number): Array<number>
+{
+  let i: number
+  let a: Array<number> = new Array<number>();
+
+  // KISS
+  for (i=0; i<n; ++i)
+    a.push (i);
+
+  return a;
 }
 
 
@@ -1014,5 +1028,119 @@ describe('One-Line Functions', () => {
   it('returns correct index for first array element greater than a supplied value', () => {
     let result: number = indexFirstGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 60.0], 25);
     expect(result).toBe(3);
+  });
+});
+
+describe('Minimize worst-case complexity', () => {
+
+  let scan: ArrayScan = new ArrayScan();
+  let f: Function = (a: number): boolean => {return true;};
+
+  it('returns -1 for an empty array', () => {
+    let result: number = scan.scanArray([], f);
+    expect(result).toBe(-1);
+  });
+
+  it('returns 0 for an singleton array that satisfies criteria', () => {
+    let f: Function     = (a: number): boolean => {return a > 0};
+    let result: number  = scan.scanArray([1.0], f);
+    let steps: number   = scan.steps;
+    let numTrue: number = scan.numTrue;
+
+    expect(result).toBe(0);
+    expect(steps).toBe(1);
+    expect(numTrue).toBe(1);
+  });
+
+  it('returns -1 for an singleton array that does not satisfiy criteria', () => {
+    let f: Function    = (a: number): boolean => {return a == 0};
+    let result: number = scan.scanArray([1.0], f);
+
+    expect(result).toBe(-1);
+  });
+
+  it('returns correct results for two-element array', () => {
+    let f: Function    = (a: number): boolean => {return a > 0};
+    let result: number = scan.scanArray([0.0, 1.0], f);
+    expect(result).toBe(1);
+
+    result = scan.scanArray([1.0, 2.0], f);
+    expect(result).toBe(0);
+
+    result = scan.scanArray([-1.0, 0.0], f);
+    expect(result).toBe(-1);
+  });
+
+  it('returns correct results for three-element array', () => {
+    let f: Function      = (a: number): boolean => {return a > 1000};
+    let a: Array<number> = makeArray(3);
+    let result: number   = scan.scanArray(a, f);
+    expect(result).toBe(-1);
+    expect(scan.k).toBe(2);
+    expect(scan.steps).toBe(2);
+  });
+
+  it('returns correct results for four-element array', () => {
+    let f: Function      = (a: number): boolean => {return a > 1};
+    let a: Array<number> = makeArray(4);
+    let result: number   = scan.scanArray(a, f);
+    expect(result).toBe(2);
+    expect(scan.k).toBe(3);
+    expect(scan.steps).toBe(3);
+  });
+
+  it('returns correct results for five-element array', () => {
+    let f: Function      = (a: number): boolean => {return a > 3};
+    let a: Array<number> = makeArray(5);
+    let result: number   = scan.scanArray(a, f);
+    expect(result).toBe(4);
+    expect(scan.k).toBe(3);
+    expect(scan.steps).toBe(3);
+    expect(scan.numTrue).toBe(1);
+  });
+
+  it('returns correct results for ten-element array', () => {
+    let f: Function      = (a: number): boolean => {return a > 1};
+    let a: Array<number> = makeArray(10);
+    let result: number   = scan.scanArray(a, f);
+    expect(result).toBe(2);
+    expect(scan.k).toBe(4);
+    expect(scan.steps).toBe(4);
+    expect(scan.numTrue).toBe(2);
+  });
+
+  it('returns correct results for twenty-element array', () => {
+    let f: Function      = (a: number): boolean => {return a > 3};
+    let a: Array<number> = makeArray(20);
+    let result: number   = scan.scanArray(a, f);
+    expect(result).toBe(4);
+    expect(scan.k).toBe(6);
+    expect(scan.steps).toBe(6);
+    expect(scan.numTrue).toBe(2);
+
+    f      = (a: number): boolean => {return a > 17};
+    result = scan.scanArray(a, f);
+    expect(result).toBe(18);
+    expect(scan.steps).toBe(6);
+  });
+
+  it('returns correct results for twenty five-element array', () => {
+    let f: Function      = (a: number): boolean => {return a > 23};
+    let a: Array<number> = makeArray(25);
+    let result: number   = scan.scanArray(a, f);
+    expect(result).toBe(24);
+    expect(scan.k).toBe(7);
+    expect(scan.steps).toBe(7);
+    expect(scan.numTrue).toBe(1);
+  });
+
+  it('returns correct results for one hundred-element array', () => {
+    let f: Function      = (a: number): boolean => {return a > 12};
+    let a: Array<number> = makeArray(100);
+    let result: number   = scan.scanArray(a, f);
+    expect(result).toBe(13);
+    expect(scan.k).toBe(14);
+    expect(scan.steps).toBe(14);
+    expect(scan.numTrue).toBe(1);
   });
 });

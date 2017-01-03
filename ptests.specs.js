@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef', './src/oneline/OneLineFcns'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef', './src/oneline/OneLineFcns', './src/worstcase/ArrayScan'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1, OneLineFcns_1, OneLineFcns_2, OneLineFcns_3, OneLineFcns_4, OneLineFcns_5, OneLineFcns_6, OneLineFcns_7, OneLineFcns_8;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1, OneLineFcns_1, OneLineFcns_2, OneLineFcns_3, OneLineFcns_4, OneLineFcns_5, OneLineFcns_6, OneLineFcns_7, OneLineFcns_8, ArrayScan_1;
     // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
     function arrCompare(arr1, arr2) {
         if (!arr1 || !arr2)
@@ -30,6 +30,15 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                 return false;
         }
         return true;
+    }
+    // init an array with a strictly increasing sequence of numbers
+    function makeArray(n) {
+        var i;
+        var a = new Array();
+        // KISS
+        for (i = 0; i < n; ++i)
+            a.push(i);
+        return a;
     }
     return {
         setters:[
@@ -87,6 +96,9 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                 OneLineFcns_6 = OneLineFcns_1_1;
                 OneLineFcns_7 = OneLineFcns_1_1;
                 OneLineFcns_8 = OneLineFcns_1_1;
+            },
+            function (ArrayScan_1_1) {
+                ArrayScan_1 = ArrayScan_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -826,6 +838,102 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                 it('returns correct index for first array element greater than a supplied value', function () {
                     var result = OneLineFcns_8.indexFirstGreaterThan([1.0, 20.0, 3.0, 40.0, 5.0, 60.0], 25);
                     expect(result).toBe(3);
+                });
+            });
+            describe('Minimize worst-case complexity', function () {
+                var scan = new ArrayScan_1.ArrayScan();
+                var f = function (a) { return true; };
+                it('returns -1 for an empty array', function () {
+                    var result = scan.scanArray([], f);
+                    expect(result).toBe(-1);
+                });
+                it('returns 0 for an singleton array that satisfies criteria', function () {
+                    var f = function (a) { return a > 0; };
+                    var result = scan.scanArray([1.0], f);
+                    var steps = scan.steps;
+                    var numTrue = scan.numTrue;
+                    expect(result).toBe(0);
+                    expect(steps).toBe(1);
+                    expect(numTrue).toBe(1);
+                });
+                it('returns -1 for an singleton array that does not satisfiy criteria', function () {
+                    var f = function (a) { return a == 0; };
+                    var result = scan.scanArray([1.0], f);
+                    expect(result).toBe(-1);
+                });
+                it('returns correct results for two-element array', function () {
+                    var f = function (a) { return a > 0; };
+                    var result = scan.scanArray([0.0, 1.0], f);
+                    expect(result).toBe(1);
+                    result = scan.scanArray([1.0, 2.0], f);
+                    expect(result).toBe(0);
+                    result = scan.scanArray([-1.0, 0.0], f);
+                    expect(result).toBe(-1);
+                });
+                it('returns correct results for three-element array', function () {
+                    var f = function (a) { return a > 1000; };
+                    var a = makeArray(3);
+                    var result = scan.scanArray(a, f);
+                    expect(result).toBe(-1);
+                    expect(scan.k).toBe(2);
+                    expect(scan.steps).toBe(2);
+                });
+                it('returns correct results for four-element array', function () {
+                    var f = function (a) { return a > 1; };
+                    var a = makeArray(4);
+                    var result = scan.scanArray(a, f);
+                    expect(result).toBe(2);
+                    expect(scan.k).toBe(3);
+                    expect(scan.steps).toBe(3);
+                });
+                it('returns correct results for five-element array', function () {
+                    var f = function (a) { return a > 3; };
+                    var a = makeArray(5);
+                    var result = scan.scanArray(a, f);
+                    expect(result).toBe(4);
+                    expect(scan.k).toBe(3);
+                    expect(scan.steps).toBe(3);
+                    expect(scan.numTrue).toBe(1);
+                });
+                it('returns correct results for ten-element array', function () {
+                    var f = function (a) { return a > 1; };
+                    var a = makeArray(10);
+                    var result = scan.scanArray(a, f);
+                    expect(result).toBe(2);
+                    expect(scan.k).toBe(4);
+                    expect(scan.steps).toBe(4);
+                    expect(scan.numTrue).toBe(2);
+                });
+                it('returns correct results for twenty-element array', function () {
+                    var f = function (a) { return a > 3; };
+                    var a = makeArray(20);
+                    var result = scan.scanArray(a, f);
+                    expect(result).toBe(4);
+                    expect(scan.k).toBe(6);
+                    expect(scan.steps).toBe(6);
+                    expect(scan.numTrue).toBe(2);
+                    f = function (a) { return a > 17; };
+                    result = scan.scanArray(a, f);
+                    expect(result).toBe(18);
+                    expect(scan.steps).toBe(6);
+                });
+                it('returns correct results for twenty five-element array', function () {
+                    var f = function (a) { return a > 23; };
+                    var a = makeArray(25);
+                    var result = scan.scanArray(a, f);
+                    expect(result).toBe(24);
+                    expect(scan.k).toBe(7);
+                    expect(scan.steps).toBe(7);
+                    expect(scan.numTrue).toBe(1);
+                });
+                it('returns correct results for one hundred-element array', function () {
+                    var f = function (a) { return a > 12; };
+                    var a = makeArray(100);
+                    var result = scan.scanArray(a, f);
+                    expect(result).toBe(13);
+                    expect(scan.k).toBe(14);
+                    expect(scan.steps).toBe(14);
+                    expect(scan.numTrue).toBe(1);
                 });
             });
         }

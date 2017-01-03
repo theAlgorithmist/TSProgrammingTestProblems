@@ -16,17 +16,6 @@
 System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    /**
-     * Function to reverse the characters in a string
-     *
-     * @param inputStr : string Input string
-     *
-     * @return string : string with reversed letters
-     *
-     * @author Jim Armstrong (www.algorithmist.net)
-     *
-     * @version 1.0
-     */
     // based on specifications for this problem set, there is no error-checking on the inputs - everything is to be written as a one-line function and
     // there can be NO variable assignments and no multiple expressions separated with semicolons
     // revserse characters in a string - LOL, like we haven't seen this one before :)
@@ -60,7 +49,7 @@ System.register([], function(exports_1, context_1) {
         return values.length == 0 ? false : values.every(function (x) { return x > compare; });
     }
     exports_1("allGreaterThan", allGreaterThan);
-    // return all the elements in an array that are greater than supplied value
+    // return all the elements in an array that are greater than the supplied value
     function getAllGreaterThan(values, compare) {
         return values.filter(function (x) { return x > compare; });
     }
