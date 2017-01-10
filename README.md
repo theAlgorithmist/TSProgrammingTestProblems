@@ -317,7 +317,28 @@ I would not expect a junior programmer to complete all of these; the test is lik
 
 Problem:  You are given an array, A, of numbers of length N.  You are also given a function, F, that accepts a single number as an argument and it returns a boolean.  The function body is not relevant; it returns true if a certain condition is met and false otherwise.  It is known that if the function returns true for A[j], j = 0, 1, ... N-1, then it returns true for j+1, ... N-1.  Suggest a strategy that identifies the smallest index, j, such that F( A[j] ) is true with no more than two calls to F where the function returns true.  F may return false as many times as needed for the algorithm to work.  Return -1 if no such index exists.  The strategy for this problem should be designed to minimize the worst-case complexity.  Your presentation should include at least detailed pseudocode for your suggested algorithm (bonus points for actual code and specs).
 
-This was given as a homework problem for a senrior developer.  The process of writing up an analysis of a problem and presentation to a team is a very realistic exercise.  It would take too much space to place my full writeup here, so it is deferred to a [blog post on minimizing worst-case complexity].
+
+Solution: This was given as a homework problem for a senrior developer.  The process of writing up an analysis of a problem and presentation to a team is a very realistic exercise.  It would take too much space to place my full writeup here, so it is deferred to a [blog post on minimizing worst-case complexity].
+
+
+## Folder: grid
+
+Problem:  Part 1: You are given a 2D, m x n grid or matrix of cells, each of which contains either zero (cell has no value) or a positive integer indicating the value of that cell.  Define a path as starting at the upper, left-hand corner, with an allowable move as either one cell to the right or one cell down.  Each move accumulates prior cell values with the current cell value.  Discuss a method for finding the best-possible accumulated value.
+
+Part 2:  How would you modify the above approach if the actual path traced by the optimal sequence of moves was occasionally required?
+
+Part 3:  How would you approach the problem if it was necessary to start from any of the four corners and move to the (diagonally opposite) corner under comparable restrictions?  For example, starting from the bottom-right of the grid, acceptable moves are one cell left and one cell up.  Reusability is favored over performance.
+
+
+Solution:  These problems were part of a whiteboard exercise for a junior to intermediate developer.  The _grid_ and _value_ part of the problem(s) makes me think it was a game company, but I'm not certain.  The interesting aspect of this process was that part 2 and 3 were not asked until the discussion of the prior problem was completed.  This impresses me as a rather brilliant way to see how a candidate lacking a demonstrable track record handles change requests.
+
+Part 1:  First thought was a recursive algorithm - there, I've said it so now I'm stuck with it.  The only item requested is the optimal value.  Since the only way to get to a cell is a single move from the left or down, we can keep track of the accumulated optimal value from all cells prior to the current one.  The grid is processed left-to-right and then top-down.  The optimal value is at cell [m-1][n-1] at the end of the procedure.  Since the values associated with the input grid likely have direct association with a visual component (like tiles in a game), overwriting the original grid values is not a good idea.  The original grid is cloned before the recursive procedure is applied.
+
+Part 2:  I am hesitant to rip up a working code, especially something that is easily deconstructed by another developer who comes along after me.  It was also stated that requesting the path was optional, not required, so I do not wish to compute **both** the path and value every time the grid is scanned.  I suppose there is a graph-theoretic approach, but that may be overkill.  First thought was to make a minimally-invasive mod. to the original code by creating a grid of _breadcrumbs_ that left a record as to whether or not the best move from previous to current cell was horizontal or vertical.  This auxilliary grid is initialized to something representing a 'no-move' status.  A second method could be created that extracts an optimal path from the breadcrumbs.
+
+Part 3: If we look at top-left and bottom-right as starting points, the only things that are different in the code are start/end position, start/end values for loops, and a direction value.  So, these cases could be combined into one method.  Since the accumulated values structure is cloned from the original grid, it could be transposed or flipped about a vertical axis during this process.  This results in top-right being the same as the original top-left algorithm.  Bottom-left is the same as the original bottom-right.  So, one method could be used to handle all four cases with some preprocessing.  This favors reusability over both time and space complexity.
+
+Note:  I'm in a pretty heavy time crunch at present, so only the solution to part 1 is implemented and tested.  Placeholders are in place for part 2.
 
 
 ### Contributions

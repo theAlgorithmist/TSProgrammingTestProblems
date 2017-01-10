@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef', './src/oneline/OneLineFcns', './src/worstcase/ArrayScan'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef', './src/oneline/OneLineFcns', './src/worstcase/ArrayScan', './src/shared/Matrix', './src/grid/ScanGrid'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1, OneLineFcns_1, OneLineFcns_2, OneLineFcns_3, OneLineFcns_4, OneLineFcns_5, OneLineFcns_6, OneLineFcns_7, OneLineFcns_8, ArrayScan_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1, OneLineFcns_1, OneLineFcns_2, OneLineFcns_3, OneLineFcns_4, OneLineFcns_5, OneLineFcns_6, OneLineFcns_7, OneLineFcns_8, ArrayScan_1, Matrix_1, ScanGrid_1;
     // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
     function arrCompare(arr1, arr2) {
         if (!arr1 || !arr2)
@@ -99,6 +99,12 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (ArrayScan_1_1) {
                 ArrayScan_1 = ArrayScan_1_1;
+            },
+            function (Matrix_1_1) {
+                Matrix_1 = Matrix_1_1;
+            },
+            function (ScanGrid_1_1) {
+                ScanGrid_1 = ScanGrid_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -934,6 +940,80 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     expect(scan.k).toBe(14);
                     expect(scan.steps).toBe(14);
                     expect(scan.numTrue).toBe(1);
+                });
+            });
+            describe('Scan Grid', function () {
+                var scanner = new ScanGrid_1.ScanGrid();
+                it('returns zero for an empty grid', function () {
+                    var value = scanner.scan([]);
+                    expect(value).toBe(0);
+                });
+                it('returns correct value for a 1x1 grid', function () {
+                    var m = Matrix_1.Matrix.create(1, 1, 1.0);
+                    var value = scanner.scan(m);
+                    expect(value).toBe(1.0);
+                });
+                it('returns correct value for 2x2 grid #1', function () {
+                    var m = Matrix_1.Matrix.create(2, 2, 0);
+                    m[0][1] = 2.0;
+                    m[1][0] = 1.0;
+                    var value = scanner.scan(m);
+                    expect(value).toBe(2.0);
+                });
+                it('returns correct value for 2x2 grid #2', function () {
+                    var m = Matrix_1.Matrix.create(2, 2, 0);
+                    m[0][0] = 1.0;
+                    m[1][0] = 2.0;
+                    var value = scanner.scan(m);
+                    expect(value).toBe(3.0);
+                });
+                it('returns correct value for 3x3 grid #1', function () {
+                    var m = Matrix_1.Matrix.create(3, 3, 0);
+                    // nonzeros by column
+                    m[0][0] = 1.0;
+                    m[1][0] = 2.0;
+                    m[2][1] = 3.0;
+                    m[1][2] = 1.0;
+                    var value = scanner.scan(m);
+                    expect(value).toBe(6.0);
+                });
+                it('returns correct value for 3x3 grid #2', function () {
+                    var m = Matrix_1.Matrix.create(3, 3, 0);
+                    // nonzeros by column
+                    m[1][0] = 1.0;
+                    m[1][1] = 2.0;
+                    m[2][1] = 4.0;
+                    m[1][2] = 3.0;
+                    m[2][2] = 1.0;
+                    var value = scanner.scan(m);
+                    expect(value).toBe(8.0);
+                });
+                it('returns correct value for 5x3 grid', function () {
+                    var m = Matrix_1.Matrix.create(5, 3, 0);
+                    // nonzeros by column
+                    m[1][0] = 1.0;
+                    m[3][0] = 2.0;
+                    m[0][1] = 1.0;
+                    m[2][1] = 1.0;
+                    m[4][1] = 1.0;
+                    m[2][2] = 3.0;
+                    var value = scanner.scan(m);
+                    expect(value).toBe(5.0);
+                });
+                it('returns correct value for 4x5 grid', function () {
+                    var m = Matrix_1.Matrix.create(4, 5, 0);
+                    // nonzeros by column
+                    m[0][0] = 1.0;
+                    m[2][0] = 1.0;
+                    m[0][1] = 1.0;
+                    m[1][1] = 2.0;
+                    m[0][2] = 1.0;
+                    m[2][2] = 3.0;
+                    m[0][3] = 1.0;
+                    m[0][4] = 1.0;
+                    m[3][4] = 2.0;
+                    var value = scanner.scan(m);
+                    expect(value).toBe(9.0);
                 });
             });
         }

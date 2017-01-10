@@ -21,7 +21,7 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             /**
-             * Implement array scan to find first index thta meets the condition specified in the minimize worst-case complexity problem.  A class is implemented so that
+             * Implement array scan to find first index that meets the condition specified in the minimize worst-case complexity problem.  A class is implemented so that
              * class variables may be used to record side statistics and it is used as a simulator.  A production implementation could be extracted into a couple exported functions.
              *
              * @author Jim Armstrong (www.algorithmist.net)

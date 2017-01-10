@@ -41,6 +41,9 @@ import {allGreaterThan       } from './src/oneline/OneLineFcns';
 import {getAllGreaterThan    } from './src/oneline/OneLineFcns';
 import {indexFirstGreaterThan} from './src/oneline/OneLineFcns';
 import {ArrayScan            } from './src/worstcase/ArrayScan';
+import {Matrix               } from './src/shared/Matrix';
+import {MOVES                } from './src/grid/ScanGrid';
+import {ScanGrid             } from './src/grid/ScanGrid';
 
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
 function arrCompare(arr1: Array<number>, arr2: Array<number>): boolean
@@ -1142,5 +1145,108 @@ describe('Minimize worst-case complexity', () => {
     expect(scan.k).toBe(14);
     expect(scan.steps).toBe(14);
     expect(scan.numTrue).toBe(1);
+  });
+});
+
+describe('Scan Grid', () => {
+  let scanner: ScanGrid = new ScanGrid();
+
+  it('returns zero for an empty grid', () => {
+    let value: number = scanner.scan([]);
+    expect(value).toBe(0);
+  });
+
+  it('returns correct value for a 1x1 grid', () => {
+    let m: Array<Array<number>> = Matrix.create(1, 1, 1.0);
+    let value: number = scanner.scan(m);
+    expect(value).toBe(1.0);
+  });
+
+  it('returns correct value for 2x2 grid #1', () => {
+    let m: Array<Array<number>> = Matrix.create(2, 2, 0);
+    m[0][1] = 2.0;
+    m[1][0] = 1.0;
+
+    let value: number = scanner.scan(m);
+    expect(value).toBe(2.0);
+  });
+
+  it('returns correct value for 2x2 grid #2', () => {
+    let m: Array<Array<number>> = Matrix.create(2, 2, 0);
+    m[0][0] = 1.0;
+    m[1][0] = 2.0;
+
+    let value: number = scanner.scan(m);
+    expect(value).toBe(3.0);
+  });
+
+  it('returns correct value for 3x3 grid #1', () => {
+    let m: Array<Array<number>> = Matrix.create(3, 3, 0);
+
+    // nonzeros by column
+    m[0][0] = 1.0;
+    m[1][0] = 2.0;
+
+    m[2][1] = 3.0;
+
+    m[1][2] = 1.0
+
+    let value: number = scanner.scan(m);
+    expect(value).toBe(6.0);
+  });
+
+  it('returns correct value for 3x3 grid #2', () => {
+    let m: Array<Array<number>> = Matrix.create(3, 3, 0);
+
+    // nonzeros by column
+    m[1][0] = 1.0;
+
+    m[1][1] = 2.0;
+    m[2][1] = 4.0;
+
+    m[1][2] = 3.0
+    m[2][2] = 1.0;
+
+    let value: number = scanner.scan(m);
+    expect(value).toBe(8.0);
+  });
+
+  it('returns correct value for 5x3 grid', () => {
+    let m: Array<Array<number>> = Matrix.create(5, 3, 0);
+
+    // nonzeros by column
+    m[1][0] = 1.0;
+    m[3][0] = 2.0;
+
+    m[0][1] = 1.0;
+    m[2][1] = 1.0;
+    m[4][1] = 1.0
+
+    m[2][2] = 3.0;
+
+    let value: number = scanner.scan(m);
+    expect(value).toBe(5.0);
+  });
+
+  it('returns correct value for 4x5 grid', () => {
+    let m: Array<Array<number>> = Matrix.create(4, 5, 0);
+
+    // nonzeros by column
+    m[0][0] = 1.0;
+    m[2][0] = 1.0;
+
+    m[0][1] = 1.0;
+    m[1][1] = 2.0;
+
+    m[0][2] = 1.0;
+    m[2][2] = 3.0;
+
+    m[0][3] = 1.0;
+   
+    m[0][4] = 1.0;
+    m[3][4] = 2.0;
+
+    let value: number = scanner.scan(m);
+    expect(value).toBe(9.0);
   });
 });
