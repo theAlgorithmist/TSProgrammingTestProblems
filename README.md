@@ -240,7 +240,7 @@ Solution:  Ah, the Fibonacci sequence :)  I'm guessing the 'trick' to this probl
 
 Here's an interesting observation.  What about the sequence 2, 1, 3, 4, 7, 11, ... ?  These are actually Lucas numbers, generated with the same recursion relation, but f(0) = 2 and f(1) = 1.  There is a relationship between Fibonacci and Lucas numbers that you can Google and then read about on your own time (if you want to prove that, like me, you have no life).  In fact, all Fibonacci-like sequences are rows in a Wythoff matrix.
 
-Okay, enough of that crapola - how about the solution?  A loop is not actually required as a generating function exists for the Fibonacci sequence, i.e. a function of the form g(n) where g is a closed-form representation of the n-th Fibonacci number.  I studied such generators extensively in my high-performance computing days since recursion relations are not directly vectorizable or parallelizable.  I chose the generator solution just because it's different and it illustrates some practical considerations that must be addressed in production code.
+A loop is not actually required as a generating function exists for the Fibonacci sequence, i.e. a function of the form g(n) where g is a closed-form representation of the n-th Fibonacci number.  I studied such generators extensively in my high-performance computing days since recursion relations are not directly vectorizable or parallelizable - all linear (homogeneous) recurrences with constant coefficients have closed-form solutions.  I chose the generator solution (also known at Binet's formula) just because it's different and it illustrates some practical considerations that must be addressed in production code.
 
 
 ### Folder: firstnonrepeating
