@@ -16,7 +16,7 @@
 
 /**
  * Function to generate the n-th value of the Fibonacci sequence, f(n) = f(n-1) + f(n-2), f(0) = 0, f(1) = 1.  This version uses a generating function
- * for the sequence in lieu of the recursion.  Returns zero for invalid arguments.
+ * for the sequence (aka Binet's formula) in lieu of recursion.  Returns zero for invalid arguments.
  *
  * @author Jim Armstrong (www.algorithmist.net)
  *
@@ -45,5 +45,7 @@
    // note that for small n the two Math.pow operations are less efficient - also, for larger n, you will generate numbers too large to be represented
    // as machine numbers - we have to round due to possible roundoff error in the generating-function computation.  This illustrates some of the things
    // you might have to think about in production applications.
+   //
+   // Alternative to requiring arbitrary-precision floating-point is a good integer algorithm - best I've found is here: https://bosker.wordpress.com/2011/07/27/computing-fibonacci-numbers-using-binet%E2%80%99s-formula/
    return Math.round( sqrt_5_inv*(Math.pow(f_arg1,n) - Math.pow(f_arg2,n)) );
  }
