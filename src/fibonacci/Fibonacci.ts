@@ -25,14 +25,13 @@
  export const sqrt_5: number     = Math.sqrt(5.0);
  export const sqrt_5_inv: number = 1.0/sqrt_5;
  export const f_arg1: number     = 0.5*(1.0 + sqrt_5);
- export const f_arg2: number     = 0.5*(1.0 - sqrt_5);
 
 /**
  * Return the n-th value of the Fibonacci sequence, 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
  *
  * @param n: number Zero-based index of the value to return, i.e. n = 0 for first value in sequence, n = 1 for second value, and so forth (n >= 0)
  *
- * @return number - n-th value of the Fibonacci sequence or zero for invalid arguments
+ * @return number - n-th value of the Fibonacci sequence, zero for invalid arguments, NaN for n > 70
  */
  export function fibonacci(n: number): number 
  {
@@ -42,10 +41,13 @@
    if (n <= 0)
      return 0;
 
-   // note that for small n the two Math.pow operations are less efficient - also, for larger n, you will generate numbers too large to be represented
+   if (n > 70)
+     return NaN;  // will work around this in the future
+
+   // note that for small, Math.pow is less efficient - also, for larger n, you will generate numbers too large to be represented
    // as machine numbers - we have to round due to possible roundoff error in the generating-function computation.  This illustrates some of the things
    // you might have to think about in production applications.
    //
    // Alternative to requiring arbitrary-precision floating-point is a good integer algorithm - best I've found is here: https://bosker.wordpress.com/2011/07/27/computing-fibonacci-numbers-using-binet%E2%80%99s-formula/
-   return Math.round( sqrt_5_inv*(Math.pow(f_arg1,n) - Math.pow(f_arg2,n)) );
+   return Math.round( sqrt_5_inv*(Math.pow(f_arg1,n)) );
  }

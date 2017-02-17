@@ -774,6 +774,12 @@ describe('Fibonacci Sequence', () => {
     expect(result).toBe(0);
   });
 
+  it('returns NaN for n > 70', () => {
+    let result: number = fibonacci(71);
+
+    expect(isNaN(result)).toBeTruthy();
+  });
+
   it('correctly returns seed values for sequence', () => {
     let result: number = fibonacci(0);
 

@@ -21,7 +21,7 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             /**
-             * A simple factory to creeate a 2D grid or matrix of numbers with an initial value stored in each cell (based on Crockford's Array.matrix prototype extension)
+             * A simple factory to creeate a 2D grid or matrix of numbers with an initial value stored in each cell (based on Crockford's Array.matrix)
              *
              * @author Jim Armstrong (www.algorithmist.net)
              *
@@ -31,6 +31,17 @@ System.register([], function(exports_1, context_1) {
                 function Matrix() {
                     // empty
                 }
+                /**
+                 * Create a new mxn grid or matrix with a supplied default value
+                 *
+                 * @param rows: number Number of rows
+                 *
+                 * @param cols: number Number of columns
+                 *
+                 * @param initValue: number Initial value
+                 *
+                 * @return Array<Array<number>> Matrix (array of arrays) initialized with the supplied default value.  There is no error-checking on the inputs; you break it, you buy it.
+                 */
                 Matrix.create = function (rows, cols, initValue) {
                     var a = new Array();
                     if (!isNaN(rows) && !isNaN(cols) && !isNaN(initValue) && rows > 0 && cols > 0) {

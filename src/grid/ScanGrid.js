@@ -35,14 +35,12 @@ System.register(['../shared/Matrix'], function(exports_1, context_1) {
                     this._path = new Array(); // (optional) path associated with maximum-sum path
                     // empty
                 }
-                Object.defineProperty(ScanGrid.prototype, "path", {
-                    // temporary
-                    get: function () { return this._path; },
-                    enumerable: true,
-                    configurable: true
-                });
-                ;
                 Object.defineProperty(ScanGrid.prototype, "getPath", {
+                    /**
+                     * Return a reference to an optimal path after a call to scan()
+                     *
+                     * @return Array<number> Path represented as a sequence of moves from the MOVES enum.  This is currently a placeholder and will be implemented in the future
+                     */
                     get: function () {
                         // tmmporary - this will be written later.  the idea is to process the 'breadcrumbs' left in the call to scan() in a relatively smart way to deduce a path
                         // that leads to the optimal solution.  Note that the path is not guaranteed to be unique; a square, symmetric matrix serves as a counter-example.
@@ -51,6 +49,15 @@ System.register(['../shared/Matrix'], function(exports_1, context_1) {
                     enumerable: true,
                     configurable: true
                 });
+                /**
+                 * Scan an mxn grid of positive integers for the best possible accumulated sum from starting at [0][0] and moving to [m-1][n-1] through a path that only allows
+                 * a single horizontal (right) or vertical (down) move per step.
+                 *
+                 * @param grid: grid:Array<Array<number>> 2D grid (matrix) of cells with either zero (for no value) or a postitive integer for each cell.  No error checking is performed on
+                 * this input.
+                 *
+                 * @return number maximm-possible accumulated value from the constrained sequence of moves
+                 */
                 ScanGrid.prototype.scan = function (grid) {
                     var m = grid.length; // number of rows
                     if (m == 0)

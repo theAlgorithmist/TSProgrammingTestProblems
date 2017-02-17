@@ -654,6 +654,10 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     var result = Fibonacci_1.fibonacci(-1);
                     expect(result).toBe(0);
                 });
+                it('returns NaN for n > 70', function () {
+                    var result = Fibonacci_1.fibonacci(71);
+                    expect(isNaN(result)).toBeTruthy();
+                });
                 it('correctly returns seed values for sequence', function () {
                     var result = Fibonacci_1.fibonacci(0);
                     expect(result).toBe(0);
