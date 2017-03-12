@@ -317,6 +317,8 @@ I would not expect a junior programmer to complete all of these; the test is lik
 
 ## Folder: worstcase
 
+Source: Email
+
 Problem:  You are given an array, A, of numbers of length N.  You are also given a function, F, that accepts a single number as an argument and it returns a boolean.  The function body is not relevant; it returns true if a certain condition is met and false otherwise.  It is known that if the function returns true for A[j], j = 0, 1, ... N-1, then it returns true for j+1, ... N-1.  Suggest a strategy that identifies the smallest index, j, such that F( A[j] ) is true with no more than two calls to F where the function returns true.  F may return false as many times as needed for the algorithm to work.  Return -1 if no such index exists.  The strategy for this problem should be designed to minimize the worst-case complexity.  Your presentation should include at least detailed pseudocode for your suggested algorithm (bonus points for actual code and specs).
 
 
@@ -324,6 +326,8 @@ Solution: This was given as a homework problem for a senrior developer.  The pro
 
 
 ## Folder: grid
+
+Source Email
 
 Problem:  Part 1: You are given a 2D, m x n grid or matrix of cells, each of which contains either zero (cell has no value) or a positive integer indicating the value of that cell.  Define a path as starting at the upper, left-hand corner, with an allowable move as either one cell to the right or one cell down.  Each move accumulates prior cell values with the current cell value.  Discuss a method for finding the best-possible accumulated value.
 
@@ -341,6 +345,32 @@ Part 2:  I am hesitant to rip up a working code, especially something that is ea
 Part 3: If we look at top-left and bottom-right as starting points, the only things that are different in the code are start/end position, start/end values for loops, and a direction value.  So, these cases could be combined into one method.  Since the accumulated values structure is cloned from the original grid, it could be transposed or flipped about a vertical axis during this process.  This results in top-right being the same as the original top-left algorithm.  Bottom-left is the same as the original bottom-right.  So, one method could be used to handle all four cases with some preprocessing.  This favors reusability over both time and space complexity.
 
 Note:  I'm in a pretty heavy time crunch at present, so only the solution to part 1 is implemented and tested.  Placeholders are in place for part 2.
+
+
+## Folder: factorial
+
+Source: Email
+
+Problem:  Write the code to compute n! without a loop.
+
+Solution: Sounds like one of those whiteboard exercises.  I suspect what the interviewer is looking for is the classic recursive method that involves a _fact()_ or _factorial()_ function that takes n as an argument and returns 1 if n is equal to one or _n*fact(n-1)_ otherwise (just Google it).  I've enclosed this code along with the old-school loop if you want to do a performance comparison.  It isn't long after n = 100 that the maximum number limit will be reached, so something on the order of a hundred multiplies is, after all, pretty efficient.
+
+It is also possible to use the Gamma function, G(x), in which case n! = G(n+1), but I would never recommend this in production.  Typical practice is to use a Lanczos approximation of log(G(x)) which requires a call to Math.exp and another to Math.round for the result.  There is approximation error in addition to rounding error and I believe this method will fail as quickly as n = 13.  The code is included for experiementation, but try it at home and not at work :)
+
+And, don't forget the edge case, 0! = 1 by definition.
+
+
+## Folder: repeatingdecimal
+
+Source: Email
+
+Problem:  Write a function that takes an input string that represents a number with a repeating sequence after the decimal, i.e. '1.454545 or 2.0356356' .  The digits in the repeat sequence may be presumed to be unique.  The sequence will be repeated at least once and possibly more.  Return the two integers that allow this number to be represented as a fraction or null if no repeat sequence exists after the decimal.  Accept a boolean argument that, if true, causes the fraction to be returned in reduced form.  This value should default to false.  
+
+Solution: This was presented as a homework problem, I'm presuming for an EdTech company.  Lest you think I'm doing someone's homework for them, there is typically a month or more lag between problem submission and inclusion in this repo.  
+
+Now, I do like several aspects of this problem.  First, it's tractable and of reasonable length.  It is unlikely that someone will know exactly how to approach every step in the problem, so that forces the candidate to do a lookup on Google.  Let's be realistic in that no one remembers (or knows) how to do **everything** off the top of their head.  Performing online research, then 'figuring it out and getting the job done' is a very important skill.  It also provides an opportunity for the candidate to demonstrate if they can write code that others can easily deconstruct and possibly modify in the future.
+
+There may be a very clever RegEx pattern to look up the repeating sequence, but I'm not a clever RegEx person.  I use RegEx infrequently and typically copy-pasta something I've done in the past.  So, my approach may be more verbose than necessary.  The final aspect I like about this problem is that there are subtle numerical issues due to the fact that the repeat sequence may not be repeated with sufficient frequency to obtain desired accuracy from direct floating-point computation.
 
 
 ### Contributions

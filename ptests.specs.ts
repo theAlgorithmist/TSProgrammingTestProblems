@@ -44,6 +44,9 @@ import {ArrayScan            } from './src/worstcase/ArrayScan';
 import {Matrix               } from './src/shared/Matrix';
 import {MOVES                } from './src/grid/ScanGrid';
 import {ScanGrid             } from './src/grid/ScanGrid';
+import {factorial            } from './src/factorial/Factorial';
+import {repeatToFraction     } from './src/repeatingdecimal/RepeatToFrac';
+import {SimpleFraction       } from './src/repeatingdecimal/RepeatToFrac';
 
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
 function arrCompare(arr1: Array<number>, arr2: Array<number>): boolean
@@ -1255,4 +1258,112 @@ describe('Scan Grid', () => {
     let value: number = scanner.scan(m);
     expect(value).toBe(9.0);
   });
+});
+
+describe('Factorial Tests', () => {
+
+  it('returns zero for negative argument', () => {
+    let value: number = factorial(-1);
+    expect(value).toBe(0);
+  });
+
+  it('returns 1 for n = 0', () => {
+    let value: number = factorial(0);
+    expect(value).toBe(1);
+  });
+
+  it('returns 1 for n = 1', () => {
+    let value: number = factorial(1);
+    expect(value).toBe(1);
+  });
+
+  it('returns 2 for n = 2', () => {
+    let value: number = factorial(2);
+    expect(value).toBe(2);
+  });
+
+  it('returns 6 for n = 3', () => {
+    let value: number = factorial(3);
+    expect(value).toBe(6);
+  });
+
+  it('returns 120 for n = 5', () => {
+    let value: number = factorial(5);
+    expect(value).toBe(120);
+  });
+
+  it('returns 3628800 for n = 10', () => {
+    let value: number = factorial(10);
+    expect(value).toBe(3628800);
+  });
+
+  it('returns 479001600 for n = 12', () => {
+    let value: number = factorial(12);
+    expect(value).toBe(479001600);
+  });
+});
+
+describe('Repating Decimal As Fraction', () => {
+
+  it('returns null for empty input', () => {
+    let frac: SimpleFraction = repeatToFraction("");
+
+    expect(frac).toBe(null);
+  });
+
+  it('returns null for non-repeating sequence after decimal', () => {
+    let frac: SimpleFraction = repeatToFraction("1.4");
+
+    expect(frac).toBe(null);
+  });
+
+  it('returns correct result for 0.55555', () => {
+    let frac: SimpleFraction = repeatToFraction("0.55555");
+
+    expect(frac.num).toBe(5);
+    expect(frac.den).toBe(9);
+  });
+
+  it('returns correct result for 1.333333 unreduced', () => {
+    let frac: SimpleFraction = repeatToFraction("1.333333");
+
+    expect(frac.num).toBe(12);
+    expect(frac.den).toBe(9);
+  });
+
+  it('returns correct result for 1.66666 unreduced', () => {
+    let frac: SimpleFraction = repeatToFraction("1.66666");
+
+    expect(frac.num).toBe(15);
+    expect(frac.den).toBe(9);
+  });
+
+  it('returns correct result for 1.0424242 unreduced', () => {
+    let frac: SimpleFraction = repeatToFraction("1.0424242");
+
+    expect(frac.num).toBe(1032);
+    expect(frac.den).toBe(990);
+  });
+
+  it('returns correct result for 2.13234234 unreduced', () => {
+    let frac: SimpleFraction = repeatToFraction("2.13234234");
+
+    expect(frac.num).toBe(213021);
+    expect(frac.den).toBe(99900);
+  });
+
+  it('returns correct result for 1.333333 in reduced form', () => {
+    let frac: SimpleFraction = repeatToFraction("1.333333", true);
+
+    expect(frac.num).toBe(4);
+    expect(frac.den).toBe(3);
+  });
+
+  it('returns correct result for 1.0424242 in reduced form', () => {
+    let frac: SimpleFraction = repeatToFraction("1.0424242", true);
+
+    expect(frac.num).toBe(172);
+    expect(frac.den).toBe(165);
+  });
+
 });

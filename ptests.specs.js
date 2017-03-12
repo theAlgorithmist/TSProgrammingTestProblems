@@ -12,10 +12,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef', './src/oneline/OneLineFcns', './src/worstcase/ArrayScan', './src/shared/Matrix', './src/grid/ScanGrid'], function(exports_1, context_1) {
+System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './src/macheps/MachEps', './src/fizzbuzz/FizzBuzz', './src/interp/Interp', './src/randomint/RandomIntInRange', './src/uberdriver/ComputeTrips', './src/daytrader/MaxProfit', './src/twomin/TwoMinMax', './src/twodigits/TwoDigits', './src/llist1/ExtendedLinkedList', './src/bisection/Bisect', './src/fibonacci/Fibonacci', './src/firstnonrepeating/FirstNonRepeatingChar', './src/shared/BinomialCoef', './src/oneline/OneLineFcns', './src/worstcase/ArrayScan', './src/shared/Matrix', './src/grid/ScanGrid', './src/factorial/Factorial', './src/repeatingdecimal/RepeatToFrac'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1, OneLineFcns_1, OneLineFcns_2, OneLineFcns_3, OneLineFcns_4, OneLineFcns_5, OneLineFcns_6, OneLineFcns_7, OneLineFcns_8, ArrayScan_1, Matrix_1, ScanGrid_1;
+    var Multiply321_1, ExchangeInt_1, MachEps_1, FizzBuzz_1, Interp_1, RandomIntInRange_1, ComputeTrips_1, MaxProfit_1, TwoMinMax_1, TwoDigits_1, ExtendedLinkedList_1, Bisect_1, Fibonacci_1, FirstNonRepeatingChar_1, BinomialCoef_1, OneLineFcns_1, OneLineFcns_2, OneLineFcns_3, OneLineFcns_4, OneLineFcns_5, OneLineFcns_6, OneLineFcns_7, OneLineFcns_8, ArrayScan_1, Matrix_1, ScanGrid_1, Factorial_1, RepeatToFrac_1;
     // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
     function arrCompare(arr1, arr2) {
         if (!arr1 || !arr2)
@@ -105,6 +105,12 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
             },
             function (ScanGrid_1_1) {
                 ScanGrid_1 = ScanGrid_1_1;
+            },
+            function (Factorial_1_1) {
+                Factorial_1 = Factorial_1_1;
+            },
+            function (RepeatToFrac_1_1) {
+                RepeatToFrac_1 = RepeatToFrac_1_1;
             }],
         execute: function() {
             // Test Suites
@@ -1018,6 +1024,85 @@ System.register(['./src/mult321/Multiply321', './src/exchange/ExchangeInt', './s
                     m[3][4] = 2.0;
                     var value = scanner.scan(m);
                     expect(value).toBe(9.0);
+                });
+            });
+            describe('Factorial Tests', function () {
+                it('returns zero for negative argument', function () {
+                    var value = Factorial_1.factorial(-1);
+                    expect(value).toBe(0);
+                });
+                it('returns 1 for n = 0', function () {
+                    var value = Factorial_1.factorial(0);
+                    expect(value).toBe(1);
+                });
+                it('returns 1 for n = 1', function () {
+                    var value = Factorial_1.factorial(1);
+                    expect(value).toBe(1);
+                });
+                it('returns 2 for n = 2', function () {
+                    var value = Factorial_1.factorial(2);
+                    expect(value).toBe(2);
+                });
+                it('returns 6 for n = 3', function () {
+                    var value = Factorial_1.factorial(3);
+                    expect(value).toBe(6);
+                });
+                it('returns 120 for n = 5', function () {
+                    var value = Factorial_1.factorial(5);
+                    expect(value).toBe(120);
+                });
+                it('returns 3628800 for n = 10', function () {
+                    var value = Factorial_1.factorial(10);
+                    expect(value).toBe(3628800);
+                });
+                it('returns 479001600 for n = 12', function () {
+                    var value = Factorial_1.factorial(12);
+                    expect(value).toBe(479001600);
+                });
+            });
+            describe('Repating Decimal As Fraction', function () {
+                it('returns null for empty input', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("");
+                    expect(frac).toBe(null);
+                });
+                it('returns null for non-repeating sequence after decimal', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("1.4");
+                    expect(frac).toBe(null);
+                });
+                it('returns correct result for 0.55555', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("0.55555");
+                    expect(frac.num).toBe(5);
+                    expect(frac.den).toBe(9);
+                });
+                it('returns correct result for 1.333333 unreduced', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("1.333333");
+                    expect(frac.num).toBe(12);
+                    expect(frac.den).toBe(9);
+                });
+                it('returns correct result for 1.66666 unreduced', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("1.66666");
+                    expect(frac.num).toBe(15);
+                    expect(frac.den).toBe(9);
+                });
+                it('returns correct result for 1.0424242 unreduced', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("1.0424242");
+                    expect(frac.num).toBe(1032);
+                    expect(frac.den).toBe(990);
+                });
+                it('returns correct result for 2.13234234 unreduced', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("2.13234234");
+                    expect(frac.num).toBe(213021);
+                    expect(frac.den).toBe(99900);
+                });
+                it('returns correct result for 1.333333 in reduced form', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("1.333333", true);
+                    expect(frac.num).toBe(4);
+                    expect(frac.den).toBe(3);
+                });
+                it('returns correct result for 1.0424242 in reduced form', function () {
+                    var frac = RepeatToFrac_1.repeatToFraction("1.0424242", true);
+                    expect(frac.num).toBe(172);
+                    expect(frac.den).toBe(165);
                 });
             });
         }
