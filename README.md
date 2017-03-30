@@ -401,6 +401,19 @@ In a practical setting, the input array is created once and then an arbitrary nu
 The code is quick-n-dirty, but that gives you a chance to experiment and improve upon the implementation.
 
 
+### Folder: countingsort
+
+Source: Email
+
+Problem:  Can you sort an array of non-negative integers in less than n log(n) complexity?  How would you implement such a sort?
+
+Solution:  Well, I haven't looked at the internals of any sorting algorithm in over 20 years, so this was a good one to remove some of the rust :)  I'm not sure of the context in which this question was asked (i.e. discussion, whiteboard, homework, etc).  My first thought is that comparison sorts are out of the question since they are provably no better than n log(n).  That means we are looking for something with linear complexity.  Honestly, radix and bucket came to mind first, and then after some head scratching, I barely remembered counting sort.
+
+Now, counting sort requires bounding information.  In the worst case, we can presume zero for a lower bound and compute the upper bound in O(n) time.  If the upper bound is _k_, then the counting sort for the specified inputs is O(n+k).  While this sort can be time efficient if _k_ is small compared to the number of input elements, it can be prohibitive in time and space if the upper bound is very large. 
+
+In terms of 'how would you implement such a sort,' my answer is pretty simple.  Use the same tried-and-true methodology employed by experienced programmers world-wide.  Rip off the basics from Wikipedia and then wrap it with suitable testing for edge cases.  I also made the bounding information optional.  Not providing this information allows the counting sort to be called with only the input array (just like any other sort) at the expense of additional run time.
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submimt a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.

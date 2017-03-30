@@ -45,6 +45,7 @@ var Factorial_1 = require('./src/factorial/Factorial');
 var RepeatToFrac_1 = require('./src/repeatingdecimal/RepeatToFrac');
 var Anagram_1 = require('./src/anagram/Anagram');
 var ArrObjSearch_1 = require('./src/arrobjsearch/ArrObjSearch');
+var CountingSort_1 = require('./src/countingsort/CountingSort');
 var Chai = require('chai');
 var expect = Chai.expect;
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -1160,6 +1161,89 @@ describe('Search Array of Object values', function () {
         expect(arrSearch.search("Prada")).to.equal(5);
         // total number of Object values across the entire array
         expect(arrSearch.size).to.equal(24);
+    });
+});
+describe('Counting Sort', function () {
+    it('returns empty array for invalid input', function () {
+        expect(CountingSort_1.countingSort(null).length).to.equal(0);
+    });
+    it('returns empty array for empty input', function () {
+        expect(CountingSort_1.countingSort([]).length).to.equal(0);
+    });
+    it('returns singleton array for singleton input', function () {
+        var result = CountingSort_1.countingSort([1]);
+        expect(result.length).to.equal(1);
+        expect(result[0]).to.equal(1);
+    });
+    it('2-element test #1', function () {
+        var result = CountingSort_1.countingSort([1, 2]);
+        expect(result.length).to.equal(2);
+        expect(result[0]).to.equal(1);
+        expect(result[1]).to.equal(2);
+    });
+    it('2-element test #2', function () {
+        var result = CountingSort_1.countingSort([2, 1]);
+        expect(result.length).to.equal(2);
+        expect(result[0]).to.equal(1);
+        expect(result[1]).to.equal(2);
+    });
+    it('2-element test #3 (higher upper bound)', function () {
+        var result = CountingSort_1.countingSort([2, 1], 0, 5);
+        expect(result.length).to.equal(2);
+        expect(result[0]).to.equal(1);
+        expect(result[1]).to.equal(2);
+    });
+    it('multi-element test #1', function () {
+        var result = CountingSort_1.countingSort([2, 1, 0, 5, 10, 8, 7]);
+        expect(result.length).to.equal(7);
+        expect(result[0]).to.equal(0);
+        expect(result[1]).to.equal(1);
+        expect(result[2]).to.equal(2);
+        expect(result[3]).to.equal(5);
+        expect(result[4]).to.equal(7);
+        expect(result[5]).to.equal(8);
+        expect(result[6]).to.equal(10);
+    });
+    it('multi-element test #2', function () {
+        var result = CountingSort_1.countingSort([2, 1, 0, 5, 10, 8, 7], 0, 10);
+        expect(result.length).to.equal(7);
+        expect(result[0]).to.equal(0);
+        expect(result[1]).to.equal(1);
+        expect(result[2]).to.equal(2);
+        expect(result[3]).to.equal(5);
+        expect(result[4]).to.equal(7);
+        expect(result[5]).to.equal(8);
+        expect(result[6]).to.equal(10);
+    });
+    it('multi-element test #3', function () {
+        var result = CountingSort_1.countingSort([2, 1, 0, 5, 0, 10, 8, 1, 7, 0, 18]);
+        expect(result.length).to.equal(11);
+        expect(result[0]).to.equal(0);
+        expect(result[1]).to.equal(0);
+        expect(result[2]).to.equal(0);
+        expect(result[3]).to.equal(1);
+        expect(result[4]).to.equal(1);
+        expect(result[5]).to.equal(2);
+        expect(result[6]).to.equal(5);
+        expect(result[7]).to.equal(7);
+        expect(result[8]).to.equal(8);
+        expect(result[9]).to.equal(10);
+        expect(result[10]).to.equal(18);
+    });
+    it('multi-element test #4', function () {
+        var result = CountingSort_1.countingSort([2, 1, 0, 5, 0, 10, 8, 1, 7, 0, 18], 0, 50);
+        expect(result.length).to.equal(11);
+        expect(result[0]).to.equal(0);
+        expect(result[1]).to.equal(0);
+        expect(result[2]).to.equal(0);
+        expect(result[3]).to.equal(1);
+        expect(result[4]).to.equal(1);
+        expect(result[5]).to.equal(2);
+        expect(result[6]).to.equal(5);
+        expect(result[7]).to.equal(7);
+        expect(result[8]).to.equal(8);
+        expect(result[9]).to.equal(10);
+        expect(result[10]).to.equal(18);
     });
 });
 //# sourceMappingURL=ptests.specs.js.map

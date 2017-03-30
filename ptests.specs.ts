@@ -49,6 +49,7 @@ import {repeatToFraction     } from './src/repeatingdecimal/RepeatToFrac';
 import {SimpleFraction       } from './src/repeatingdecimal/RepeatToFrac';
 import {isAnagram            } from './src/anagram/Anagram';
 import {ArrObjSearch         } from './src/arrobjsearch/ArrObjSearch';
+import {countingSort         } from './src/countingsort/CountingSort';
 
 import * as Chai from 'chai';
 const expect = Chai.expect;
@@ -1503,5 +1504,106 @@ describe('Search Array of Object values', () => {
     // total number of Object values across the entire array
     expect(arrSearch.size).to.equal(24);
   });
+});
 
+describe('Counting Sort', () => {
+
+  it('returns empty array for invalid input', () => {
+    expect(countingSort(null).length).to.equal(0);
+  });
+
+  it('returns empty array for empty input', () => {
+    expect(countingSort([]).length).to.equal(0);
+  });
+
+  it('returns singleton array for singleton input', () => {
+    let result: Array<number> = countingSort([1]);
+
+    expect(result.length).to.equal(1);
+    expect(result[0]).to.equal(1);
+  });
+
+  it('2-element test #1', () => {
+    let result: Array<number> = countingSort([1, 2]);
+
+    expect(result.length).to.equal(2);
+    expect(result[0]).to.equal(1);
+    expect(result[1]).to.equal(2);
+  });
+
+  it('2-element test #2', () => {
+    let result: Array<number> = countingSort([2, 1]);
+
+    expect(result.length).to.equal(2);
+    expect(result[0]).to.equal(1);
+    expect(result[1]).to.equal(2);
+  });
+
+  it('2-element test #3 (higher upper bound)', () => {
+    let result: Array<number> = countingSort([2, 1], 0, 5);
+
+    expect(result.length).to.equal(2);
+    expect(result[0]).to.equal(1);
+    expect(result[1]).to.equal(2);
+  });
+
+  it('multi-element test #1', () => {
+    let result: Array<number> = countingSort([2, 1, 0, 5, 10, 8, 7]);
+
+    expect(result.length).to.equal(7);
+    expect(result[0]).to.equal(0);
+    expect(result[1]).to.equal(1);
+    expect(result[2]).to.equal(2);
+    expect(result[3]).to.equal(5);
+    expect(result[4]).to.equal(7);
+    expect(result[5]).to.equal(8);
+    expect(result[6]).to.equal(10);
+  });
+
+  it('multi-element test #2', () => {
+    let result: Array<number> = countingSort([2, 1, 0, 5, 10, 8, 7], 0, 10);
+
+    expect(result.length).to.equal(7);
+    expect(result[0]).to.equal(0);
+    expect(result[1]).to.equal(1);
+    expect(result[2]).to.equal(2);
+    expect(result[3]).to.equal(5);
+    expect(result[4]).to.equal(7);
+    expect(result[5]).to.equal(8);
+    expect(result[6]).to.equal(10);
+  });
+
+  it('multi-element test #3', () => {
+    let result: Array<number> = countingSort([2, 1, 0, 5, 0, 10, 8, 1, 7, 0, 18]);
+
+    expect(result.length).to.equal(11);
+    expect(result[0]).to.equal(0);
+    expect(result[1]).to.equal(0);
+    expect(result[2]).to.equal(0);
+    expect(result[3]).to.equal(1);
+    expect(result[4]).to.equal(1);
+    expect(result[5]).to.equal(2);
+    expect(result[6]).to.equal(5);
+    expect(result[7]).to.equal(7);
+    expect(result[8]).to.equal(8);
+    expect(result[9]).to.equal(10);
+    expect(result[10]).to.equal(18);
+  });
+
+  it('multi-element test #4', () => {
+    let result: Array<number> = countingSort([2, 1, 0, 5, 0, 10, 8, 1, 7, 0, 18], 0, 50);
+
+    expect(result.length).to.equal(11);
+    expect(result[0]).to.equal(0);
+    expect(result[1]).to.equal(0);
+    expect(result[2]).to.equal(0);
+    expect(result[3]).to.equal(1);
+    expect(result[4]).to.equal(1);
+    expect(result[5]).to.equal(2);
+    expect(result[6]).to.equal(5);
+    expect(result[7]).to.equal(7);
+    expect(result[8]).to.equal(8);
+    expect(result[9]).to.equal(10);
+    expect(result[10]).to.equal(18);
+  });
 });
