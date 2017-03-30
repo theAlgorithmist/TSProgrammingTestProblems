@@ -13,42 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-System.register([], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    /**
-     * Function to compute the maximum possible profit that could have been obtained during a single trading session from only a long position
-     *
-     * @param prices : Array<number> Price of stock/commodity for each time period during the session
-     *
-     * @return number - maximum possible profit (or minimum loss if negative) from a long position, i.e. buy at time period i and sell at time period j where j > i .
-     *
-     * @author Jim Armstrong (www.algorithmist.net)
-     *
-     * @version 1.0
-     */
-    function maxProfit(prices) {
-        var len = prices.length;
-        if (len < 2)
-            return 0;
-        var low = prices[0]; // record the current low
-        var profit = -Number.MAX_VALUE; // record the current max profit
-        var i;
-        var p;
-        var price;
-        for (i = 1; i < len; ++i) {
-            price = prices[i]; // current time-period price
-            p = price - low; // current profit or loss
-            profit = Math.max(p, profit); // some unnecessary max computations, but this easily fits in min-loss case
-            low = Math.min(low, price); // did we hit a new low?
-        }
-        return profit;
+"use strict";
+/**
+ * Function to compute the maximum possible profit that could have been obtained during a single trading session from only a long position
+ *
+ * @param prices : Array<number> Price of stock/commodity for each time period during the session
+ *
+ * @return number - maximum possible profit (or minimum loss if negative) from a long position, i.e. buy at time period i and sell at time period j where j > i .
+ *
+ * @author Jim Armstrong (www.algorithmist.net)
+ *
+ * @version 1.0
+ */
+function maxProfit(prices) {
+    var len = prices.length;
+    if (len < 2)
+        return 0;
+    var low = prices[0]; // record the current low
+    var profit = -Number.MAX_VALUE; // record the current max profit
+    var i;
+    var p;
+    var price;
+    for (i = 1; i < len; ++i) {
+        price = prices[i]; // current time-period price
+        p = price - low; // current profit or loss
+        profit = Math.max(p, profit); // some unnecessary max computations, but this easily fits in min-loss case
+        low = Math.min(low, price); // did we hit a new low?
     }
-    exports_1("maxProfit", maxProfit);
-    return {
-        setters:[],
-        execute: function() {
-        }
-    }
-});
+    return profit;
+}
+exports.maxProfit = maxProfit;
 //# sourceMappingURL=MaxProfit.js.map

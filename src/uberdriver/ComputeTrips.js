@@ -13,49 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-System.register([], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    /**
-     * Function to compute the number of consecutive five-star trips required to restore an Uber driver's rating to at least its prior value after
-     * a single trip in which the rating was less than the current ranking (known as a downrate)
-     *
-     * Note: The variable names are non-descriptive but relate to the formula presented in the solution)
-     *
-     * @param r : number Current driver rating before downrated trip
-     * @param t : number Rating received on current trip (Integer, must be less than the current rating)
-     *
-     * @return number - integer number of consecutive five-star trips required to restore the driver rating to at least its value before the single downrated trip.
-     * If the driver is already rated 5-star, there is no number of 5-star trips that can restore the rating since 5 is the highest single-trip rating.  The single downrate
-     * will always keep the rating just below 5.0 no matter how many future 5-star trips are awarded.  Infinity is returned in this case to enable more predictable
-     * testing (i.e do not allow NaN to be computed)
-     *
-     * @author Jim Armstrong (www.algorithmist.net)
-     *
-     * @version 1.0
-     */
-    function tripCount(r, t) {
-        if (isNaN(r) || !isFinite(r))
-            return 0;
-        if (isNaN(t) || !isFinite(t))
-            return 0;
-        r = Math.abs(r);
-        t = Math.round(Math.abs(t));
-        t = Math.max(1, t);
-        r = Math.min(5, r);
-        if (t > r)
-            return 0; // there is no downrating
-        // since 5 is the maximum possible rating, there is no way to restore exactly 5.0 or better once there is a downrate since 5-star is the maximum possible
-        // rating for a single trip
-        if (r == 5)
-            return Infinity;
-        return Math.ceil((r - t) / (5 - r));
-    }
-    exports_1("tripCount", tripCount);
-    return {
-        setters:[],
-        execute: function() {
-        }
-    }
-});
+"use strict";
+/**
+ * Function to compute the number of consecutive five-star trips required to restore an Uber driver's rating to at least its prior value after
+ * a single trip in which the rating was less than the current ranking (known as a downrate)
+ *
+ * Note: The variable names are non-descriptive but relate to the formula presented in the solution)
+ *
+ * @param r : number Current driver rating before downrated trip
+ * @param t : number Rating received on current trip (Integer, must be less than the current rating)
+ *
+ * @return number - integer number of consecutive five-star trips required to restore the driver rating to at least its value before the single downrated trip.
+ * If the driver is already rated 5-star, there is no number of 5-star trips that can restore the rating since 5 is the highest single-trip rating.  The single downrate
+ * will always keep the rating just below 5.0 no matter how many future 5-star trips are awarded.  Infinity is returned in this case to enable more predictable
+ * testing (i.e do not allow NaN to be computed)
+ *
+ * @author Jim Armstrong (www.algorithmist.net)
+ *
+ * @version 1.0
+ */
+function tripCount(r, t) {
+    if (isNaN(r) || !isFinite(r))
+        return 0;
+    if (isNaN(t) || !isFinite(t))
+        return 0;
+    r = Math.abs(r);
+    t = Math.round(Math.abs(t));
+    t = Math.max(1, t);
+    r = Math.min(5, r);
+    if (t > r)
+        return 0; // there is no downrating
+    // since 5 is the maximum possible rating, there is no way to restore exactly 5.0 or better once there is a downrate since 5-star is the maximum possible
+    // rating for a single trip
+    if (r == 5)
+        return Infinity;
+    return Math.ceil((r - t) / (5 - r));
+}
+exports.tripCount = tripCount;
 //# sourceMappingURL=ComputeTrips.js.map

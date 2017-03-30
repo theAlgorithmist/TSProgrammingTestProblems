@@ -13,40 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-System.register([], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    /**
-     * Function to compute the minimum, maximum, and min-value in between min/max NOT in an array of integers WITHOUT using Math.min, Math.max, sorting, or a loop.
-     *
-     * @param values : Array<number> Integers to be tested (data integrity is presumed in this example, so there are no tests for non-numeric and non-integer data)
-     *
-     * @return Object 'min' property contains minimum of the set of input integers, 'max' property is the maximum value and 'min2' is the minimum value between
-     * min and max NOT in the array.  In the event the inputs are not sparse (i.e. no gaps between integer values), then 'min2' is set to 'min'.  This serves as an easy
-     * test of the return values for this edge case.
-     *
-     * @author Jim Armstrong (www.algorithmist.net)
-     *
-     * @version 1.0
-     */
-    function twoMinMax(values) {
-        if (values.length == 0)
-            return { min1: 0, min2: 0, max: 0 };
-        if (values.length == 1)
-            return { min1: values[0], min2: values[0], max: values[0] };
-        // reducers was my first thought, so I'm stuck with it :)
-        var minInt = values.reduce(function (min, x) { return x < min ? x : min; });
-        var maxInt = values.reduce(function (max, x) { return x > max ? x : max; });
-        var min2 = values.reduce(function (min, x, index, arr) { return (x < min && arr.indexOf(x + 1) == -1) ? x + 1 : min; });
-        // handle a tricky edge case where the min is at the beginning of the array and the array is sparse
-        min2 = min2 == minInt && values.indexOf(min2 + 1) == -1 && minInt < maxInt ? min2 + 1 : min2;
-        return { min1: minInt, min2: min2, max: maxInt };
-    }
-    exports_1("twoMinMax", twoMinMax);
-    return {
-        setters:[],
-        execute: function() {
-        }
-    }
-});
+"use strict";
+/**
+ * Function to compute the minimum, maximum, and min-value in between min/max NOT in an array of integers WITHOUT using Math.min, Math.max, sorting, or a loop.
+ *
+ * @param values : Array<number> Integers to be tested (data integrity is presumed in this example, so there are no tests for non-numeric and non-integer data)
+ *
+ * @return Object 'min' property contains minimum of the set of input integers, 'max' property is the maximum value and 'min2' is the minimum value between
+ * min and max NOT in the array.  In the event the inputs are not sparse (i.e. no gaps between integer values), then 'min2' is set to 'min'.  This serves as an easy
+ * test of the return values for this edge case.
+ *
+ * @author Jim Armstrong (www.algorithmist.net)
+ *
+ * @version 1.0
+ */
+function twoMinMax(values) {
+    if (values.length == 0)
+        return { min1: 0, min2: 0, max: 0 };
+    if (values.length == 1)
+        return { min1: values[0], min2: values[0], max: values[0] };
+    // reducers was my first thought, so I'm stuck with it :)
+    var minInt = values.reduce(function (min, x) { return x < min ? x : min; });
+    var maxInt = values.reduce(function (max, x) { return x > max ? x : max; });
+    var min2 = values.reduce(function (min, x, index, arr) { return (x < min && arr.indexOf(x + 1) == -1) ? x + 1 : min; });
+    // handle a tricky edge case where the min is at the beginning of the array and the array is sparse
+    min2 = min2 == minInt && values.indexOf(min2 + 1) == -1 && minInt < maxInt ? min2 + 1 : min2;
+    return { min1: minInt, min2: min2, max: maxInt };
+}
+exports.twoMinMax = twoMinMax;
 //# sourceMappingURL=TwoMinMax.js.map

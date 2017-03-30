@@ -16,7 +16,7 @@ theAlgorithmist [at] gmail [dot] com
 
 Typescript: 2.0.3
 
-Version: 1.1.0 (upgrade to TS 2.0 and moderninze handling of typings)
+Version: 2.0.0 (Change test suite to Mocha/Chai)
 
 
 ## Installation
@@ -33,9 +33,9 @@ Installation involves all the usual suspects
 
 1. gulp compile
 
-2. gulp serve
+2. gulp test
 
-The test suite is in Jasmine.  All problem solutions are in folders under /src.  The list of problems is provided below, by folder.  This list will likely be moved to a Wiki as the problem set expands.
+The test suite is in Mochai/Chai.  All problem solutions are in folders under /src.  The list of problems is provided below, by folder.  This list will likely be moved to a Wiki as the problem set expands.
 
 
 
@@ -360,7 +360,7 @@ It is also possible to use the Gamma function, G(x), in which case n! = G(n+1), 
 And, don't forget the edge case, 0! = 1 by definition.
 
 
-## Folder: repeatingdecimal
+### Folder: repeatingdecimal
 
 Source: Email
 
@@ -371,6 +371,34 @@ Solution: This was presented as a homework problem, I'm presuming for an EdTech 
 Now, I do like several aspects of this problem.  First, it's tractable and of reasonable length.  It is unlikely that someone will know exactly how to approach every step in the problem, so that forces the candidate to do a lookup on Google.  Let's be realistic in that no one remembers (or knows) how to do **everything** off the top of their head.  Performing online research, then 'figuring it out and getting the job done' is a very important skill.  It also provides an opportunity for the candidate to demonstrate if they can write code that others can easily deconstruct and possibly modify in the future.
 
 There may be a very clever RegEx pattern to look up the repeating sequence, but I'm not a clever RegEx person.  I use RegEx infrequently and typically copy-pasta something I've done in the past.  So, my approach may be more verbose than necessary.  The final aspect I like about this problem is that there are subtle numerical issues due to the fact that the repeat sequence may not be repeated with sufficient frequency to obtain desired accuracy from direct floating-point computation.
+
+
+### Folder: anagram
+
+Source: Email
+
+Problem:  Discuss various solutions to creating a function that takes two words as input and returns a boolean to indicate whether or not the two words are anagrams.  What is the complexity of the approchaes and how do you expect the solutions to scale to larger-length strings?  Discuss edge cases.
+
+Solution:  I chose this one as it is a string-processing problem, which if you have read this far you know is not an area of strength for me.  I also like discussion problems and this one was given to an applicant for a junior front-end dev. position.  The value of discussion problems is that it simulates a very real environment where devs get together in a conference room and discuss how to solve a problem.  Can the candidate fit into this environment and what problem-solving instincts are displayed?  If not evident in track record or online portfolio, the latter can generally only be determined in a presentation/discussion setting.
+
+I suppose the classic answer to this problem is split-sort-join-compare.  The whole split-some operation-join combination is a solution to a lot of string-related problems.  It is one-line, elegant, and likely effective for modest-size strings.  Complexity is dominated by the sort so we will say _n log(n)_.  Split and join, however, are not trivial from an actual runtime standpoint.
+
+I know everyone is indoctrinated to think big-O when it comes to complexity, but that's just a high-level representation of how an algorithm scales.  My first question in desigining a solution to this problem is to ask how likely it is that two words will really be anagams, especially as the number of letters increases.  In practice, not very likely.  So, I would try to come up with an approach designed to prove false as quickly as possible.  That is the idea behind the provided example, although in the worst case, it's _n^2_.  I am sure that someone more experienced in string processing than myself can come up with a better solution, but this one is pretty easy to follow.
+
+In terms of edge cases, I would ask about mixed case, i.e. are 'sAw' and 'was' to be considered anagrams?  For purposes of this particular discussion, let's presume that the group decided in the negative.  Same for null strings.  I would also test for null or undefined inputs.
+
+
+### Folder: arrobjsearch
+
+Source: Email
+
+Problem:  You are given an array of Objects.  Object values are string or numeric data.  Arrange to search for a particular value (not key) across all Objects and return the array index corresponding to the first Object that contains that value.
+
+Solution:  This really was not a 'programming test' problem, but it could be a homework-style problem.  I threw something together to help out a friend.  Let's presume ES 2015 as the edge of  the envelope so that only _Object.keys_ is available.
+
+In a practical setting, the input array is created once and then an arbitrary number of searches are performed against that data.  This does illustrate a good general principle, namely using an Object as a hash table.  Since multiple searches are performed across the same data, split the problem into two parts.  Build a hash in the first step (think of this as setting a data provider) and then provide a _search_ method to peform searches across that structure.  If name/value pairs in an Object are backed by a balanced binary tree, then build and search are order _log (ne)_ if _n_ is the array length and _e_ is the avarge number of items per Object.
+
+The code is quick-n-dirty, but that gives you a chance to experiment and improve upon the implementation.
 
 
 ### Contributions

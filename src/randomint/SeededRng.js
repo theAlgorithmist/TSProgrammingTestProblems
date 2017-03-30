@@ -13,63 +13,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-System.register([], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    var SeededRng;
-    return {
-        setters:[],
-        execute: function() {
-            /**
-             * Typescript Math Toolkit - A 'game quality' implementation of a Park Miller LCG with seeding.  Use of seeding allows a repeatable sequence to be
-             * generated for debugging purposes.  The complete algorithm is detailed at http://www.firstpr.com.au/dsp/rand31/
-             *
-            
-             * @author Jim Armstrong
-             *
-             * @version 1.0
-             */
-            SeededRng = (function () {
-                /**
-                 * Construt a new SeededRng
-                 *
-                 * @param seed: Number - Initial (integer) seed value, which should be in the interval [1, 0X7FFFFFFE]
-                 *
-                 */
-                function SeededRng(seed) {
-                    this._seed = 1; // seed used for this RNG
-                    if (isNaN(seed) || !isFinite(seed))
-                        seed = 1;
-                    seed = Math.max(1, seed);
-                    this._seed = seed;
-                }
-                /**
-                 * returns the next pseudo-random iterate
-                 *
-                 * @return number Next iterate in sequence as an unsigned integer
-                 *
-                 */
-                SeededRng.prototype.next = function () {
-                    return this.__generator();
-                };
-                /**
-                   * Return the next pseudo-random iterate in [0,1)
-                   *
-                   * @return Number - next number in sequence in the interval [0,1)
-                   */
-                SeededRng.prototype.asNumber = function () {
-                    return this.__generator() / 2147483647;
-                };
-                // internal method - generator function, new = (16807*old * 16807) mod (2^31 - 1)
-                SeededRng.prototype.__generator = function () {
-                    // update seed
-                    this._seed = (16807 * this._seed) % 2147483647;
-                    return this._seed;
-                };
-                return SeededRng;
-            }());
-            exports_1("SeededRng", SeededRng);
-        }
+"use strict";
+/**
+ * Typescript Math Toolkit - A 'game quality' implementation of a Park Miller LCG with seeding.  Use of seeding allows a repeatable sequence to be
+ * generated for debugging purposes.  The complete algorithm is detailed at http://www.firstpr.com.au/dsp/rand31/
+ *
+
+ * @author Jim Armstrong
+ *
+ * @version 1.0
+ */
+var SeededRng = (function () {
+    /**
+     * Construt a new SeededRng
+     *
+     * @param seed: Number - Initial (integer) seed value, which should be in the interval [1, 0X7FFFFFFE]
+     *
+     */
+    function SeededRng(seed) {
+        this._seed = 1; // seed used for this RNG
+        if (isNaN(seed) || !isFinite(seed))
+            seed = 1;
+        seed = Math.max(1, seed);
+        this._seed = seed;
     }
-});
+    /**
+     * returns the next pseudo-random iterate
+     *
+     * @return number Next iterate in sequence as an unsigned integer
+     *
+     */
+    SeededRng.prototype.next = function () {
+        return this.__generator();
+    };
+    /**
+       * Return the next pseudo-random iterate in [0,1)
+       *
+       * @return Number - next number in sequence in the interval [0,1)
+       */
+    SeededRng.prototype.asNumber = function () {
+        return this.__generator() / 2147483647;
+    };
+    // internal method - generator function, new = (16807*old * 16807) mod (2^31 - 1)
+    SeededRng.prototype.__generator = function () {
+        // update seed
+        this._seed = (16807 * this._seed) % 2147483647;
+        return this._seed;
+    };
+    return SeededRng;
+}());
+exports.SeededRng = SeededRng;
 //# sourceMappingURL=SeededRng.js.map

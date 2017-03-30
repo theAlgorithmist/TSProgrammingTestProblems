@@ -1,25 +1,24 @@
 {
   "name": "TSProgrammingTests",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Typescript Programming Test Problems",
-  "main": "index.html",
   "keywords": [
     "Typescript",
     "Programming"
   ],
   "author": "Jim Armstrong (www.algorithmist.net)",
-  "license": "Apache2.0",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "@types/core-js": "^0.9.34",
-    "@types/jasmine": "^2.5.35",
-    "gulp-server-livereload": "^1.7.1",
-    "gulp-sourcemaps": "1.6.0",
+    "@types/core-js": "0.9.34",
     "gulp-tsc": "^1.2.4",
-    "gulp-typescript": "2.12.0",
-    "typescript": "^2.0.0"
+    "typescript": "2.0.0"
   },
   "dependencies": {
-    "jasmine-core": "2.4.1",
-    "systemjs": "0.19.24"
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.39",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^4.0.1",
+    "mocha": "^3.2.0"
   }
 }
