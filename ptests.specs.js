@@ -46,6 +46,7 @@ var RepeatToFrac_1 = require('./src/repeatingdecimal/RepeatToFrac');
 var Anagram_1 = require('./src/anagram/Anagram');
 var ArrObjSearch_1 = require('./src/arrobjsearch/ArrObjSearch');
 var CountingSort_1 = require('./src/countingsort/CountingSort');
+var extractProps_1 = require('./src/hierarchy/extractProps');
 var Chai = require('chai');
 var expect = Chai.expect;
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -1244,6 +1245,116 @@ describe('Counting Sort', function () {
         expect(result[8]).to.equal(8);
         expect(result[9]).to.equal(10);
         expect(result[10]).to.equal(18);
+    });
+});
+describe('Hierarchical Ssearch - extract properties', function () {
+    it('returns empty result for empty input', function () {
+        expect(extractProps_1.extractProps([], '').length).to.equal(0);
+    });
+    it('returns empty array for empty property', function () {
+        expect(extractProps_1.extractProps([{}], '').length).to.equal(0);
+    });
+    it('extract properties works on single-level hierarchy', function () {
+        var TestArr = [
+            {
+                id: '1',
+                value: 2,
+                title: 'Title 1'
+            },
+            {
+                value: 3,
+                title: 'Title 2'
+            },
+            {
+                id: '2',
+                value: 4,
+                title: 'Title 3',
+                icon: ''
+            },
+            {
+                id: '3',
+                value: 5,
+                title: 'Title 4'
+            },
+            {
+                value: 2,
+                title: 'Title 5'
+            },
+            {
+                value: 3,
+                title: 'Title 6'
+            },
+            {
+                id: '4',
+                value: 20,
+                title: 'Title 7'
+            },
+            {
+                value: 12,
+                title: 'Title 8'
+            }
+        ];
+        expect(extractProps_1.extractProps(TestArr, 'id').length).to.equal(4);
+    });
+    it("extract properties method works on two-level hierarchy", function () {
+        var TestMenu = [
+            {
+                title: 'Navigation',
+                active: true,
+                groupTitle: true,
+                children: '',
+                routing: '',
+            },
+            {
+                title: 'Dashboard',
+                active: false,
+                groupTitle: false,
+                children: '',
+                routing: '/dashboard',
+            },
+            {
+                title: 'Channel 1',
+                active: false,
+                groupTitle: false,
+                children: [
+                    {
+                        title: 'Group 1',
+                        routing: '/group-1/name-1'
+                    },
+                    {
+                        title: 'Group 2',
+                        routing: '/group-2/name-2'
+                    }
+                ],
+                routing: '/group/1',
+            },
+            {
+                title: 'Channel 2',
+                active: false,
+                groupTitle: false,
+                children: [
+                    {
+                        title: 'Group 3',
+                        routing: '/group-2/job-name-3'
+                    },
+                    {
+                        title: 'Group 2',
+                        routing: '/group-2/job-name-2'
+                    }
+                ],
+                routing: '/channel/2',
+            },
+        ];
+        var result = extractProps_1.extractProps(TestMenu, 'title');
+        expect(result.length).to.equal(8);
+        expect(result[0]).to.equal('Navigation');
+        expect(result[1]).to.equal('Dashboard');
+        expect(result[2]).to.equal('Channel 1');
+        expect(result[3]).to.equal('Group 1');
+        expect(result[4]).to.equal('Group 2');
+        expect(result[5]).to.equal('Channel 2');
+        expect(result[6]).to.equal('Group 3');
+        expect(result[7]).to.equal('Group 2');
     });
 });
 //# sourceMappingURL=ptests.specs.js.map

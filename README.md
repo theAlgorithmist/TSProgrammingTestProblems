@@ -366,7 +366,7 @@ Source: Email
 
 Problem:  Write a function that takes an input string that represents a number with a repeating sequence after the decimal, i.e. '1.454545 or 2.0356356' .  The digits in the repeat sequence may be presumed to be unique.  The sequence will be repeated at least once and possibly more.  Return the two integers that allow this number to be represented as a fraction or null if no repeat sequence exists after the decimal.  Accept a boolean argument that, if true, causes the fraction to be returned in reduced form.  This value should default to false.  
 
-Solution: This was presented as a homework problem, I'm presuming for an EdTech company.  Lest you think I'm doing someone's homework for them, there is typically a month or more lag between problem submission and inclusion in this repo.  
+Solution: This was presented as a homework problem - I'm presuming for an EdTech company.  Lest you think I'm doing someone's homework for them, there is typically a month or more lag between problem submission and inclusion in this repo.
 
 Now, I do like several aspects of this problem.  First, it's tractable and of reasonable length.  It is unlikely that someone will know exactly how to approach every step in the problem, so that forces the candidate to do a lookup on Google.  Let's be realistic in that no one remembers (or knows) how to do **everything** off the top of their head.  Performing online research, then 'figuring it out and getting the job done' is a very important skill.  It also provides an opportunity for the candidate to demonstrate if they can write code that others can easily deconstruct and possibly modify in the future.
 
@@ -377,13 +377,13 @@ There may be a very clever RegEx pattern to look up the repeating sequence, but 
 
 Source: Email
 
-Problem:  Discuss various solutions to creating a function that takes two words as input and returns a boolean to indicate whether or not the two words are anagrams.  What is the complexity of the approchaes and how do you expect the solutions to scale to larger-length strings?  Discuss edge cases.
+Problem:  Discuss various solutions to creating a function that takes two words as input and returns a boolean to indicate whether or not the two words are anagrams.  What is the complexity of each approach and how do you expect the solutions to scale to larger-length strings?  Discuss edge cases.
 
-Solution:  I chose this one as it is a string-processing problem, which if you have read this far you know is not an area of strength for me.  I also like discussion problems and this one was given to an applicant for a junior front-end dev. position.  The value of discussion problems is that it simulates a very real environment where devs get together in a conference room and discuss how to solve a problem.  Can the candidate fit into this environment and what problem-solving instincts are displayed?  If not evident in track record or online portfolio, the latter can generally only be determined in a presentation/discussion setting.
+Solution:  I chose this one as it is a string-processing problem, which if you have read this far you know is not an area of strength for me.  I also like discussion problems and this one was given to an applicant for a junior front-end dev. position.  The value of discussion problems is that they simulate a very real environment where devs get together in a conference room and discuss how to solve a problem.  Can the candidate fit into this environment and what problem-solving instincts are displayed?  If not evident in track record or online portfolio, the latter can generally only be determined in a presentation/discussion setting.
 
 I suppose the classic answer to this problem is split-sort-join-compare.  The whole split-some operation-join combination is a solution to a lot of string-related problems.  It is one-line, elegant, and likely effective for modest-size strings.  Complexity is dominated by the sort so we will say _n log(n)_.  Split and join, however, are not trivial from an actual runtime standpoint.
 
-I know everyone is indoctrinated to think big-O when it comes to complexity, but that's just a high-level representation of how an algorithm scales.  My first question in desigining a solution to this problem is to ask how likely it is that two words will really be anagams, especially as the number of letters increases.  In practice, not very likely.  So, I would try to come up with an approach designed to prove false as quickly as possible.  That is the idea behind the provided example, although in the worst case, it's _n^2_.  I am sure that someone more experienced in string processing than myself can come up with a better solution, but this one is pretty easy to follow.
+I know everyone is indoctrinated to think big-O when it comes to complexity, but that's just a high-level representation of how an algorithm scales.  My first question in designing a solution to this problem is to ask how likely it is that two words will really be anagrams, especially as the number of letters increases.  In practice, not very likely.  So, I would try to come up with an approach designed to prove false as quickly as possible.  That is the idea behind the provided example, although in the worst case, it's _n^2_.  I am sure that someone more experienced in string processing than myself can come up with a better solution, but this one is pretty easy to follow.
 
 In terms of edge cases, I would ask about mixed case, i.e. are 'sAw' and 'was' to be considered anagrams?  For purposes of this particular discussion, let's presume that the group decided in the negative.  Same for null strings.  I would also test for null or undefined inputs.
 
@@ -412,6 +412,17 @@ Solution:  Well, I haven't looked at the internals of any sorting algorithm in o
 Now, counting sort requires bounding information.  In the worst case, we can presume zero for a lower bound and compute the upper bound in O(n) time.  If the upper bound is _k_, then the counting sort for the specified inputs is O(n+k).  While this sort can be time efficient if _k_ is small compared to the number of input elements, it can be prohibitive in time and space if the upper bound is very large. 
 
 In terms of 'how would you implement such a sort,' my answer is pretty simple.  Use the same tried-and-true methodology employed by experienced programmers world-wide.  Rip off the basics from Wikipedia and then wrap it with suitable testing for edge cases.  I also made the bounding information optional.  Not providing this information allows the counting sort to be called with only the input array (just like any other sort) at the expense of additional run time.
+
+
+### Folder: hierarchy
+
+Source: Email
+
+Problem:  You are given an _Array_ of _Objects_.  Each _Object_ may have a property whose name you are also given, i.e. 'title' or 'id'.  Each _Object_ may have a 'children' property which is itself an _Array_ of _Objects_.  Each of those _Objects_ may have further children and/or the desired property you are searching for.  Write a function that returns all the property values in an _Array_ of _strings_.
+
+Solution:  Hmmm ... this seems to have recursion written all over it :)  Recursion is slow, but sometimes it is the most elegant means to code desired functionality.  It can also be easier for another developer to deconstruct at a later date.
+
+My general experience with data structures such as the one described is they are at worst a few levels deep, so a recursive solution is likely okay in terms of run time.
 
 
 ### Contributions
