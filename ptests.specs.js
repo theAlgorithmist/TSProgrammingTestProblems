@@ -47,6 +47,8 @@ var Anagram_1 = require('./src/anagram/Anagram');
 var ArrObjSearch_1 = require('./src/arrobjsearch/ArrObjSearch');
 var CountingSort_1 = require('./src/countingsort/CountingSort');
 var extractProps_1 = require('./src/hierarchy/extractProps');
+var BTreeNode_1 = require('./src/invertbinary/BTreeNode');
+var invert_1 = require('./src/invertbinary/invert');
 var Chai = require('chai');
 var expect = Chai.expect;
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -1247,7 +1249,7 @@ describe('Counting Sort', function () {
         expect(result[10]).to.equal(18);
     });
 });
-describe('Hierarchical Ssearch - extract properties', function () {
+describe('Hierarchical Search - extract properties', function () {
     it('returns empty result for empty input', function () {
         expect(extractProps_1.extractProps([], '').length).to.equal(0);
     });
@@ -1355,6 +1357,122 @@ describe('Hierarchical Ssearch - extract properties', function () {
         expect(result[5]).to.equal('Channel 2');
         expect(result[6]).to.equal('Group 3');
         expect(result[7]).to.equal('Group 2');
+    });
+});
+describe('Invert Binary Tree', function () {
+    it('returns null for null input', function () {
+        expect(invert_1.invert(null)).to.be.null;
+    });
+    it('returns root for singleton input', function () {
+        var root = new BTreeNode_1.Node(1.0);
+        root.id = 'root';
+        var r = invert_1.invert(root);
+        expect(r.id).to.equal('root');
+        expect(r.left).to.be.null;
+        expect(r.right).to.be.null;
+    });
+    it('properly inverts single child #1', function () {
+        var two = new BTreeNode_1.Node(2.0);
+        var one = new BTreeNode_1.Node(1.0);
+        two.id = '2';
+        one.id = '1';
+        two.left = one;
+        var r = invert_1.invert(two);
+        expect(r.id).to.equal('2');
+        expect(r.right.id).to.equal('1');
+        expect(r.left).to.be.null;
+    });
+    it('properly inverts single child #2', function () {
+        var two = new BTreeNode_1.Node(2.0);
+        var three = new BTreeNode_1.Node(3.0);
+        two.id = '2';
+        three.id = '3';
+        two.right = three;
+        var r = invert_1.invert(two);
+        expect(r.id).to.equal('2');
+        expect(r.left.id).to.equal('3');
+        expect(r.right).to.be.null;
+    });
+    it('properly inverts a full tree with one level of children', function () {
+        var two = new BTreeNode_1.Node(2.0);
+        var three = new BTreeNode_1.Node(3.0);
+        var one = new BTreeNode_1.Node(1.0);
+        two.id = '2';
+        three.id = '3';
+        one.id = '1';
+        two.left = one;
+        two.right = three;
+        var r = invert_1.invert(two);
+        expect(r.id).to.equal('2');
+        expect(r.left.id).to.equal('3');
+        expect(r.right.id).to.equal('1');
+    });
+    it('general invert test #1', function () {
+        var five = new BTreeNode_1.Node(5.0);
+        var three = new BTreeNode_1.Node(3.0);
+        var six = new BTreeNode_1.Node(6.0);
+        var one = new BTreeNode_1.Node(1.0);
+        var four = new BTreeNode_1.Node(4.0);
+        var seven = new BTreeNode_1.Node(7.0);
+        five.id = '5';
+        three.id = '3';
+        six.id = '6';
+        one.id = '1';
+        four.id = '4';
+        seven.id = '7';
+        five.left = three;
+        five.right = six;
+        three.left = one;
+        six.left = four;
+        six.right = seven;
+        var r = invert_1.invert(five);
+        expect(r.id).to.equal('5');
+        expect(r.left.id).to.equal('6');
+        expect(r.right.id).to.equal('3');
+        expect(three.left).to.be.null;
+        expect(three.right.id).to.equal('1');
+        expect(six.left.id).to.equal('7');
+        expect(six.right.id).to.equal('4');
+    });
+    it('general invert test #2', function () {
+        var ten = new BTreeNode_1.Node(10.0);
+        var eight = new BTreeNode_1.Node(8.0);
+        var twelve = new BTreeNode_1.Node(12.0);
+        var four = new BTreeNode_1.Node(4.0);
+        var nine = new BTreeNode_1.Node(9.0);
+        var seven = new BTreeNode_1.Node(7.0);
+        var fifteen = new BTreeNode_1.Node(15.0);
+        var thirteen = new BTreeNode_1.Node(13.0);
+        var sixteen = new BTreeNode_1.Node(16.0);
+        ten.id = '10';
+        eight.id = '8';
+        twelve.id = '12';
+        four.id = '4';
+        nine.id = '9';
+        seven.id = '7';
+        fifteen.id = '15';
+        thirteen.id = '13';
+        sixteen.id = '16';
+        ten.left = seven;
+        ten.right = twelve;
+        seven.left = four;
+        seven.right = nine;
+        nine.left = eight;
+        twelve.right = fifteen;
+        fifteen.left = thirteen;
+        fifteen.right = sixteen;
+        var r = invert_1.invert(ten);
+        expect(r.id).to.equal('10');
+        expect(r.left.id).to.equal('12');
+        expect(r.right.id).to.equal('7');
+        expect(seven.left.id).to.equal('9');
+        expect(seven.right.id).to.equal('4');
+        expect(nine.left).to.be.null;
+        expect(nine.right.id).to.equal('8');
+        expect(twelve.left.id).to.equal('15');
+        expect(twelve.right).to.be.null;
+        expect(fifteen.left.id).to.equal('16');
+        expect(fifteen.right.id).to.equal('13');
     });
 });
 //# sourceMappingURL=ptests.specs.js.map

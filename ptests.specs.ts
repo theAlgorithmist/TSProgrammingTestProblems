@@ -51,6 +51,8 @@ import {isAnagram            } from './src/anagram/Anagram';
 import {ArrObjSearch         } from './src/arrobjsearch/ArrObjSearch';
 import {countingSort         } from './src/countingsort/CountingSort';
 import {extractProps         } from './src/hierarchy/extractProps';
+import {Node                 } from './src/invertbinary/BTreeNode';
+import {invert               } from './src/invertbinary/invert';
 
 import * as Chai from 'chai';
 const expect = Chai.expect;
@@ -1736,4 +1738,157 @@ describe('Hierarchical Search - extract properties', () =>
     expect(result[6]).to.equal('Group 3');
     expect(result[7]).to.equal('Group 2');
   });
+});
+
+describe('Invert Binary Tree', () =>
+{
+  it('returns null for null input', () =>
+  {
+    expect(invert(null)).to.be.null;
+  });
+
+  it('returns root for singleton input', () =>
+  {
+    const root: Node = new Node(1.0);
+    root.id          = 'root';
+
+    const r: Node = invert(root);
+
+    expect(r.id).to.equal('root');
+    expect(r.left).to.be.null;
+    expect(r.right).to.be.null;
+  });
+
+  it('properly inverts single child #1', () =>
+  {
+    const two: Node = new Node(2.0);
+    const one: Node = new Node(1.0);
+    two.id          = '2';
+    one.id          = '1';
+
+    two.left      = one;
+    const r: Node = invert(two);
+
+    expect(r.id).to.equal('2');
+    expect(r.right.id).to.equal('1');
+    expect(r.left).to.be.null;
+  });
+
+  it('properly inverts single child #2', () =>
+  {
+    const two: Node   = new Node(2.0);
+    const three: Node = new Node(3.0);
+    two.id          = '2';
+    three.id        = '3';
+
+    two.right     = three;
+    const r: Node = invert(two);
+
+    expect(r.id).to.equal('2');
+    expect(r.left.id).to.equal('3');
+    expect(r.right).to.be.null;
+  });
+
+  it('properly inverts a full tree with one level of children', () =>
+  {
+    const two: Node   = new Node(2.0);
+    const three: Node = new Node(3.0);
+    const one: Node   = new Node(1.0);
+
+    two.id   = '2';
+    three.id = '3';
+    one.id   = '1';
+
+    two.left      = one;
+    two.right     = three;
+    const r: Node = invert(two);
+
+    expect(r.id).to.equal('2');
+    expect(r.left.id).to.equal('3');
+    expect(r.right.id).to.equal('1');
+  });
+
+  it('general invert test #1', () =>
+  {
+    const five: Node  = new Node(5.0);
+    const three: Node = new Node(3.0);
+    const six: Node   = new Node(6.0)
+    const one: Node   = new Node(1.0);
+    const four: Node  = new Node(4.0);
+    const seven: Node = new Node(7.0);
+
+    five.id  = '5';
+    three.id = '3';
+    six.id   = '6';
+    one.id   = '1';
+    four.id  = '4';
+    seven.id = '7';
+
+    five.left  = three;
+    five.right = six;
+    three.left = one;
+    six.left   = four;
+    six.right  = seven;
+
+    const r: Node = invert(five);
+
+    expect(r.id).to.equal('5');
+    expect(r.left.id).to.equal('6');
+    expect(r.right.id).to.equal('3');
+
+    expect(three.left).to.be.null;
+    expect(three.right.id).to.equal('1');
+    expect(six.left.id).to.equal('7');
+    expect(six.right.id).to.equal('4');
+  });
+
+  it('general invert test #2', () =>
+  {
+    const ten: Node      = new Node(10.0);
+    const eight: Node    = new Node(8.0);
+    const twelve: Node   = new Node(12.0)
+    const four: Node     = new Node(4.0);
+    const nine: Node     = new Node(9.0);
+    const seven: Node    = new Node(7.0);
+    const fifteen: Node  = new Node(15.0);
+    const thirteen: Node = new Node(13.0);
+    const sixteen: Node  = new Node(16.0);
+
+    ten.id      = '10';
+    eight.id    = '8';
+    twelve.id   = '12';
+    four.id     = '4';
+    nine.id     = '9';
+    seven.id    = '7';
+    fifteen.id  = '15';
+    thirteen.id = '13';
+    sixteen.id  = '16';
+
+    ten.left      = seven;
+    ten.right     = twelve;
+    seven.left    = four;
+    seven.right   = nine;
+    nine.left     = eight;
+    twelve.right  = fifteen;
+    fifteen.left  = thirteen;
+    fifteen.right = sixteen;
+
+    const r: Node = invert(ten);
+
+    expect(r.id).to.equal('10');
+    expect(r.left.id).to.equal('12');
+    expect(r.right.id).to.equal('7');
+
+    expect(seven.left.id).to.equal('9');
+    expect(seven.right.id).to.equal('4');
+    expect(nine.left).to.be.null;
+    expect(nine.right.id).to.equal('8');
+
+    expect(twelve.left.id).to.equal('15');
+    expect(twelve.right).to.be.null;
+
+    expect(fifteen.left.id).to.equal('16');
+    expect(fifteen.right.id).to.equal('13');
+  });
+
 });

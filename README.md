@@ -425,6 +425,24 @@ Solution:  Hmmm ... this seems to have recursion written all over it :)  Recursi
 My general experience with data structures such as the one described is they are at worst a few levels deep, so a recursive solution is likely okay in terms of run time.
 
 
+### Folder: invertbinary
+
+Source: Email
+
+Problem:  Write the code to invert a binary tree.
+
+Solution:  Unless you are a very, very large company who hires a lot of CS grads right out of college, this impresses me as a pretty useless interview question, especially as it's something that few, if any, rational people would do in practice.
+
+So, what does 'invert' mean?  I take it as a reflection about an axis.  Reflecting the tree in general about a horizontal axis at the root seems to make no sense, so we are left with reflection of each node about a vertical axis, which causes a reversal of the left and right children.  I'm also supposing that this 'inversion' is performed in place.
+
+The first thing that came to mind is a straight recursive approach, which is probably the actual rationale behind the question (hence something you would use to differentiate a lot of CS grads who otherwise have no experience/track record).  I'm curious if it would be possible to modify the code for a level-order traversal of the tree as a potential solution.  Unfortunately, I don't have time to experiment or search the web for hours to see if anyone has posted such a solution.  Perhaps an astute reader with more bandwidth can write something and submit a PR.
+
+The Typescript implementation is based on a very lightweight _Node_ implementation, which is used to manually construct a binary tree.  The tree _root_ is passed to an _invert_ function.
+
+My follow-up question pertains to the practicality of such an operation.  With an in-place 'inversion', any subsequent tree operation that relies on the order presumption of left node value being less than or equal to right node value no longer works.  Preorder, for example, returns nodes in opposite value order than expected.  Somehow, this impresses me as a problem someone grabbed off the internet either as a 'stumper' or something to make them look cool.
+
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submimt a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.
