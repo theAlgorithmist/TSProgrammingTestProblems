@@ -53,6 +53,8 @@ import {countingSort         } from './src/countingsort/CountingSort';
 import {extractProps         } from './src/hierarchy/extractProps';
 import {Node                 } from './src/invertbinary/BTreeNode';
 import {invert               } from './src/invertbinary/invert';
+import {reverseLList         } from "./src/reverselinkedlist/ReversLList";
+import {ILListNode           } from "./src/reverselinkedlist/LListNode";
 
 import * as Chai from 'chai';
 const expect = Chai.expect;
@@ -1312,7 +1314,7 @@ describe('Factorial Tests', () => {
   });
 });
 
-describe('Repating Decimal As Fraction', () => {
+describe('Repeating Decimal As Fraction', () => {
 
   it('returns null for empty input', () => {
     let frac: SimpleFraction = repeatToFraction("");
@@ -1889,6 +1891,117 @@ describe('Invert Binary Tree', () =>
 
     expect(fifteen.left.id).to.equal('16');
     expect(fifteen.right.id).to.equal('13');
+  });
+});
+
+
+describe('Reverse Linked List', () => {
+
+  it('returns null for null input', () => {
+    expect(reverseLList(null)).to.be.null;
+  });
+
+  it('works correctly for singleton node', () => {
+    let head: ILListNode = {
+      data: 1,
+      next: null
+    };
+
+    let list: ILListNode = reverseLList(head);
+    expect(list.data).to.equal(1);
+    expect(list.next).to.be.null;
+  });
+
+  it('works correctly for two nodes', () => {
+    let head: ILListNode = {
+      data: 1,
+      next: null
+    };
+
+    let node: ILListNode = {
+      data: 2,
+      next: null
+    };
+
+    head.next = node;
+
+    let list: ILListNode = reverseLList(head);
+
+    expect(list.data).to.equal(2);
+    expect(list.next.data).to.equal(1);
+    expect(list.next.next).to.be.null;
+  });
+
+  it('works correctly for three nodes', () => {
+    let head: ILListNode = {
+      data: 1,
+      next: null
+    };
+
+    let node: ILListNode = {
+      data: 2,
+      next: null
+    };
+
+    head.next = node;
+
+    let node1: ILListNode = {
+      data: 3,
+      next: null
+    };
+
+    node.next = node1;
+
+    let list: ILListNode = reverseLList(head);
+
+    expect(list.data).to.equal(3);
+    expect(list.next.data).to.equal(2);
+    expect(list.next.next.data).to.equal(1);
+    expect(list.next.next.next).to.be.null;
+  });
+
+  it('works correctly for five nodes', () => {
+    let head: ILListNode = {
+      data: 1,
+      next: null
+    };
+
+    let node: ILListNode = {
+      data: 2,
+      next: null
+    };
+
+    head.next = node;
+
+    let node1: ILListNode = {
+      data: 3,
+      next: null
+    };
+
+    node.next = node1;
+
+    let node2: ILListNode = {
+      data: 4,
+      next: null
+    };
+
+    node1.next = node2;
+
+    let node3: ILListNode = {
+      data: 5,
+      next: null
+    };
+
+    node2.next = node3;
+
+    let list: ILListNode = reverseLList(head);
+
+    expect(list.data).to.equal(5);
+    expect(list.next.data).to.equal(4);
+    expect(list.next.next.data).to.equal(3);
+    expect(list.next.next.next.data).to.equal(2);
+    expect(list.next.next.next.next.data).to.equal(1);
+    expect(list.next.next.next.next.next).to.be.null;
   });
 
 });

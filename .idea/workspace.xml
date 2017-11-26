@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="916949e4-41ea-4014-b344-464fa5b14d1d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/invertbinary/BTreeNode.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/invertbinary/invert.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reverselinkedlist/LListNode.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/reverselinkedlist/ReversLList.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ptests.specs.js" afterPath="$PROJECT_DIR$/ptests.specs.js" />
@@ -20,39 +20,36 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="extractProps.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hierarchy/extractProps.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="441" column="461" lean-forward="false" selection-start-line="441" selection-start-column="461" selection-end-line="441" selection-end-column="461" />
+            <state relative-caret-position="709">
+              <caret line="490" column="276" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="514" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="invert.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/invertbinary/invert.ts">
+      <file leaf-file-name="LListNode.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reverselinkedlist/LListNode.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+            <state relative-caret-position="323">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="24" selection-end-column="1" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReversLList.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/reverselinkedlist/ReversLList.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,22 +57,10 @@
       <file leaf-file-name="ptests.specs.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ptests.specs.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="1877" column="32" lean-forward="false" selection-start-line="1877" selection-start-column="32" selection-end-line="1877" selection-end-column="32" />
+            <state relative-caret-position="1524">
+              <caret line="1986" column="0" lean-forward="false" selection-start-line="1986" selection-start-column="0" selection-end-line="1986" selection-end-column="0" />
               <folding>
                 <element signature="e#692#756#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BTreeNode.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/invertbinary/BTreeNode.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,7 +89,9 @@
         <option value="$PROJECT_DIR$/src/hierarchy/extractProps.ts" />
         <option value="$PROJECT_DIR$/src/invertbinary/BTreeNode.ts" />
         <option value="$PROJECT_DIR$/src/invertbinary/invert.ts" />
+        <option value="$PROJECT_DIR$/src/reverselinkedlist/LListNode.ts" />
         <option value="$PROJECT_DIR$/ptests.specs.ts" />
+        <option value="$PROJECT_DIR$/src/reverselinkedlist/ReversLList.ts" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -120,11 +107,14 @@
     </gulpfiles>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="21" />
+    <option name="x" value="19" />
     <option name="y" value="23" />
     <option name="width" value="1575" />
-    <option name="height" value="953" />
+    <option name="height" value="951" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -141,74 +131,51 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ptests.specs.ts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NestingTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TSProgrammingTestProblems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="invertbinary" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="TSProgrammingTestProblems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TSProgrammingTestProblems" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TSProgrammingTestProblems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TSProgrammingTestProblems" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TSProgrammingTestProblems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TSProgrammingTestProblems" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="repeatingdecimal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TSProgrammingTestProblems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TSProgrammingTestProblems" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="repeatingdecimal" type="462c0819:PsiDirectoryNode" />
+              <item name="RepeatToFrac.ts" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="TSProgrammingTestProblems" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TSProgrammingTestProblems" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="reverselinkedlist" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -228,6 +195,14 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -265,15 +240,6 @@
       <option name="filePath" />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -307,19 +273,20 @@
       <updated>1500399492144</updated>
       <workItem from="1500399493459" duration="642000" />
       <workItem from="1500404125981" duration="1837000" />
-      <workItem from="1501968693523" duration="5468000" />
+      <workItem from="1501968693523" duration="5623000" />
+      <workItem from="1511728554527" duration="5691000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7947000" />
+    <option name="totallyTimeSpent" value="13793000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="21" y="23" width="1575" height="953" extended-state="0" />
+    <frame x="19" y="23" width="1575" height="951" extended-state="0" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495238" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14666666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -338,69 +305,75 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
     <option name="exactExcludedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/firstnonrepeating/FirstNonRepeatingChar.js" />
-        <option value="$PROJECT_DIR$/src/firstnonrepeating/FirstNonRepeatingChar.js.map" />
-        <option value="$PROJECT_DIR$/src/repeatingdecimal/RepeatToFrac.js" />
-        <option value="$PROJECT_DIR$/src/repeatingdecimal/RepeatToFrac.js.map" />
-        <option value="$PROJECT_DIR$/src/countingsort/CountingSort.js" />
-        <option value="$PROJECT_DIR$/src/countingsort/CountingSort.js.map" />
-        <option value="$PROJECT_DIR$/src/arrobjsearch/ArrObjSearch.js" />
-        <option value="$PROJECT_DIR$/src/arrobjsearch/ArrObjSearch.js.map" />
-        <option value="$PROJECT_DIR$/src/uberdriver/ComputeTrips.js" />
-        <option value="$PROJECT_DIR$/src/uberdriver/ComputeTrips.js.map" />
-        <option value="$PROJECT_DIR$/src/worstcase/ArrayScan.js" />
-        <option value="$PROJECT_DIR$/src/worstcase/ArrayScan.js.map" />
-        <option value="$PROJECT_DIR$/src/twodigits/TwoDigits.js" />
-        <option value="$PROJECT_DIR$/src/twodigits/TwoDigits.js.map" />
-        <option value="$PROJECT_DIR$/src/randomint/SeededRng.js" />
-        <option value="$PROJECT_DIR$/src/randomint/SeededRng.js.map" />
-        <option value="$PROJECT_DIR$/src/randomint/RandomIntInRange.js" />
-        <option value="$PROJECT_DIR$/src/randomint/RandomIntInRange.js.map" />
-        <option value="$PROJECT_DIR$/src/fibonacci/Fibonacci.js" />
-        <option value="$PROJECT_DIR$/src/fibonacci/Fibonacci.js.map" />
-        <option value="$PROJECT_DIR$/src/factorial/Factorial.js" />
-        <option value="$PROJECT_DIR$/src/factorial/Factorial.js.map" />
-        <option value="$PROJECT_DIR$/src/daytrader/MaxProfit.js" />
-        <option value="$PROJECT_DIR$/src/daytrader/MaxProfit.js.map" />
-        <option value="$PROJECT_DIR$/src/bisection/Bisect.js" />
-        <option value="$PROJECT_DIR$/src/bisection/Bisect.js.map" />
-        <option value="$PROJECT_DIR$/src/fizzbuzz/FizzBuzz.js" />
-        <option value="$PROJECT_DIR$/src/fizzbuzz/FizzBuzz.js.map" />
-        <option value="$PROJECT_DIR$/src/exchange/ExchangeInt.js" />
-        <option value="$PROJECT_DIR$/src/exchange/ExchangeInt.js.map" />
-        <option value="$PROJECT_DIR$/src/oneline/OneLineFcns.js" />
-        <option value="$PROJECT_DIR$/src/oneline/OneLineFcns.js.map" />
-        <option value="$PROJECT_DIR$/src/mult321/Multiply321.js" />
-        <option value="$PROJECT_DIR$/src/mult321/Multiply321.js.map" />
-        <option value="$PROJECT_DIR$/src/macheps/MachEps.js" />
-        <option value="$PROJECT_DIR$/src/macheps/MachEps.js.map" />
-        <option value="$PROJECT_DIR$/src/anagram/Anagram.js" />
-        <option value="$PROJECT_DIR$/src/anagram/Anagram.js.map" />
-        <option value="$PROJECT_DIR$/src/twomin/TwoMinMax.js" />
-        <option value="$PROJECT_DIR$/src/twomin/TwoMinMax.js.map" />
-        <option value="$PROJECT_DIR$/src/shared/Matrix.js" />
-        <option value="$PROJECT_DIR$/src/shared/Matrix.js.map" />
-        <option value="$PROJECT_DIR$/src/shared/LinkedList.js" />
-        <option value="$PROJECT_DIR$/src/shared/LinkedList.js.map" />
-        <option value="$PROJECT_DIR$/src/shared/ListNode.js" />
-        <option value="$PROJECT_DIR$/src/shared/ListNode.js.map" />
-        <option value="$PROJECT_DIR$/src/shared/BinomialCoef.js" />
-        <option value="$PROJECT_DIR$/src/shared/BinomialCoef.js.map" />
-        <option value="$PROJECT_DIR$/src/llist1/ExtendedLinkedList.js" />
-        <option value="$PROJECT_DIR$/src/llist1/ExtendedLinkedList.js.map" />
-        <option value="$PROJECT_DIR$/src/interp/Interp.js" />
-        <option value="$PROJECT_DIR$/src/interp/Interp.js.map" />
-        <option value="$PROJECT_DIR$/src/grid/ScanGrid.js" />
-        <option value="$PROJECT_DIR$/src/grid/ScanGrid.js.map" />
         <option value="$PROJECT_DIR$/ptests.specs.js" />
         <option value="$PROJECT_DIR$/ptests.specs.js.map" />
-        <option value="$PROJECT_DIR$/src/invertbinary/invert.js.map" />
+        <option value="$PROJECT_DIR$/src/grid/ScanGrid.js" />
+        <option value="$PROJECT_DIR$/src/grid/ScanGrid.js.map" />
+        <option value="$PROJECT_DIR$/src/interp/Interp.js" />
+        <option value="$PROJECT_DIR$/src/interp/Interp.js.map" />
+        <option value="$PROJECT_DIR$/src/llist1/ExtendedLinkedList.js" />
+        <option value="$PROJECT_DIR$/src/llist1/ExtendedLinkedList.js.map" />
+        <option value="$PROJECT_DIR$/src/shared/BinomialCoef.js" />
+        <option value="$PROJECT_DIR$/src/shared/BinomialCoef.js.map" />
+        <option value="$PROJECT_DIR$/src/shared/ListNode.js" />
+        <option value="$PROJECT_DIR$/src/shared/ListNode.js.map" />
+        <option value="$PROJECT_DIR$/src/shared/LinkedList.js" />
+        <option value="$PROJECT_DIR$/src/shared/LinkedList.js.map" />
+        <option value="$PROJECT_DIR$/src/shared/Matrix.js" />
+        <option value="$PROJECT_DIR$/src/shared/Matrix.js.map" />
+        <option value="$PROJECT_DIR$/src/twomin/TwoMinMax.js" />
+        <option value="$PROJECT_DIR$/src/twomin/TwoMinMax.js.map" />
+        <option value="$PROJECT_DIR$/src/anagram/Anagram.js" />
+        <option value="$PROJECT_DIR$/src/anagram/Anagram.js.map" />
+        <option value="$PROJECT_DIR$/src/macheps/MachEps.js" />
+        <option value="$PROJECT_DIR$/src/macheps/MachEps.js.map" />
+        <option value="$PROJECT_DIR$/src/mult321/Multiply321.js" />
+        <option value="$PROJECT_DIR$/src/mult321/Multiply321.js.map" />
+        <option value="$PROJECT_DIR$/src/oneline/OneLineFcns.js" />
+        <option value="$PROJECT_DIR$/src/oneline/OneLineFcns.js.map" />
+        <option value="$PROJECT_DIR$/src/exchange/ExchangeInt.js" />
+        <option value="$PROJECT_DIR$/src/exchange/ExchangeInt.js.map" />
+        <option value="$PROJECT_DIR$/src/fizzbuzz/FizzBuzz.js" />
+        <option value="$PROJECT_DIR$/src/fizzbuzz/FizzBuzz.js.map" />
+        <option value="$PROJECT_DIR$/src/bisection/Bisect.js" />
+        <option value="$PROJECT_DIR$/src/bisection/Bisect.js.map" />
+        <option value="$PROJECT_DIR$/src/daytrader/MaxProfit.js" />
+        <option value="$PROJECT_DIR$/src/daytrader/MaxProfit.js.map" />
+        <option value="$PROJECT_DIR$/src/factorial/Factorial.js" />
+        <option value="$PROJECT_DIR$/src/factorial/Factorial.js.map" />
+        <option value="$PROJECT_DIR$/src/fibonacci/Fibonacci.js" />
+        <option value="$PROJECT_DIR$/src/fibonacci/Fibonacci.js.map" />
+        <option value="$PROJECT_DIR$/src/hierarchy/extractProps.js" />
+        <option value="$PROJECT_DIR$/src/hierarchy/extractProps.js.map" />
+        <option value="$PROJECT_DIR$/src/randomint/RandomIntInRange.js" />
+        <option value="$PROJECT_DIR$/src/randomint/RandomIntInRange.js.map" />
+        <option value="$PROJECT_DIR$/src/randomint/SeededRng.js" />
+        <option value="$PROJECT_DIR$/src/randomint/SeededRng.js.map" />
+        <option value="$PROJECT_DIR$/src/twodigits/TwoDigits.js" />
+        <option value="$PROJECT_DIR$/src/twodigits/TwoDigits.js.map" />
+        <option value="$PROJECT_DIR$/src/worstcase/ArrayScan.js" />
+        <option value="$PROJECT_DIR$/src/worstcase/ArrayScan.js.map" />
+        <option value="$PROJECT_DIR$/src/uberdriver/ComputeTrips.js" />
+        <option value="$PROJECT_DIR$/src/uberdriver/ComputeTrips.js.map" />
+        <option value="$PROJECT_DIR$/src/arrobjsearch/ArrObjSearch.js" />
+        <option value="$PROJECT_DIR$/src/arrobjsearch/ArrObjSearch.js.map" />
+        <option value="$PROJECT_DIR$/src/countingsort/CountingSort.js" />
+        <option value="$PROJECT_DIR$/src/countingsort/CountingSort.js.map" />
         <option value="$PROJECT_DIR$/src/invertbinary/invert.js" />
-        <option value="$PROJECT_DIR$/src/invertbinary/BTreeNode.js.map" />
+        <option value="$PROJECT_DIR$/src/invertbinary/invert.js.map" />
         <option value="$PROJECT_DIR$/src/invertbinary/BTreeNode.js" />
+        <option value="$PROJECT_DIR$/src/invertbinary/BTreeNode.js.map" />
+        <option value="$PROJECT_DIR$/src/repeatingdecimal/RepeatToFrac.js" />
+        <option value="$PROJECT_DIR$/src/repeatingdecimal/RepeatToFrac.js.map" />
+        <option value="$PROJECT_DIR$/src/firstnonrepeating/FirstNonRepeatingChar.js" />
+        <option value="$PROJECT_DIR$/src/firstnonrepeating/FirstNonRepeatingChar.js.map" />
+        <option value="$PROJECT_DIR$/src/reverselinkedlist/LListNode.js" />
+        <option value="$PROJECT_DIR$/src/reverselinkedlist/LListNode.js.map" />
+        <option value="$PROJECT_DIR$/src/reverselinkedlist/ReversLList.js" />
+        <option value="$PROJECT_DIR$/src/reverselinkedlist/ReversLList.js.map" />
       </list>
     </option>
   </component>
@@ -417,7 +390,55 @@
         <state relative-caret-position="391">
           <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/invertbinary/invert.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ptests.specs.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31042">
+          <caret line="1877" column="32" lean-forward="false" selection-start-line="1877" selection-start-column="32" selection-end-line="1877" selection-end-column="32" />
+          <folding>
+            <element signature="e#692#756#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/invertbinary/BTreeNode.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+          <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7497">
+          <caret line="441" column="461" lean-forward="false" selection-start-line="441" selection-start-column="461" selection-end-line="441" selection-end-column="461" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hierarchy/extractProps.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -435,7 +456,7 @@
         <state relative-caret-position="391">
           <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -462,7 +483,7 @@
         <state relative-caret-position="391">
           <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -478,17 +499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-133">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/invertbinary/BTreeNode.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -496,14 +506,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/invertbinary/invert.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
+        <state relative-caret-position="340">
           <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/repeatingdecimal/RepeatToFrac.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/invertbinary/BTreeNode.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -512,18 +541,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ptests.specs.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="1877" column="32" lean-forward="false" selection-start-line="1877" selection-start-column="32" selection-end-line="1877" selection-end-column="32" />
+        <state relative-caret-position="1524">
+          <caret line="1986" column="0" lean-forward="false" selection-start-line="1986" selection-start-column="0" selection-end-line="1986" selection-end-column="0" />
           <folding>
             <element signature="e#692#756#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/reverselinkedlist/LListNode.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="24" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reverselinkedlist/ReversLList.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="441" column="461" lean-forward="false" selection-start-line="441" selection-start-column="461" selection-end-line="441" selection-end-column="461" />
+        <state relative-caret-position="709">
+          <caret line="490" column="276" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="514" selection-end-column="0" />
           <folding />
         </state>
       </provider>

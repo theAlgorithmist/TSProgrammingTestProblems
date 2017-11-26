@@ -431,16 +431,66 @@ Source: Email
 
 Problem:  Write the code to invert a binary tree.
 
-Solution:  Unless you are a very, very large company who hires a lot of CS grads right out of college, this impresses me as a pretty useless interview question, especially as it's something that few, if any, rational people would do in practice.
+Solution:  Unless you are a very, very large company who hires a lot of CS grads right out of college, this impresses me as a pretty useless interview question, especially as it's something that few people would ever do in practice (you can always modify the order in which you traverse nodes without altering the tree structure).
 
-So, what does 'invert' mean?  I take it as a reflection about an axis.  Reflecting the tree in general about a horizontal axis at the root seems to make no sense, so we are left with reflection of each node about a vertical axis, which causes a reversal of the left and right children.  I'm also supposing that this 'inversion' is performed in place.
+And, what does 'invert' mean?  I take it as a reflection about an axis.  Reflecting the tree in general about a horizontal axis at the root seems to make no sense, so we are left with reflection of each node about a vertical axis, which causes a reversal of the left and right children.  I'm also supposing that this 'inversion' is performed in place.
 
 The first thing that came to mind is a straight recursive approach, which is probably the actual rationale behind the question (hence something you would use to differentiate a lot of CS grads who otherwise have no experience/track record).  I'm curious if it would be possible to modify the code for a level-order traversal of the tree as a potential solution.  Unfortunately, I don't have time to experiment or search the web for hours to see if anyone has posted such a solution.  Perhaps an astute reader with more bandwidth can write something and submit a PR.
 
 The Typescript implementation is based on a very lightweight _Node_ implementation, which is used to manually construct a binary tree.  The tree _root_ is passed to an _invert_ function.
 
-My follow-up question pertains to the practicality of such an operation.  With an in-place 'inversion', any subsequent tree operation that relies on the order presumption of left node value being less than or equal to right node value no longer works.  Preorder, for example, returns nodes in opposite value order than expected.  Somehow, this impresses me as a problem someone grabbed off the internet either as a 'stumper' or something to make them look cool.
+My follow-up question pertains to the practicality of such an operation.  With an in-place 'inversion', any subsequent tree operation that relies on the order presumption of left node value being less than or equal to right node value no longer works.
 
+
+### Folder: reverselinkedlist
+
+Source: Email
+
+Problem:  Write a function that recursively reverses a singly-linked list.  You may use any structure you like to represent a linked list.
+
+Solution:  Hmmm ... another one grabbed off the internet?  My first inclination was to say 'use the Typescript Math Toolkit Linked List.'  That code allows you to work with single-, double-, or circularly-linked lists and you can change on-the-fly.  No need to physically reverse anything.  I almost passed on this one and then thought it might make a good one to fully deconstruct since the requirement is for a recursive implementation.  So, here is the code
+
+```
+export interface ILListNode
+{
+  data: any;
+
+  next: ILListNode;
+}
+
+export function reverseLList(node: ILListNode): ILListNode
+{
+  if (node == undefined || node == null || node.next == null) {
+    return node;
+  }
+
+  let reverse: ILListNode = reverseLList(node.next);  // this locates the sentinel node of the original list
+
+  // this gets the pointers in 'reverse' order
+  node.next.next = node;
+  node.next      = null;
+
+  return reverse;
+}
+```
+
+The input to the function should be the head of the original list, so the recursion needs to locate the sentinel node and then 'reverse' all the node pointers.  The new list head should be returned.
+
+The first part of the function (calling itself until _node.next_ is null) locates the sentinel node.  The other tests ensure the code works for null and singleton inputs.
+
+Nodes are placed onto the stack until the first _if_ test is satisfied, at which point _reverse_ is set to the original sentinel node.  If there are three nodes, say #1, #2, #3, then _reverse_ points to #3. Nodes #1 and #2 are placed into the stack in that order.
+
+Now, the stack is LIFO, so when the recursion unwinds, it will execute the remaining code with node #2 followed by node #1.  Write down the operations needed for each node, in that order:
+
+#2 - #2 'next' points to #3.  We want #3 'next' to be #2.  Setting #2 'next' to null will make sense when the unwinding is complete.
+
+#1 - #1 'next' points to #2.  We want #2 'next' to be #1.  Set #1 'next' to null.
+
+Now, we are finished.  So,
+
+_reverse_ points to #3.  We set #3 'next' to #2.  #2 'next' was set to #1.  #1 'next' is null.  The pointers have been completely reversed and the original head is now marked as a sentinel node.  The original sentinel node is returned as the new head and the list is reversed.
+
+Hope that helps!  If not, place some _console.log_ statements in the code and practice with 3-5 nodes until it makes sense.  This is what I had to do to get the code right - sketch out what needs to be accomplished on paper; the first step is locating the sentinel node.  Make a paper copy of what is on the stack, then write out what needs to be accomplished as data is popped of the stack.  The rest of the code will almost write itself :)
 
 
 ### Contributions

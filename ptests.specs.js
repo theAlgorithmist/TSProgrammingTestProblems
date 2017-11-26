@@ -49,6 +49,7 @@ var CountingSort_1 = require('./src/countingsort/CountingSort');
 var extractProps_1 = require('./src/hierarchy/extractProps');
 var BTreeNode_1 = require('./src/invertbinary/BTreeNode');
 var invert_1 = require('./src/invertbinary/invert');
+var ReversLList_1 = require("./src/reverselinkedlist/ReversLList");
 var Chai = require('chai');
 var expect = Chai.expect;
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -1022,7 +1023,7 @@ describe('Factorial Tests', function () {
         expect(value).to.equal(479001600);
     });
 });
-describe('Repating Decimal As Fraction', function () {
+describe('Repeating Decimal As Fraction', function () {
     it('returns null for empty input', function () {
         var frac = RepeatToFrac_1.repeatToFraction("");
         expect(frac).to.equal(null);
@@ -1473,6 +1474,89 @@ describe('Invert Binary Tree', function () {
         expect(twelve.right).to.be.null;
         expect(fifteen.left.id).to.equal('16');
         expect(fifteen.right.id).to.equal('13');
+    });
+});
+describe('Reverse Linked List', function () {
+    it('returns null for null input', function () {
+        expect(ReversLList_1.reverseLList(null)).to.be.null;
+    });
+    it('works correctly for singleton node', function () {
+        var head = {
+            data: 1,
+            next: null
+        };
+        var list = ReversLList_1.reverseLList(head);
+        expect(list.data).to.equal(1);
+        expect(list.next).to.be.null;
+    });
+    it('works correctly for two nodes', function () {
+        var head = {
+            data: 1,
+            next: null
+        };
+        var node = {
+            data: 2,
+            next: null
+        };
+        head.next = node;
+        var list = ReversLList_1.reverseLList(head);
+        expect(list.data).to.equal(2);
+        expect(list.next.data).to.equal(1);
+        expect(list.next.next).to.be.null;
+    });
+    it('works correctly for three nodes', function () {
+        var head = {
+            data: 1,
+            next: null
+        };
+        var node = {
+            data: 2,
+            next: null
+        };
+        head.next = node;
+        var node1 = {
+            data: 3,
+            next: null
+        };
+        node.next = node1;
+        var list = ReversLList_1.reverseLList(head);
+        expect(list.data).to.equal(3);
+        expect(list.next.data).to.equal(2);
+        expect(list.next.next.data).to.equal(1);
+        expect(list.next.next.next).to.be.null;
+    });
+    it('works correctly for five nodes', function () {
+        var head = {
+            data: 1,
+            next: null
+        };
+        var node = {
+            data: 2,
+            next: null
+        };
+        head.next = node;
+        var node1 = {
+            data: 3,
+            next: null
+        };
+        node.next = node1;
+        var node2 = {
+            data: 4,
+            next: null
+        };
+        node1.next = node2;
+        var node3 = {
+            data: 5,
+            next: null
+        };
+        node2.next = node3;
+        var list = ReversLList_1.reverseLList(head);
+        expect(list.data).to.equal(5);
+        expect(list.next.data).to.equal(4);
+        expect(list.next.next.data).to.equal(3);
+        expect(list.next.next.next.data).to.equal(2);
+        expect(list.next.next.next.next.data).to.equal(1);
+        expect(list.next.next.next.next.next).to.be.null;
     });
 });
 //# sourceMappingURL=ptests.specs.js.map
