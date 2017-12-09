@@ -50,6 +50,9 @@ var extractProps_1 = require('./src/hierarchy/extractProps');
 var BTreeNode_1 = require('./src/invertbinary/BTreeNode');
 var invert_1 = require('./src/invertbinary/invert');
 var ReversLList_1 = require("./src/reverselinkedlist/ReversLList");
+var Euclid_1 = require("./src/euclid/Euclid");
+var Euclid_2 = require("./src/euclid/Euclid");
+var Euclid_3 = require("./src/euclid/Euclid");
 var Chai = require('chai');
 var expect = Chai.expect;
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -1557,6 +1560,73 @@ describe('Reverse Linked List', function () {
         expect(list.next.next.next.data).to.equal(2);
         expect(list.next.next.next.next.data).to.equal(1);
         expect(list.next.next.next.next.next).to.be.null;
+    });
+});
+describe('LCM/GCD', function () {
+    it('lcm returns zero for invalid inputs', function () {
+        var m = Euclid_1.lcm(NaN, 0);
+        expect(m).to.equal(0);
+    });
+    it('gcd returns zero for invalid inputs', function () {
+        var g = Euclid_2.gcd(0, NaN);
+        expect(g).to.equal(0);
+    });
+    it('lcm of 12 and 80 is 240', function () {
+        var m = Euclid_1.lcm(12, 80);
+        expect(m).to.equal(240);
+    });
+    it('lcm of 4 and 5 is 20', function () {
+        var m = Euclid_1.lcm(4, 5);
+        expect(m).to.equal(20);
+    });
+    it('lcm of 4 and 10 is 20', function () {
+        var m = Euclid_1.lcm(4, 10);
+        expect(m).to.equal(20);
+    });
+    it('lcm of 65 and 10 is 130', function () {
+        var m = Euclid_1.lcm(65, 10);
+        expect(m).to.equal(130);
+    });
+    it('lcm of -17 and 8 is 136', function () {
+        var m = Euclid_1.lcm(65, 10);
+        expect(m).to.equal(130);
+    });
+});
+describe('Extended Euclid', function () {
+    it('returns empty object for invalid inputs', function () {
+        var result = Euclid_3.extEuclid(NaN, 0);
+        var keys = Object.keys(result);
+        expect(keys.length).to.equal(0);
+    });
+    it('returns (1, 0) for input of (10, 0)', function () {
+        var result = Euclid_3.extEuclid(10, 0);
+        expect(+result['gcd']).to.equal(10); // not really defined, but this makes the formula work
+        expect(+result['x']).to.equal(1);
+        expect(+result['y']).to.equal(0);
+    });
+    it('returns (0, 1) for input of (0, 10)', function () {
+        var result = Euclid_3.extEuclid(0, 10);
+        expect(+result['gcd']).to.equal(10); // not really defined, but this makes the formula work
+        expect(+result['x']).to.equal(0);
+        expect(+result['y']).to.equal(1);
+    });
+    it('returns (-9, 47) for input of (240, 46)', function () {
+        var result = Euclid_3.extEuclid(240, 46);
+        expect(+result['gcd']).to.equal(2);
+        expect(+result['x']).to.equal(-9);
+        expect(+result['y']).to.equal(47);
+    });
+    it('returns (3, -8) for input of (102, 38)', function () {
+        var result = Euclid_3.extEuclid(102, 38);
+        expect(+result['gcd']).to.equal(2);
+        expect(+result['x']).to.equal(3);
+        expect(+result['y']).to.equal(-8);
+    });
+    it('returns (8, -17) for input of (1914, 899)', function () {
+        var result = Euclid_3.extEuclid(1914, 899);
+        expect(+result['gcd']).to.equal(29);
+        expect(+result['x']).to.equal(8);
+        expect(+result['y']).to.equal(-17);
     });
 });
 //# sourceMappingURL=ptests.specs.js.map

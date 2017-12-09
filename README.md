@@ -493,6 +493,17 @@ _reverse_ points to #3.  We set #3 'next' to #2.  #2 'next' was set to #1.  #1 '
 Hope that helps!  If not, place some _console.log_ statements in the code and practice with 3-5 nodes until it makes sense.  This is what I had to do to get the code right - sketch out what needs to be accomplished on paper; the first step is locating the sentinel node.  Make a paper copy of what is on the stack, then write out what needs to be accomplished as data is popped of the stack.  The rest of the code will almost write itself :)
 
 
+### Folder: euclid
+
+Source: Email
+
+Problem:  Write the code to recursively apply Euclid's algorithm.
+
+Solution:  I'm not sure of the context of this problem, although the person interviewed claimed to be a full-stack dev. with most of his experience on the front end.  I really would not expect a FE dev. to know how to compute GCD completely cold.  The recursive implementation of Euclid is particularly elegant and it is one of the oldest fundamental algorithms, so I could kind of get it as a homework problem.
+
+In any event, I included LCM and GCD with both recursive and non-recursive implementations of the latter.  And, just in case someone springs this on you (i.e. grabbed a problem off the internet to try and make themselves look cool), I included extended Euclid as a bonus :)  Use that one when it's time for you to ask questions as it's a very important algorithm in the analysis of linear congruences.
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submit a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.
