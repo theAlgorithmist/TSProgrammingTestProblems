@@ -53,6 +53,7 @@ var ReversLList_1 = require("./src/reverselinkedlist/ReversLList");
 var Euclid_1 = require("./src/euclid/Euclid");
 var Euclid_2 = require("./src/euclid/Euclid");
 var Euclid_3 = require("./src/euclid/Euclid");
+var ComputeJumps_1 = require("./src/tothemoon/ComputeJumps");
 var Chai = require('chai');
 var expect = Chai.expect;
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -1627,6 +1628,25 @@ describe('Extended Euclid', function () {
         expect(+result['gcd']).to.equal(29);
         expect(+result['x']).to.equal(8);
         expect(+result['y']).to.equal(-17);
+    });
+});
+describe('Fibonacci Moon Jump', function () {
+    it('returns zero for NaN input', function () {
+        var jumps = ComputeJumps_1.computeJump(NaN);
+        expect(jumps).to.equal(0);
+    });
+    it('returns zero for negative input', function () {
+        var jumps = ComputeJumps_1.computeJump(-10000);
+        expect(jumps).to.equal(0);
+    });
+    it('works for an exact fibonacci distance', function () {
+        var jumps = ComputeJumps_1.computeJump(144);
+        expect(jumps).to.equal(12);
+        console.log("1: ", ComputeJumps_1.computeJump(1));
+    });
+    it('returns correct number for approx. moon distance', function () {
+        var jumps = ComputeJumps_1.computeJump(238356);
+        expect(jumps).to.equal(27);
     });
 });
 //# sourceMappingURL=ptests.specs.js.map

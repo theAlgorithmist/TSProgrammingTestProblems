@@ -504,6 +504,26 @@ Solution:  I'm not sure of the context of this problem, although the person inte
 In any event, I included LCM and GCD with both recursive and non-recursive implementations of the latter.  And, just in case someone springs this on you (i.e. grabbed a problem off the internet to try and make themselves look cool), I included extended Euclid as a bonus :)  Use that one when it's time for you to ask questions as it's a very important algorithm in the analysis of linear congruences.
 
 
+
+### Folder: tothemoon
+
+Source: Email
+
+Problem:  NASA has invented a Fibonacci Warp Drive.  Each 'jump' of the drive moves a spaceship almost instantaneously to the next Fibonacci number of miles in distance.  How many jumps would it take to reach the moon? 
+
+Solution:  Well, the problem requires a bit of clarification, as stated.  The moon is not a constant distance from the earth, although the average distance can be taken to be 238,856 miles.  I suppose this makes an interesting discussion problem since the gap between Fibonacci numbers grows very rapidly.  It is likely that for a given distance, there is no integral number of 'jumps' that will exactly reach the desired distance.  So, I hope NASA also has an ion engine that can move the ship in-between jumps :)
+
+The next issue is where does the 'jumping' begin?  The Fibonacci sequence is 0, 1, 1, 2, 3, 5, 8, ...  So, does the first jump move the ship zero miles?  Do the next two jumps move it to one mile?  Inquiring minds want to know ...
+
+Regardless of how 'jumping' is interpreted, the crux of the problem is finding a Fibonacci number that is as close as possible to a given number.  As with any problem involving Fibonacci numbers, my first thought is of Binet's formula.  One term of the sequence can be safely ignored (at least for the numbers we are dealing with), so the inverse equation is a tractable formula using logarithms.
+
+The supplied code computes a 'near' number and then uses the _fibonacci_ function from an above problem to compute the next number in sequence.  The closest number to the input distance of 238856 is used to determine _n_ (the _n-th_ Fibonacci number, starting at index 0).
+
+From there, you can apply your personal interpretation to compute the number of jumps.
+
+Beam me up, Scotty :)
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submit a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.

@@ -58,6 +58,7 @@ import {ILListNode           } from "./src/reverselinkedlist/LListNode";
 import {lcm                  } from "./src/euclid/Euclid";
 import {gcd                  } from "./src/euclid/Euclid";
 import {extEuclid            } from "./src/euclid/Euclid";
+import {computeJump          } from "./src/tothemoon/ComputeJumps";
 
 import * as Chai from 'chai';
 const expect = Chai.expect;
@@ -2108,4 +2109,32 @@ describe('Extended Euclid', () => {
     expect(+result['x']).to.equal(8);
     expect(+result['y']).to.equal(-17);
   });
+});
+
+describe('Fibonacci Moon Jump', () => {
+
+  it('returns zero for NaN input', function () {
+    const jumps: number = computeJump(NaN);
+
+    expect(jumps).to.equal(0);
+  });
+
+  it('returns zero for negative input', function () {
+    const jumps: number = computeJump(-10000);
+
+    expect(jumps).to.equal(0);
+  });
+
+  it('works for an exact fibonacci distance', function () {
+    const jumps: number = computeJump(144);
+
+    expect(jumps).to.equal(12);
+  });
+
+  it('returns correct number for approx. moon distance', function () {
+    const jumps: number = computeJump(238356);
+
+    expect(jumps).to.equal(27);
+  });
+
 });
