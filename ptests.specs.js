@@ -54,6 +54,7 @@ var Euclid_1 = require("./src/euclid/Euclid");
 var Euclid_2 = require("./src/euclid/Euclid");
 var Euclid_3 = require("./src/euclid/Euclid");
 var ComputeJumps_1 = require("./src/tothemoon/ComputeJumps");
+var balancedparens_1 = require("./src/balancedparens/balancedparens");
 var Chai = require('chai');
 var expect = Chai.expect;
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -1642,11 +1643,68 @@ describe('Fibonacci Moon Jump', function () {
     it('works for an exact fibonacci distance', function () {
         var jumps = ComputeJumps_1.computeJump(144);
         expect(jumps).to.equal(12);
-        console.log("1: ", ComputeJumps_1.computeJump(1));
     });
     it('returns correct number for approx. moon distance', function () {
         var jumps = ComputeJumps_1.computeJump(238356);
         expect(jumps).to.equal(27);
+    });
+});
+describe('Balanced open/close chars', function () {
+    it('returns false for null input', function () {
+        var result = balancedparens_1.isBalanced(null);
+        expect(result).to.be.false;
+    });
+    it('returns true for empty string', function () {
+        var result = balancedparens_1.isBalanced('');
+        expect(result).to.be.true;
+    });
+    it('returns true for string with no open/close chars', function () {
+        var result = balancedparens_1.isBalanced('abcde');
+        expect(result).to.be.true;
+    });
+    it('returns false for one open char only', function () {
+        var result = balancedparens_1.isBalanced('abc(de');
+        expect(result).to.be.false;
+    });
+    it('returns false for one close char only', function () {
+        var result = balancedparens_1.isBalanced('abcde)');
+        expect(result).to.be.false;
+    });
+    it('returns false for reversed open/close', function () {
+        var result = balancedparens_1.isBalanced(')abcde(');
+        expect(result).to.be.false;
+    });
+    it('returns false for imbalance #1', function () {
+        var result = balancedparens_1.isBalanced('<abcd<e>');
+        expect(result).to.be.false;
+    });
+    it('returns false for imbalance #2', function () {
+        var result = balancedparens_1.isBalanced('{abc(de}');
+        expect(result).to.be.false;
+    });
+    it('returns false for imbalance #3', function () {
+        var result = balancedparens_1.isBalanced('{a[[bc]de}');
+        expect(result).to.be.false;
+    });
+    it('returns false for imbalance #4', function () {
+        var result = balancedparens_1.isBalanced('{a[bc]]de}');
+        expect(result).to.be.false;
+    });
+    it('balance test #1', function () {
+        var result = balancedparens_1.isBalanced('{}');
+        expect(result).to.be.true;
+    });
+    it('balance test #2', function () {
+        var result = balancedparens_1.isBalanced('(ab) * c');
+        expect(result).to.be.true;
+    });
+    it('balance test #3', function () {
+        var result = balancedparens_1.isBalanced('{(ab) * c}');
+        expect(result).to.be.true;
+    });
+    it('balance test #4', function () {
+        var result = balancedparens_1.isBalanced('f(a,b) = 2*(c+d)');
+        expect(result).to.be.true;
     });
 });
 //# sourceMappingURL=ptests.specs.js.map

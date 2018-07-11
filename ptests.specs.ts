@@ -59,6 +59,7 @@ import {lcm                  } from "./src/euclid/Euclid";
 import {gcd                  } from "./src/euclid/Euclid";
 import {extEuclid            } from "./src/euclid/Euclid";
 import {computeJump          } from "./src/tothemoon/ComputeJumps";
+import {isBalanced           } from "./src/balancedparens/balancedparens";
 
 import * as Chai from 'chai';
 const expect = Chai.expect;
@@ -2137,4 +2138,92 @@ describe('Fibonacci Moon Jump', () => {
     expect(jumps).to.equal(27);
   });
 
+});
+
+describe('Balanced open/close chars', () => {
+
+  it('returns false for null input', function () {
+    const result: boolean = isBalanced(null);
+
+    expect(result).to.be.false;
+  });
+
+
+  it('returns true for empty string', function () {
+    const result: boolean = isBalanced('');
+
+    expect(result).to.be.true;
+  });
+
+  it('returns true for string with no open/close chars', function () {
+    const result: boolean = isBalanced('abcde');
+
+    expect(result).to.be.true;
+  });
+
+  it('returns false for one open char only', function () {
+    const result: boolean = isBalanced('abc(de');
+
+    expect(result).to.be.false;
+  });
+
+  it('returns false for one close char only', function () {
+    const result: boolean = isBalanced('abcde)');
+
+    expect(result).to.be.false;
+  });
+
+  it('returns false for reversed open/close', function () {
+    const result: boolean = isBalanced(')abcde(');
+
+    expect(result).to.be.false;
+  });
+
+  it('returns false for imbalance #1', function () {
+    const result: boolean = isBalanced('<abcd<e>');
+
+    expect(result).to.be.false;
+  });
+
+  it('returns false for imbalance #2', function () {
+    const result: boolean = isBalanced('{abc(de}');
+
+    expect(result).to.be.false;
+  });
+
+  it('returns false for imbalance #3', function () {
+    const result: boolean = isBalanced('{a[[bc]de}');
+
+    expect(result).to.be.false;
+  });
+
+  it('returns false for imbalance #4', function () {
+    const result: boolean = isBalanced('{a[bc]]de}');
+
+    expect(result).to.be.false;
+  });
+
+  it('balance test #1', function () {
+    const result: boolean = isBalanced('{}');
+
+    expect(result).to.be.true;
+  });
+
+  it('balance test #2', function () {
+    const result: boolean = isBalanced('(ab) * c');
+
+    expect(result).to.be.true;
+  });
+
+  it('balance test #3', function () {
+    const result: boolean = isBalanced('{(ab) * c}');
+
+    expect(result).to.be.true;
+  });
+
+  it('balance test #4', function () {
+    const result: boolean = isBalanced('f(a,b) = 2*(c+d)');
+
+    expect(result).to.be.true;
+  });
 });
