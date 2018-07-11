@@ -524,6 +524,27 @@ From there, you can apply your personal interpretation to compute the number of 
 Beam me up, Scotty :)
 
 
+### Folder: balancedparens
+
+Source: Email
+
+Problem:  Write a function that accepts a string with parentheses.  Determine if the parentheses are balanced.
+
+Solution:  I almost passed on this one as it impressed me as something there must be a hundred good Google results to peruse through.  The problem does, however, present an opportunity to discuss edge cases such as what to return for an empty string or a string with no parentheses?  For sake of discussion, we will accept these inputs as balanced.
+
+The problem also impresses me as a good opportunity to create a function that is easy to enhance in the future.  For example, what happens if the next change request is to include balanced curly braces?
+
+As it happens, we can accommodate such changes with a couple hashes.  The first maps open to closed characters and the open/close characters must be distinct.  The second hash stores the set of closed characters with the boolean value, _true_ to use in a test.  Lookup from the hashes is trivial.
+
+Just like when I wrote this in C over 20 years ago, the fundamental data structure is a stack and an _Array_ in Typescript is used for the stack.  I suspect that's the goal of the question in the first place.
+
+O(1) best case in the event we can determine imbalance on the first character and O(n) average/worst-case complexity.
+
+Now, as I've mentioned dozens of times before, I'm not a string-processing guru, so take the provided implementation as a first step that provides room for improvement.
+
+Have fun!
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submit a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.
