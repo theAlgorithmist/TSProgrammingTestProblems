@@ -542,6 +542,8 @@ O(1) best case in the event we can determine imbalance on the first character an
 
 Now, as I've mentioned dozens of times before, I'm not a string-processing guru, so take the provided implementation as a first step that provides room for improvement.
 
+HINT:  For a single open/close pair (like parens), try replacing the stack with a counter that records the number of items the stack would have held and test that count at the end.
+
 Have fun!
 
 

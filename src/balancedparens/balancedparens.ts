@@ -63,7 +63,7 @@ export function isBalanced(input: string, openChars: Object=OPEN_CHARS, closedCh
     return true;
   }
 
-  // an array is used as a stack in this implementation
+  // an array is used as a stack in this implementation. For a single open/close pair, try replacing this with a counter
   const stack: Array<string> = new Array<string>();
 
   let i: number;
