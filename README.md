@@ -542,9 +542,18 @@ O(1) best case in the event we can determine imbalance on the first character an
 
 Now, as I've mentioned dozens of times before, I'm not a string-processing guru, so take the provided implementation as a first step that provides room for improvement.
 
-HINT:  For a single open/close pair (like parens), try replacing the stack with a counter that records the number of items the stack would have held and test that count at the end.
+HINT:  For a single open/close pair (like parens), try replacing the stack with a counter that records the number of items the stack would have held and test that count at the end.  Will that generalize?
 
 Have fun!
+
+
+### Folder: primenumberdie
+
+Source: Email
+
+Problem:  You are given a function, die5() that simulates the roll of a five-sided die. Write a function that uses only die5() to simulate the roll of a die with a small prime number of faces. Discuss limitations or edge cases involved with the use of this function.
+
+Solution:  Well, this is a pretty involved analysis, so I thought it would be be better handled as a blog post.  [Read all about it here] :)
 
 
 ### Contributions
@@ -566,3 +575,5 @@ Apache 2.0
 [my solution at the this blog post]: <http://www.algorithmist.net/programming/pascals-triangle-and-the-developer-interview/>
 
 [blog post on minimizing worst-case complexity]: <http://www.algorithmist.net/applied-math/minimizing-worst-case-complexity/>
+
+[Read all about it here]: <http://www.algorithmist.net/applied-math/typescript-programming-test-problems-repo-update/>

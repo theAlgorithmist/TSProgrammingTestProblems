@@ -9,7 +9,6 @@
   "author": "Jim Armstrong (www.algorithmist.net)",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/core-js": "0.9.34",
     "gulp-tsc": "^1.2.4",
     "typescript": "2.0.0"
   },

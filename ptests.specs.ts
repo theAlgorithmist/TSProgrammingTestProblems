@@ -60,8 +60,13 @@ import {gcd                  } from "./src/euclid/Euclid";
 import {extEuclid            } from "./src/euclid/Euclid";
 import {computeJump          } from "./src/tothemoon/ComputeJumps";
 import {isBalanced           } from "./src/balancedparens/balancedparens";
+import {getCoefs             } from "./src/primenumberdie/getCoefs";
+import {ICoef                } from "./src/primenumberdie/getCoefs";
+import {simulateRoll         } from "./src/primenumberdie/simulate";
+import {validate             } from "./src/primenumberdie/validate";
 
 import * as Chai from 'chai';
+
 const expect = Chai.expect;
 
 // quick-n-dirty elementwise arrray comparison for arrays of numbers (expeted to be integers)
@@ -89,7 +94,7 @@ function arrCompare(arr1: Array<number>, arr2: Array<number>): boolean
 // init an array with a strictly increasing sequence of numbers
 function makeArray(n: number): Array<number>
 {
-  let i: number
+  let i: number;
   let a: Array<number> = new Array<number>();
 
   // KISS
@@ -102,7 +107,7 @@ function makeArray(n: number): Array<number>
 
 // Test Suites
 describe('Multiply by 321', () => {
-  
+
   var result: number;
   var obj: any = { blah: 10 };  // the typing is to get past what would otherwise be caught at compile time
 
@@ -2226,4 +2231,220 @@ describe('Balanced open/close chars', () => {
 
     expect(result).to.be.true;
   });
+});
+
+describe('Two-roll die coefficients', () => {
+
+  let result: ICoef;
+
+  it('returns correct values for null input', function () {
+    result = getCoefs(null);
+
+    expect(result.a).to.equal(0);
+    expect(result.n).to.equal(0);
+    expect(result.c).to.equal(0);
+  });
+
+  it('returns correct values for k < 5', function () {
+    result = getCoefs(4);
+
+    expect(result.a).to.equal(0);
+    expect(result.n).to.equal(0);
+    expect(result.c).to.equal(0);
+  });
+
+  it('returns correct values for k > 25', function () {
+    result = getCoefs(28);
+
+    expect(result.a).to.equal(0);
+    expect(result.n).to.equal(0);
+    expect(result.c).to.equal(0);
+  });
+
+  it('returns correct values for k = 7', function () {
+    result = getCoefs(7);
+
+    expect(result.a).to.equal(5);
+    expect(result.n).to.equal(3);
+    expect(result.c).to.equal(5);
+  });
+
+  it('returns correct values for k = 6', function () {
+    result = getCoefs(6);
+
+    expect(result.a).to.equal(5);
+    expect(result.n).to.equal(4);
+    expect(result.c).to.equal(5);
+  });
+});
+
+describe('Simulate roll tests', () => {
+
+  // this is not a statistically significant set of specs, just checking the basics.
+  let model: ICoef = getCoefs(7);
+  let roll: number;
+
+  it('returns correct value for null inputs #1', function () {
+    roll = simulateRoll(model, null);
+
+    expect(roll).to.equal(0);
+  });
+
+  it('returns correct value for null inputs #2', function () {
+    roll = simulateRoll(null, null);
+
+    expect(roll).to.equal(0);
+  });
+
+  it('returns correct value for invalid inputs #1', function () {
+    let tmp: any = 'a';
+    roll = simulateRoll(model, tmp);
+
+    expect(roll).to.equal(0);
+  });
+
+  it('returns correct value for invalid inputs #2', function () {
+    let tmp: any = 'a';
+    roll = simulateRoll(model, 1);
+
+    expect(roll).to.equal(0);
+  });
+
+  it('returns correct value for invalid inputs #3', function () {
+    let tmp: any = 'a';
+    roll = simulateRoll(model, 30);
+
+    expect(roll).to.equal(0);
+  });
+
+  it('general test #1', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #2', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #3', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #4', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #5', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #6', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #7', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #8', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #9', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+  it('general test #10', function () {
+    roll = simulateRoll(model, 7);
+
+    expect(roll > 0).to.be.true;
+    expect(roll < 8).to.be.true;
+  });
+
+});
+
+describe('Validate k-sided die', () => {
+
+  // this is not a statistical test; the frequency counts should be identical as the number of trial tends to infinity
+  let model: ICoef;
+  let freq: Array<number>;
+
+  it('returns correct value for null inputs #1', function () {
+    freq = validate(model, null);
+
+    expect(freq.length).to.equal(0);
+  });
+
+  it('returns correct value for null inputs #2', function () {
+    freq = validate(null, 7);
+
+    expect(freq.length).to.equal(0);
+  });
+
+  it('test #1', function () {
+    model = getCoefs(6);
+    freq  = validate(model, 6);
+
+    // expectation is trivial; check the freq counts - should be 'close', but won't be equal
+    console.log( "6-sided die, freq: ", freq );
+
+    expect(freq.length).to.equal(6);
+  });
+
+  it('test #2', function () {
+    model = getCoefs(7);
+    freq  = validate(model, 7);
+
+    // expectation is trivial; check the freq counts - should be 'close', but won't be equal
+    console.log( "7-sided die, freq: ", freq );
+
+    expect(freq.length).to.equal(7);
+  });
+
+  it('test #3', function () {
+    model = getCoefs(8);
+    freq  = validate(model, 8);
+
+    // expectation is trivial; check the freq counts - should be 'close', but won't be equal
+    console.log( "8-sided die, freq: ", freq );
+
+    expect(freq.length).to.equal(8);
+  });
+
+  it('test #4', function () {
+    model = getCoefs(9);
+    freq  = validate(model, 9);
+
+    // expectation is trivial; check the freq counts - should be 'close', but won't be equal
+    console.log( "9-sided die, freq: ", freq );
+
+    expect(freq.length).to.equal(9);
+  });
+
 });

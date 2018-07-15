@@ -19,17 +19,16 @@
  *
  * @param inputStr : string Input string
  * 
- * @return string : First non-repeating character or null string if there are no non-repeating characters.  Two algorithms are provided; the latter, in particular not
- * worst-case optimal.  String processing is not my strong suit :)
+ * @return string : First non-repeating character or null string if there are no non-repeating characters.  Two
+ * algorithms are provided; the latter, in particular not worst-case optimal.  String processing is not my
+ * strong suit :)
  *
  * @author Jim Armstrong (www.algorithmist.net)
  *
  * @version 1.0
  */
 
- // relying on native Map for implementation
-
- export function firstNonrepeatingChar(inputStr: string): string 
+export function firstNonrepeatingChar(inputStr: string): string
  {
    let i: number;
    let count: number;
