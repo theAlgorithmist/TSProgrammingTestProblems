@@ -64,6 +64,7 @@ import {getCoefs             } from "./src/primenumberdie/getCoefs";
 import {ICoef                } from "./src/primenumberdie/getCoefs";
 import {simulateRoll         } from "./src/primenumberdie/simulate";
 import {validate             } from "./src/primenumberdie/validate";
+import {evenoddsort          } from "./src/evenoddsort/evenoddsort";
 
 import * as Chai from 'chai';
 
@@ -2447,4 +2448,104 @@ describe('Validate k-sided die', () => {
     expect(freq.length).to.equal(9);
   });
 
+});
+
+
+describe('Even-Odd Sort', () => {
+
+  it('returns correct value for null input', function () {
+    const result: Array<number> = evenoddsort(null);
+
+    expect(result.length).to.equal(0);
+  });
+
+  it('returns correct value for empty input', function () {
+    const result: Array<number> = evenoddsort([]);
+
+    expect(result.length).to.equal(0);
+  });
+
+  it('returns correct value for a singleton', function () {
+    const result: Array<number> = evenoddsort([1]);
+
+    expect(result.length).to.equal(1);
+    expect(result[0]).to.equal(1);
+  });
+
+  it('two-element test #1', function () {
+    const result: Array<number> = evenoddsort([1, 2]);
+
+    expect(result.length).to.equal(2);
+    expect(result[0]).to.equal(2);
+    expect(result[1]).to.equal(1);
+  });
+
+  it('two-element test #2', function () {
+    const result: Array<number> = evenoddsort([12, -11]);
+
+    expect(result.length).to.equal(2);
+    expect(result[0]).to.equal(12);
+    expect(result[1]).to.equal(-11);
+  });
+
+  it('three-element test', function () {
+    const result: Array<number> = evenoddsort([3, 1, 2]);
+
+    expect(result.length).to.equal(3);
+    expect(result[0]).to.equal(2);
+    expect(result[1]).to.equal(1);
+    expect(result[2]).to.equal(3);
+  });
+
+  it('four-element test', function () {
+    const result: Array<number> = evenoddsort([2, -1, 0, 4]);
+
+    expect(result.length).to.equal(4);
+    expect(result[0]).to.equal(2);
+    expect(result[1]).to.equal(-1);
+    expect(result[2]).to.equal(4);
+    expect(result[3]).to.equal(0);
+  });
+
+  it('five-element test', function () {
+    const result: Array<number> = evenoddsort([2, -1, 10, 4, 7]);
+
+    expect(result.length).to.equal(5);
+    expect(result[0]).to.equal(4);
+    expect(result[1]).to.equal(-1);
+    expect(result[2]).to.equal(7);
+    expect(result[3]).to.equal(2);
+    expect(result[4]).to.equal(10);
+  });
+
+  it('eight-element test', function () {
+    const result: Array<number> = evenoddsort([1, 2, 3, 4, 5, 6, 7, 8]);
+
+    expect(result.length).to.equal(8);
+    expect(result[0]).to.equal(5);
+    expect(result[1]).to.equal(1);
+    expect(result[2]).to.equal(6);
+    expect(result[3]).to.equal(2);
+    expect(result[4]).to.equal(7);
+    expect(result[5]).to.equal(3);
+    expect(result[6]).to.equal(8);
+    expect(result[7]).to.equal(4);
+  });
+
+  it('eleven-element test', function () {
+    const result: Array<number> = evenoddsort([11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+
+    expect(result.length).to.equal(11);
+    expect(result[0]).to.equal(6);
+    expect(result[1]).to.equal(1);
+    expect(result[2]).to.equal(7);
+    expect(result[3]).to.equal(2);
+    expect(result[4]).to.equal(8);
+    expect(result[5]).to.equal(3);
+    expect(result[6]).to.equal(9);
+    expect(result[7]).to.equal(4);
+    expect(result[8]).to.equal(10);
+    expect(result[9]).to.equal(5);
+    expect(result[10]).to.equal(11);
+  });
 });

@@ -16,7 +16,7 @@
 
 /**
  * Typescript Math Toolkit - Computes pseudo-random integers within an input range [a,b], where a and b are integers and b > a.  This
- * method can be used with the Math RNG or an optional seeded RNG.  There is automatic compensation for bias towards endpoints.
+ * method can be used with the Math RNG or an optional seeded RNG.  There is automatic compensation for bias away from endpoints.
  * 
  * @author Jim Armstrong
  * 
@@ -26,19 +26,19 @@
 
  export class RandomIntInRange
  {
-   private _min: number;    // minimum value of range
-   private _max: number;    // maximum value of range
-   private _delta: number;  // interval width
-   private _seed: number;   // seed value for RNG
-   private _rng: SeededRng; // reference to SeededRng
+   protected _min: number;    // minimum value of range
+   protected _max: number;    // maximum value of range
+   protected _delta: number;  // interval width
+   protected _seed: number;   // seed value for RNG
+   protected _rng: SeededRng; // reference to SeededRng
 
   /**
    * Construct a new RandomIntInRange
    *
-   * @param min:number Minium value of range
+   * @param {number} min Minimum value of range
    * @default 0
    *
-   * @param max:number Maximum value of range
+   * @param {number} max Maximum value of range
    * @default 1
    * 
    * @param seed:number Seed value to use if seeded RNG if desired
@@ -55,10 +55,11 @@
   /**
    * Set a new interval
    *
-   * @param min: number New minimum-integer
-   * @param max: number New maximum-integer
+   * @param {number} min New minimum-integer value
    *
-   * @return Nothing
+   * @param {number} max New maximum-integer value
+   *
+   * @returns {nothing}
    */
    public setInterval(min: number, max: number): void
    {
@@ -83,15 +84,15 @@
   /**
 	 * Generate a pseudo-random integer in a new input range using the system-supplied RNG.
 	 * 
-	 * @param min:number Minimum value of range
+	 * @param {number} min Minimum value of range
 	 * 
-	 * @param max:number Maximum value of range
+	 * @param {number} max Maximum value of range
 	 *
-	 * @return number New iterate in the specified range - there is no error testing on inputs for performance reasons
+	 * @returns {number} New iterate in the specified range - there is no error testing on inputs for performance reasons
 	 */
    public static generateInRange(min: number, max: number): number
    {
-     let theMin: number = min;
+     let theMin: number = Math.min(min, max);
      let theMax: number = Math.max(min, max);
       
      // compensate for endpoint bias
@@ -104,17 +105,18 @@
   /**
 	 * Generate a pseudo-random integer in the currently specified range.
 	 * 
-	 * @param useSeeded:boolean - true if the seeded RNG is used
+	 * @param {boolean} useSeeded true if the seeded RNG is used
 	 * @default false
 	 * 
-	 * @return number New pseudo-random integer in the current range
+	 * @returns {number} New pseudo-random integer in the current range
 	 */
    public generate(useSeeded: boolean=false): number
    {
-     if (useSeeded && !this._rng)
+     if (useSeeded && !this._rng) {
        this._rng = new SeededRng(this._seed);
+     }
      
-     let u: number = useSeeded ? this._rng.next() : Math.random();
+     let u: number = useSeeded ? this._rng.asNumber() : Math.random();
       
      return Math.round(this._min + u*this._delta);
     }

@@ -11,7 +11,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noExternalResolve": false,
     "sortOutput": true,
-    "lib": ["ES6", "DOM"],
+    "lib": ["ES6", "ES2015.collection", "ES2015.iterable", "DOM"],
     "typeRoots": [
       "/node_modules/@types"
     ]

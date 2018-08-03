@@ -556,6 +556,23 @@ Problem:  You are given a function, die5() that simulates the roll of a five-sid
 Solution:  Well, this is a pretty involved analysis, so I thought it would be be better handled as a blog post.  [Read all about it here] :)
 
 
+
+### Folder: evenoddsort
+
+Source: Email
+
+Problem:  Write a function that sorts an array of numbers so that all even-numbered array elements are larger than (or equal to) all odd-numbered elements.
+
+Solution:  My first question is if the numbered elements are zero- or one-based.  Since it's not stated and it's my repo, I'll choose the former.  The second question is whether or not the input array should remain unaltered.  I chose that approach since it's how I believe this function would be used in an application.
+
+If you are really hardcore and a master of all things Knuth Vol 3, then you could probably code the even/odd arrangement into your favorite sorting algorithm.  My specialty is numerical algorithms, so I don't really spend much time thinking about or being concerned with the internals of any particular sorting algorithm.
+
+My initial thought was a two-step process.  First, sort the array in descending order.  Then, sweep through the sorted result and load the highest _m = ceil(n/2)_ elements into the _m_ even cells (where _n_ is the length of the input array).  This leaves _k = n - m_ odd slots to fill with the remaining sort results.
+
+I suspect many programmers would write one loop for the final pass and test each array index to see if it is even or odd.  The test, however, is not necessary.  Once the highest even or odd index is computed, simply decrement the loop induction variable by two and use two smaller loops with no logic.  The number of array fetches and stores is the same, but there is no if-then-else logic inside either loop.
+
+
+
 ### Contributions
 
 Contributions are welcome.  Email me if you wish to submit a problem and I will add it to the collection as soon as time allows.  If you would like to submit a problem whose solution you implemented in Typescript, then submit a pull request or send me the source via email (along with a brief text blurb describing the problem and solution).  You will receive attribution and a link to your web site/blog/etc. if provided.
