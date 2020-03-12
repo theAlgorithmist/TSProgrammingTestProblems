@@ -1086,7 +1086,7 @@ describe('Minimize worst-case complexity', () => {
     expect(numTrue).to.equal(1);
   });
 
-  it('returns -1 for an singleton array that does not satisfiy criteria', () => {
+  it('returns -1 for an singleton array that does not satisfy criteria', () => {
     let f: Function    = (a: number): boolean => {return a == 0};
     let result: number = scan.scanArray([1.0], f);
 
