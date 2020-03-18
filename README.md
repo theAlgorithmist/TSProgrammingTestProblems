@@ -591,6 +591,6 @@ Apache 2.0
 
 [my solution at the this blog post]: <http://www.algorithmist.net/programming/pascals-triangle-and-the-developer-interview/>
 
-[blog post on minimizing worst-case complexity]: <http://www.algorithmist.net/applied-math/minimizing-worst-case-complexity/>
+[blog post on minimizing worst-case complexity]: <https://www.linkedin.com/pulse/minimizing-worst-case-complexity-jim-armstrong>
 
-[Read all about it here]: <http://www.algorithmist.net/applied-math/typescript-programming-test-problems-repo-update/>
+[Read all about it here]: <https://www.linkedin.com/pulse/5-sided-die-problem-jim-armstrong/>
